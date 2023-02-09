@@ -248,20 +248,20 @@ public class ConditionEx {
 			System.out.print("키 입력 : ");
 			double height = sc.nextDouble();
 			
-		}
+			if(height < 100 || height > 220) {
+				result = "잘못 입력하셨습니다";
+			
+			} else if(height < 140) {
+				result = "적정 키가 아닙니다.";
+				
+			} else {
+				result = "탑승 가능";
+			}
+			
+		} // age else 끝
 		
-		
+		System.out.println(result);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
