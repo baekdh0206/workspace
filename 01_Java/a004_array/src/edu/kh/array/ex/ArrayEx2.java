@@ -67,6 +67,99 @@ public class ArrayEx2 {
 		}
 	}
 	
+	// 2차원 배열 응용 1
+	public void ex2() {
+		
+		// 3행 3열 짜리 int 2차원 배열에 난수(0~9)를 대입한 후
+		// 각 행의 합과 전체 합을 출력
+		
+		// 3  2  5
+		// 9  7  2
+		// 1  2  3
+		
+		// 0행의 합 : 10
+		// 1행의 합 : 18
+		// 2행의 합 : 6
+		// 전체 합 : 34
+		
+		// 3행 3열짜리 int형 배열 생성
+		int[][] arr = new int[3][3];
+		
+		
+		// 난수 대입 및 출력
+		for(int row=0; row<arr.length ; row++) {
+			
+			for(int col=0; col<arr[row].length ; col++) {
+				
+				// 배열 요소에 난수 대입
+				arr[row][col] = (int)(Math.random() * 10); // 0 ~ 9 
+				
+				System.out.printf("%3d", arr[row][col]);
+			}
+			
+			System.out.println(); // 개행
+		}
+		
+		
+		
+		// 합계 계산 및 출력
+		int sum = 0; // 전체 합(모든 요소 합)
+		
+		for(int row=0 ; row<arr.length ; row++) {
+			
+			int rowSum = 0; // 행의 합
+			
+			for(int col=0 ; col<arr[row].length ; col++) {
+				rowSum += arr[row][col];
+			}
+			
+			System.out.println(row + "행의 합 : " + rowSum);
+			
+			sum += rowSum; // 각 행의 합을 sum에 누적
+			
+		}
+		
+		System.out.println("전체 합 : " + sum);
+	}
+	
+	
+	public void ex3() {
+		
+		// 가변 배열
+		// - 2차원 배열 할당 시
+		//   마지막 차수(열)의 크기를 지정하지 않고
+		//   추후에 각행에 새로운 1차원 배열의 주소를 대입하는 배열
+		
+		char[][] arr = new char[4][];
+		
+		arr[0] = new char[3];
+		arr[1] = new char[4];
+		arr[2] = new char[5];
+		arr[3] = new char[2];
+		
+		// 배열의 모든 요소에 a부터 시작하여 하나씩 증가하는 알파벳 대입
+		
+		char ch = 'a';
+		for(int row=0 ; row<arr.length ; row++) {
+			
+			// 각 행의 열의 길이가 다르기 때문에
+			// 조건식의 값이 행별로 변할 수 있도록 
+			// arr[row].length 사용
+			for(int col=0 ; col<arr[row].length ; col++) {
+				arr[row][col] = ch; // 요소에 문자 대입
+				ch++; // 다음 문자로 증가
+				
+				System.out.print(arr[row][col] + " "); // 저장된 알파벳 출력
+			}
+			
+			System.out.println();
+			
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
