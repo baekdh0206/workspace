@@ -39,10 +39,6 @@ public class BasicRun {
 		n1.speakKorean();
 		
 		
-		
-		
-		
-		
 	}
 
 }
