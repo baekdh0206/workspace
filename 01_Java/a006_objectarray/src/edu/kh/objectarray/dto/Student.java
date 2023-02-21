@@ -65,7 +65,7 @@ public class Student {
 		return kor;
 	}
 	
-	public void set(int kor) {
+	public void setKor(int kor) {
 		this.kor = kor;
 	}
 	
@@ -90,5 +90,6 @@ public class Student {
 		return String.format("%d학년 %d반 %d번 %s [%d, %d, %d]", 
 						grade, classRoom, number, name, kor, eng, math);
 	}
+	
 	
 }
