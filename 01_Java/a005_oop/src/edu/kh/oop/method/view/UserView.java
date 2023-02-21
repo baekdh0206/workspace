@@ -197,7 +197,7 @@ public class UserView {
 			}
 			
 			
-		} else { // 로그인 X
+		} else { // 로그인 
 			System.out.println("[로그인 후 이용해주세요.]");
 		}
 	}
