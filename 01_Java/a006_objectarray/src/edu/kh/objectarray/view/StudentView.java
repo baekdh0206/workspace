@@ -210,9 +210,9 @@ public class StudentView {
 		
 	}
 	
-	/** 6. 점수 합계, 평균, 최고점, 최저점*/
+	/** 6.  학생 총점 합계, 평균, 최고점, 최저점*/
 	private void sumAvgMaxMin() {
-		System.out.println("[점수 합계, 평균, 최고점, 최저점]");
+		System.out.println("[학생 총점 합계, 평균, 최고점, 최저점]");
 		
 		int[] arr = service.sumAvgMaxMin();
 		
