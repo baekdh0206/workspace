@@ -4,7 +4,8 @@ public class PracticeRun {
 	public static void main(String[] args) {
 		
 		ArrayPractice ap = new ArrayPractice();
-		ap.practice14();
+//		ap.practice14();
+		ap.practice18();
 //		ap.scannerEx();
 	}
 }
