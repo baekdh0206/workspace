@@ -10,6 +10,6 @@ public class ExceptionRun {
 		
 		ExceptionService service = new ExceptionService();
 		
-		service.ex3();
+		service.startEx5();
 	}
 }
