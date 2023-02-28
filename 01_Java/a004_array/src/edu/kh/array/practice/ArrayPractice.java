@@ -387,6 +387,7 @@ public class ArrayPractice {
                 }
             }
         }
+        
 
         // 4. 출력
         for(int i=0; i<lotto.length; i++) {
