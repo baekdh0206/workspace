@@ -95,6 +95,7 @@ public class MapService {
 		System.out.print("PW : ");
 		String pw = sc.next();
 		
+		
 		// id, pw가 member와 모두 일치하면 member 정보 출력
 		if( member.get("memberId").equals(id)  ) {
 			// value가 Object 타입이기 때문에 
