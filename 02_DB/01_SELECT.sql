@@ -223,26 +223,209 @@ WHERE DEPT_CODE NOT IN ('D5','D6','D9');
 -- IS NOT NULL : 컬럼 값이 NULL이 아닌 경우 TRUE
 
 
-
 -- EMPLOYEE 테이블에서 부서가 없는 사원의 모든 컬럼 조회
 SELECT * 
 FROM EMPLOYEE
-WHERE DEPT_CODE = NULL;
+WHERE DEPT_CODE IS NULL;
 
 -- EMPLOYEE 테이블에서 부서가 있는 사원의 모든 컬럼 조회
+SELECT * 
+FROM EMPLOYEE
+WHERE DEPT_CODE IS NOT NULL;
+
+-----------------------------------------------------------
+
+-- 연결 연산자( || )
+-- 여러 값을 하나의 컬럼 값으로 연결하는 연산자
+-- (== 자바의 문자열 이어쓰기(+) )
+
+-- OOO의 급여는 OOO원 입니다.
+SELECT EMP_NAME || '의 급여는 ' || SALARY || '원 입니다.' AS 결과
+FROM EMPLOYEE;
+
+-- '' : 값, 리터럴
+-- "" : 계정명, 비밀번호, 컬럼명, 테이블명   
+--      값이 아닌 것들에 대한 대소문자 구분
+
+-----------------------------------------------------------------------
+
+/* LIKE
+ * 
+ * - 비교하려는 값이 특정한 패턴을 만족 시키면(TRUE) 조회하는 연산자
+ * 
+ * [작성법]
+ * WHERE 컬럼명 LIKE '패턴'
+ * 
+ * - LIKE 패턴( == 와일드 카드  ) 
+ * 
+ * '%' (포함)
+ * - '%A' : 문자열이 앞은 어떤 문자든 포함되고 마지막은 A
+ * 			-> A로 끝나는 문자열
+ * - 'A%' : A로 시작하는 문자열
+ * - '%A%' : A가 포함된 문자열
+ *  
+ * 
+ * '_' (글자 수)
+ * - 'A_' : A 뒤에 아무거나 한 글자만 있는 문자열
+ *          (AB ,A1, AQ, A가)
+ * 
+ * - '___A' : A 앞에 아무거나 3글자만 있는 문자열
+ */
+
+-- EMPLOYEE 테이블에서 성이 '전' 씨인 사원의 사번, 이름 조회
+SELECT EMP_ID, EMP_NAME -- 3
+FROM EMPLOYEE  -- 1
+WHERE EMP_NAME LIKE '전%'; -- 2
 
 
+-- EMPLOYEE 테이블에서 이름에 '하'가 포함되는 사원의 사번, 이름 조회
+SELECT EMP_ID, EMP_NAME
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '%하%';
+
+-- EMPLOYEE 테이블에서
+-- 전화번호가 '010'으로 시작하는 사원의 
+-- 사번, 이름, 전화번호 조회
+SELECT EMP_ID, EMP_NAME, PHONE
+FROM EMPLOYEE
+--WHERE PHONE LIKE '010%';
+WHERE PHONE LIKE '010________';
 
 
+-- EMPLOYEE 테이블에서
+-- 전화번호가 '010'으로 시작하지 않는 사원의 
+-- 사번, 이름, 전화번호 조회
+--> NOT LIKE
+SELECT EMP_ID, EMP_NAME, PHONE
+FROM EMPLOYEE
+WHERE PHONE NOT LIKE '010%'
+OR PHONE IS NULL; 
+
+-- EMPLOYEE 테이블에서
+-- 이메일에 @ 앞글자가 5글자인 사원의 
+-- 사번, 이름, 이메일 조회
+SELECT EMP_ID, EMP_NAME, EMAIL
+FROM EMPLOYEE
+WHERE EMAIL LIKE '_____@%';
+
+-- EMPLOYEE 테이블에서
+-- 이메일에 _ 앞글자가 3글자인 사원의 
+-- 사번, 이름, 이메일 조회
+SELECT EMP_ID, EMP_NAME, EMAIL
+FROM EMPLOYEE
+WHERE EMAIL LIKE '____%';
+--> 문제점 : 와일드 카드 문자(_)와 패턴에 사용된 일반 문자가
+--           같은 문자 이기 때문에 구분이 안되는 문제가 발생
+
+--> 해결 방법 : ESCAPE 옵션을 이용하여 일반 문자(_)를 구분
+
+SELECT EMP_ID, EMP_NAME, EMAIL
+FROM EMPLOYEE
+WHERE EMAIL LIKE '___#_%' ESCAPE '#';
+				--> '#' 뒤에 한 글자(_)를 일반 문자로 벗어나게함
 
 
+--------------------------------------------------------
+
+-- <WHERE절 날짜(시간) 비교>
+-- EMPLOYEE 테이블에서 입사일(고용일)이
+-- '1990/01/01' ~ '2000/12/31' 사이인 사원의
+-- 사번, 이름, 고용일 조회
+SELECT EMP_ID, EMP_NAME, HIRE_DATE
+FROM EMPLOYEE
+WHERE HIRE_DATE >= '1990/01/01'
+AND   HIRE_DATE <= '2000-12-31';
+--> '1990/01/01' == 문자열 -> DATE 타입으로 변경
+--> 오라클 DB는 작성된 값이 다른 형식의 데이터 타입이여도
+--  표기법이 다른 데이터 타입과 일치하다면
+--  자동으로 데이터 타입을 변경 할 수 있다.
+
+SELECT EMP_NAME, SALARY FROM EMPLOYEE
+WHERE SALARY >= '3000000';
+-- 3000000 : NUMBER
+-- '3000000' : CHAR
 
 
+-------------------------------------------------------
+/* ORDER BY 절
+ * 
+ * - SELECT문의 조회 결과(RESULT SET)를 정렬할 때 사용하는 구문
+ * 
+ * - *** SELECT구문에서 제일 마지막에 해석된다! ***
+ * 
+ * [작성법]
+ * 3: SELECT 컬럼명 AS 별칭, 컬럼명, 컬럼명, ...
+ * 1: FROM 테이블명
+ * 2: WHERE 조건식
+ * 4: ORDER BY 컬럼명 | 별칭 | 컬럼 순서 [오름/내림 차순] 
+ * 	        [NULLS FIRST | LAST]
+ * */
+
+-- EMPLOYEE 테이블에서 모든 사원의 이름, 급여를
+-- 급여 오름차순으로 조회
+SELECT EMP_NAME, SALARY
+FROM EMPLOYEE
+ORDER BY SALARY /*ASC*/;
+	--> 오름차순(ASC)가 기본값
+
+-- 급여 내림차순으로 조회
+SELECT EMP_NAME, SALARY
+FROM EMPLOYEE
+ORDER BY SALARY DESC;
+	--> 내림차순을 원할경우 DESC 작성
+
+-- 급여가 200만 이상인 사원을 급여 오름차순으로 조회
+SELECT EMP_NAME, SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 2000000
+ORDER BY SALARY;
+
+/*** 문자열, 날짜, 숫자 모두 정렬 가능 ***/
+
+-- 이름 오름차순 정렬
+SELECT EMP_NAME FROM EMPLOYEE ORDER BY EMP_NAME;
+
+-- 입사일 내림차순 정렬
+SELECT EMP_NAME, HIRE_DATE
+FROM EMPLOYEE
+ORDER BY HIRE_DATE DESC;
+
+-- ORDER BY절에 별칭|순서 사용하기
+
+-- 연봉 내림차순 조회
+/*2*/SELECT EMP_NAME, SALARY * 12 AS 연봉
+/*1*/FROM EMPLOYEE
+/*3*/ORDER BY /*SALARY * 12*/ /*연봉*/   2 DESC;
+			--   컬럼명      |  별칭  | 순서
 
 
+/* (주의) WHERE절에서 별칭|순서는 사용할 수 없다  */
+/*3*/SELECT EMP_NAME, SALARY * 12 AS 연봉
+/*1*/FROM EMPLOYEE
+/*2*/WHERE 연봉 >= 50000000; 
+-- 오류 발생(SELECT절 해석이 안된 상태에서 별칭을 WHERE절 작성)
 
 
+-- NULLS FIRST|LAST 확인
+-- 전화번호 오름차순 조회
+SELECT EMP_NAME, PHONE
+FROM EMPLOYEE
+ORDER BY PHONE /*NULLS LAST*/  NULLS FIRST;
+			--  오름차순 기본값
 
+-- 전화번호 내림차순 조회
+SELECT EMP_NAME, PHONE
+FROM EMPLOYEE
+ORDER BY PHONE DESC /*NULLS FIRST*/ NULLS LAST;
+			--  내림차순 기본값 
 
+/* <정렬 중첩> 
+ * - 큰 분류를 먼저 정렬하고, 내부 분류를 다음에 정렬하는 방식
+ * */
+
+-- 부서코드 별 급여 내림 차순 (부서코드는 내림차순)
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+ORDER BY DEPT_CODE DESC NULLS LAST, SALARY DESC;
 
 
