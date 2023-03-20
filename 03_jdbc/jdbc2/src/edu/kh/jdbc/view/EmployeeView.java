@@ -1,8 +1,10 @@
 package edu.kh.jdbc.view;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
+import edu.kh.jdbc.model.dto.Employee;
 import edu.kh.jdbc.model.service.EmployeeService;
 
 // 값 입력 / 출력용 클래스
@@ -56,7 +58,7 @@ public class EmployeeView {
 				
 				
 				switch(input) {
-				case 1: break;
+				case 1: selectAll(); break;
 				case 2: break;
 				case 3: break;
 				case 4: break;
@@ -81,6 +83,35 @@ public class EmployeeView {
 	}
 	
 	
+	
+	/**
+	 * 전체 사원 조회
+	 */
+	private void selectAll() {
+		// 사번, 이름, 부서명, 직급명, 전화번호
+		
+		System.out.println("\n----- 전체 사원 조회 -----\n");
+		
+		// DB에서 전체 사원 정보를 조회하는 service
+		// selectAll()을 호출하여 결과 반환 받기
+		List<Employee> empList = service.selectAll();
+		
+		
+		// 향상된 for문을 이용해서 모든 사원 정보 출력
+		for(Employee emp : empList) {
+			System.out.printf("%s / %s / %s / %s / %s \n",
+					emp.getEmpId(), 
+					emp.getEmpName(), 
+					emp.getDepartmentTitle(),
+					emp.getJobName(),
+					emp.getPhone());
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
 }
-
-

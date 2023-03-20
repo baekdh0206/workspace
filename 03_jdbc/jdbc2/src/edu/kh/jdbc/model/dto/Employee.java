@@ -20,11 +20,20 @@ public class Employee {
 	private double bonus; // 보너스
 	private int managerId; // 사수번호
 	
-	
-	
 	public Employee() { // 기본 생성자
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Employee(int empId, String empName, String phone, String departmentTitle, String jobName) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.phone = phone;
+		this.departmentTitle = departmentTitle;
+		this.jobName = jobName;
+	}
+
+
 
 	public int getEmpId() {
 		return empId;
