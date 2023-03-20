@@ -27,8 +27,9 @@ public class EmployeeService {
 
 	/** 전체 사원 정보 반환 서비스
 	 * @return empList
+	 * @throws SQLException
 	 */
-	public List<Employee> selectAll() {
+	public List<Employee> selectAll() throws SQLException{
 		
 		// DB에서 필요한 데이터를 조회하기 위해
 		// DAO 메서드를 호출
@@ -54,6 +55,46 @@ public class EmployeeService {
 		close(conn); // JDBCTemplate 작성된 메서드 호출
 		
 		// 4. 결과 반환
+		return empList;
+	}
+
+	
+	
+	/** 사원 1명 정보 반환 서비스
+	 * @param input
+	 * @return emp
+	 * @throws SQLException
+	 */
+	public Employee selectOne(int input) throws SQLException {
+		
+		// 1. Connection 생성 
+		Connection conn = getConnection();
+		
+		// 2. DAO 메서드를 호출(커넥션, input)
+		Employee emp = dao.selectOne(conn, input);
+		
+		// 3. Connection 반환
+		close(conn);
+		
+		// 4. 결과 반환
+		return emp;
+	}
+
+
+
+	/** 글자 포함 사원 정보 조회 서비스
+	 * @param input
+	 * @return empList
+	 * @throws SQLException
+	 */
+	public List<Employee> selectName(String input) throws SQLException {
+		
+		Connection conn = getConnection();
+		
+		List<Employee> empList = dao.selectName(conn, input);
+		
+		close(conn);
+		
 		return empList;
 	}
 	
