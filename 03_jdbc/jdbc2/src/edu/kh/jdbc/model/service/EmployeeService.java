@@ -155,7 +155,7 @@ public class EmployeeService {
 
 
 
-	/** 회원 정보 수정 서비스
+	/** 사원 정보 수정 서비스
 	 * @param emp
 	 * @return
 	 * @throws SQLException
