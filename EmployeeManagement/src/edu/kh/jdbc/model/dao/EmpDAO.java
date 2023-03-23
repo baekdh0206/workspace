@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.kh.jdbc.model.dto.Emp;
 
@@ -263,6 +265,81 @@ public class EmpDAO {
 		}
 		
 		return check;
+	}
+
+
+	/** 퇴직 처리 SQL 수행
+	 * @param conn
+	 * @param input
+	 * @throws SQLException
+	 */
+	public void retireService(Connection conn, int input) throws SQLException {
+		
+		try {
+			String sql = "UPDATE EMPLOYEE \r\n"
+					+ "SET ENT_YN = 'Y',\r\n"
+					+ "	ENT_DATE = SYSDATE\r\n"
+					+ "WHERE EMP_ID = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, input);
+			
+			pstmt.executeQuery();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+	}
+
+
+	/** 부서별 통계 조회 SQL 수행 후 결과 반환
+	 * @param conn
+	 * @return mapList
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> selectDepartment(Connection conn) throws SQLException {
+
+		// 1. 결과 저장용 객체 생성
+		List<Map<String, Object>> mapList = new ArrayList<>();
+		
+		try {
+			// 2. SQL 작성 후 수행
+			String sql = "SELECT DEPT_CODE, NVL(DEPT_TITLE, '부서없음') DEPT_TITLE, \r\n"
+					+ "	COUNT(*) 인원, FLOOR(AVG(SALARY)) 평균\r\n"
+					+ "FROM EMPLOYEE\r\n"
+					+ "LEFT JOIN DEPARTMENT ON(DEPT_CODE = DEPT_ID)\r\n"
+					+ "GROUP BY DEPT_CODE, DEPT_TITLE\r\n"
+					+ "ORDER BY DEPT_CODE";
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				String deptTitle = rs.getString("DEPT_TITLE");
+				int count = rs.getInt("인원");
+				int avg = rs.getInt("평균");
+				
+				Map<String, Object> map = new LinkedHashMap<>();
+										// 입력 순서가 유지되는 Map
+				
+				map.put("deptTitle", deptTitle);
+				map.put("count", count);
+				map.put("avg", avg);
+				
+				// Map을 List에 추가
+				mapList.add(map);
+			}
+			
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		
+		
+		// 5. 결과 반환
+		return mapList;
 	}
 	
 	

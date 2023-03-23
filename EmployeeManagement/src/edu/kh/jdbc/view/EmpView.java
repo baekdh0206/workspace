@@ -1,9 +1,12 @@
 package edu.kh.jdbc.view;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import edu.kh.jdbc.model.dto.Emp;
 import edu.kh.jdbc.model.service.EmpService;
@@ -77,7 +80,6 @@ public class EmpView {
 				
 				
 				System.out.println("8. 가장 최근 입사한 사원 5명 조회");
-				
 				// 가장 최근(입사일이 늦은) 사원 5명의
 				// 사번, 이름, 부서명, 입사일을
 				// 입사일 내림차순으로 조회
@@ -110,7 +112,7 @@ public class EmpView {
 				case 6:  break;
 				case 7: retireEmployee(); break;
 				case 8:  break;
-				case 9:  break;
+				case 9: selectDepartment(); break;
 				case 0: System.out.println("\n[프로그램을 종료합니다...]\n"); break;
 				
 				default: System.out.println("\n[메뉴에 존재하는 번호를 입력하세요.]\n");
@@ -303,7 +305,7 @@ public class EmpView {
 	private void retireEmployee() {
 		System.out.println("\n***** 퇴직 처리 *****\n");
 		
-		System.out.println("퇴직 처리할 사원의 사번 입력 : ");
+		System.out.print("퇴직 처리할 사원의 사번 입력 : ");
 		int input = sc.nextInt();
 		sc.nextLine();
 		
@@ -324,7 +326,27 @@ public class EmpView {
 			
 			// 2. 사원이 존재하고 퇴직하지 않았으면 
 			//    정말 퇴직 처리 할 것이지 확인 후 서비스 호출
+			System.out.print("정말 퇴직 처리 하시겠습니까? (y/n) : ");
+			char ch = sc.next().toLowerCase().charAt(0);
 			
+			if(ch == 'n') {
+				System.out.println("[취소 되었습니다]");
+				return;
+			}
+			
+			if(ch != 'y') {
+				System.out.println("[잘못 입력 하셨습니다]");
+				return;
+			}
+			
+			// 'y'인 경우 서비스 호출
+			service.retireEmployee(input);
+			// -> 앞서서 사번에 대한 검증이 끝난 상황
+			//  -> 사번이 없어서 수정이 실패하는 경우는 생각할 필요 없음
+			
+			// --> 퇴직 서비스는 성공 또는 예외만 존재
+			// --> 반환 값이 따로 필요 없음
+			System.out.println("[퇴직 처리 되었습니다.]");
 			
 			
 		} catch (Exception e) {
@@ -333,6 +355,73 @@ public class EmpView {
 		}
 		
 	}
+	
+	
+	/** 부서별 통계 조회 */
+	private void selectDepartment() {
+		System.out.println("\n***** 부서별 통계 조회 *****\n");
+		
+		// DTO가 없을 때 Map을 사용하는 이유
+		// 1. DTO를 작성하는게 코드 낭비인 경우
+		// 2. DTO와 Map의 구조가 유사하기 때문에
+		/*
+		Emp emp = new Emp();
+		emp.setEmpId(200);
+		emp.setEmpName("고길동");
+		
+		emp.getEmpId();
+		emp.getEmpName();
+		
+		// tip. DTO의 필드를 Map의 Key라고 생각
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("empId", 200);
+		map.put("empName", "고길동");
+		
+		map.get("empId");
+		map.get("empName");
+		
+		// 다량의 객체 저장
+		List<Emp> empList;
+		
+		List<Map<String, Object>> mapList;
+		*/
+		
+		
+		try {
+			// 서비스 호출
+			List<Map<String, Object>> mapList = service.selectDepartment();
+			
+			// 조회 결과 출력
+			
+			// List에서 요소를 하나씩 순차 접근
+			for(Map<String, Object> map : mapList) {
+				
+//				System.out.printf("%s / %d / %d\n",
+//						map.get("deptTitle"),
+//						map.get("count"),
+//						map.get("avg"));
+				
+				Set<String> set = map.keySet(); // Map에서 key만 얻어와 반환
+								// -> deptTitle, count, avg 순서
+				
+				for(String key : set) {
+					System.out.print(map.get(key) + "  ");
+				}
+				System.out.println(); // 줄바꿈
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[부서별 통계 조회 중 예외 발생]");
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
 	
 	
 	
