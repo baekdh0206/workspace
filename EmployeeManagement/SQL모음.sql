@@ -1,0 +1,41 @@
+/* 1. 
+ * 현재 재직중인 사원의
+사번, 이름, 부서명, 직급명, 급여, 전화번호, 이메일
+직급코드 오름차순으로 조회*/
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY, EMAIL,
+	NVL(DEPT_TITLE, '없음') DEPT_TITLE, 
+	NVL(PHONE, '없음') PHONE
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+WHERE ENT_YN = 'N'
+ORDER BY JOB_CODE
+;
+
+
+/* 2. 
+ * 퇴직한 사원의
+사번, 이름, 전화번호, 이메일, 퇴사일
+퇴사일 오름차순으로 조회*/
+SELECT EMP_ID, EMP_NAME, EMAIL,
+	NVL(PHONE, '없음') PHONE,
+	TO_CHAR(ENT_DATE, 'YYYY"년" MM"월" DD"일') ENT_DATE
+FROM EMPLOYEE
+WHERE ENT_YN = 'Y'
+ORDER BY ENT_DATE 
+;
+
+/* 3.
+ 사번을 입력 받아 일치하는 사원의  
+ 사번, 이름, 부서명, 직급명, 급여, 전화번호, 이메일, 입사일, 퇴직여부 조회
+ */
+SELECT EMP_ID, EMP_NAME, JOB_NAME, SALARY, EMAIL, HIRE_DATE, ENT_YN,
+NVL(DEPT_TITLE, '없음') DEPT_TITLE, 
+NVL(PHONE, '없음') PHONE
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+WHERE EMP_ID = ?
+;
+
+

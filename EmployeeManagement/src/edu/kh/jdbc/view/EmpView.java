@@ -1,8 +1,11 @@
 package edu.kh.jdbc.view;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
+import edu.kh.jdbc.model.dto.Emp;
 import edu.kh.jdbc.model.service.EmpService;
 
 public class EmpView {
@@ -52,6 +55,9 @@ public class EmpView {
 				// 이메일, 전화번호, 급여, 보너스 수정
 				// 단, 사번이 일치하는 사원이 없으면
 				// "사번이 일치하는 사원이 없습니다" 출력
+				
+				
+				
 
 				
 				System.out.println("6. 사번으로 사원 정보 삭제(DELETE)");
@@ -70,6 +76,8 @@ public class EmpView {
 				
 				// - 사번이 일치하지 않거나 이미 퇴직 처리된 사원이면
 				//   "사번이 일치하는 않거나, 이미 퇴직된 사원입니다." 출력
+				
+				
 				
 				System.out.println("8. 가장 최근 입사한 사원 5명 조회");
 				
@@ -97,9 +105,9 @@ public class EmpView {
 				
 				
 				switch(input) {
-				case 1:  break;
-				case 2:  break;
-				case 3:  break;
+				case 1: selectCurrentEmployee(); break;
+				case 2: selectRetireEmployee(); break;
+				case 3: selectOne(); break;
 				case 4:  break;
 				case 5:  break;
 				case 6:  break;
@@ -121,4 +129,117 @@ public class EmpView {
 		}while(input != 0);
 		
 	}
+	
+	/** 재직 중인 사원 전체 조회*/
+	private void selectCurrentEmployee() {
+		System.out.println("\n***** 재직 중인 사원 전체 조회 *****\n");
+		
+		try {
+			// 서비스 호출 
+			List<Emp> empList = service.selectCurrentEmployee();
+			
+			if(empList.isEmpty()) {
+				System.out.println("[사원이 존재하지 않습니다]");
+				return;
+			}
+			
+			// 향상된 for문을 이용해서 모든 사원 정보 출력
+			for(Emp emp : empList) {
+				System.out.printf("%d / %s / %s / %s / %d/ %s / %s \n",
+						emp.getEmpId(), 
+						emp.getEmpName(), 
+						emp.getDepartmentTitle(),
+						emp.getJobName(),
+						emp.getSalary(),
+						emp.getPhone(),
+						emp.getEmail());
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println("[재직 중인 사원 전체 조회 중 예외 발생]");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/** 퇴직한 사원 전체 조회*/
+	private void selectRetireEmployee() {
+		System.out.println("\n***** 퇴직한 사원 전체 조회 *****\n");
+		
+		try {
+			// 서비스 호출 
+			List<Emp> empList = service.selectRetireEmployee();
+			
+			if(empList.isEmpty()) {
+				System.out.println("[사원이 존재하지 않습니다]");
+				return;
+			}
+			
+			// 사번, 이름, 전화번호, 이메일, 퇴사일
+			// 향상된 for문을 이용해서 모든 사원 정보 출력
+			for(Emp emp : empList) {
+				System.out.printf("%d / %s / %s / %s / %s  \n",
+						emp.getEmpId(), 
+						emp.getEmpName(), 
+						emp.getPhone(),
+						emp.getEmail(),
+						emp.getEntDate());
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println("[재직 중인 사원 전체 조회 중 예외 발생]");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/** 사번이 일치하는 사원 조회 */
+	private void selectOne() {
+		// 사번을 입력 받아 일치하는 사원의  
+		// 사번, 이름, 부서명, 직급명, 급여, 전화번호, 이메일, 입사일, 퇴직여부 조회
+		// 단, 사번이 일치하는 사원이 없으면
+		// "사번이 일치하는 사원이 없습니다" 출력
+		
+		System.out.println("\n***** 사번이 일치하는 사원 조회 *****\n");
+		
+		System.out.print("사번 입력 : ");
+		int input = sc.nextInt();
+		sc.nextLine();
+		
+		try {
+			
+			Emp emp = service.selectOne(input);
+			
+			if(emp == null) { // 조회 결과 없음
+				System.out.println("[사번이 일치하는 사원이 없습니다]");
+				return;
+			}
+			
+			// 조회 결과가 있는 경우
+			System.out.printf("%d / %s / %s / %s / %d / %s / %s / %s / %s\n",
+					emp.getEmpId(), 
+					emp.getEmpName(), 
+					emp.getDepartmentTitle(),
+					emp.getJobName(),
+					emp.getSalary(),
+					emp.getPhone(),
+					emp.getEmail(),
+					emp.getHireDate().toString(),
+					emp.getEntYN());
+			
+			
+		}catch (SQLException e) {
+			System.out.println("[사번이 일치하는 사원 조회 중 예외 발생]");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 }
