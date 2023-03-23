@@ -57,9 +57,6 @@ public class EmpView {
 				// "사번이 일치하는 사원이 없습니다" 출력
 				
 				
-				
-
-				
 				System.out.println("6. 사번으로 사원 정보 삭제(DELETE)");
 				// 사번을 입력 받아 일치하는 사원 삭제
 				// - 사번을 입력 받은 후 정말 삭제할 것인지 Y/N을 입력 받아 
@@ -109,9 +106,9 @@ public class EmpView {
 				case 2: selectRetireEmployee(); break;
 				case 3: selectOne(); break;
 				case 4:  break;
-				case 5:  break;
+				case 5: updateEmployee(); break;
 				case 6:  break;
-				case 7:  break;
+				case 7: retireEmployee(); break;
 				case 8:  break;
 				case 9:  break;
 				case 0: System.out.println("\n[프로그램을 종료합니다...]\n"); break;
@@ -236,6 +233,107 @@ public class EmpView {
 		}
 		
 	}
+	
+	
+	/** 사번으로 사원 정보 수정 */
+	private void updateEmployee() {
+		// 이메일, 전화번호, 급여, 보너스 수정
+		// 단, 사번이 일치하는 사원이 없으면
+		// "사번이 일치하는 사원이 없습니다" 출력
+		System.out.println("\n***** 사번으로 사원 정보 수정 *****\n");
+		
+		System.out.print("수정할 사원의 사번 입력 : ");
+		int input = sc.nextInt();
+		sc.nextLine();
+		
+		// 수정될 정보를 입력 받기
+		// 해당 사번을 가진 사원이 존재하는지 확인
+		// -> 3번. 사번으로 사원 조회 서비스를 이용해서 확인
+		try {
+			
+			// 사번으로 사원 조회
+			Emp emp = service.selectOne(input);
+			// -> 사번이 일치하는 사원이 있으면 null 아님
+			// -> 사번이 일치하는 사원이 없으면 null
+			
+			if(emp == null) {
+				System.out.println("[사번이 일치하는 사원이 없습니다.]");
+				return;
+			}
+
+			// 입력 받은 사번의 사원이 존재할 때 수정할 정보 입력
+			// 이메일, 전화번호, 급여, 보너스 
+			System.out.print("이메일 : ");
+			String email = sc.next();
+			
+			System.out.print("전화번호 : ");
+			String phone = sc.next();
+			
+			System.out.print("급여 : ");
+			int salary = sc.nextInt();
+			
+			System.out.print("보너스 : ");
+			double bonus = sc.nextDouble();
+			
+			// 입력 받은 정보를 객체에 담아서 서비스 전달
+			// (변수 재사용)
+			emp = new Emp();
+			
+			emp.setEmpId(input);
+			emp.setEmail(email);
+			emp.setPhone(phone);
+			emp.setSalary(salary);
+			emp.setBonus(bonus);
+			
+			int result = service.updateEmployee(emp);
+			 
+			if(result > 0) {
+				System.out.println("[수정되었습니다]");
+			}else {
+				System.out.println("[수정 실패.......]");
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("[사번으로 사원 수정 중 예외 발생]");
+			e.printStackTrace();
+		}
+	}
+	
+	/** 퇴직 처리 */
+	private void retireEmployee() {
+		System.out.println("\n***** 퇴직 처리 *****\n");
+		
+		System.out.println("퇴직 처리할 사원의 사번 입력 : ");
+		int input = sc.nextInt();
+		sc.nextLine();
+		
+		try{
+			// 1. 사번이 일치하는 사원이 있는지
+			//    + 있어도 퇴직한 사원인지 확인하는 서비스 호출
+			int check = service.checkEmployee(input);
+			
+			if(check == 0) {
+				System.out.println("[사번이 일치하는 사원이 존재하지 않습니다.]");
+				return;
+			}
+			
+			if(check == 1) {
+				System.out.println("[이미 퇴직 처리된 사원입니다.]");
+				return;
+			}
+			
+			// 2. 사원이 존재하고 퇴직하지 않았으면 
+			//    정말 퇴직 처리 할 것이지 확인 후 서비스 호출
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("[퇴직 처리 중 예외 발생]");
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	

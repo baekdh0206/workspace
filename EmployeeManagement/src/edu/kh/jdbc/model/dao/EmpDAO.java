@@ -176,6 +176,94 @@ public class EmpDAO {
 		return emp; // 조회 결과가 있으면 null이 아님
 					// 조회 결과가 없으면 null
 	}
+
+
+	/** 사번이 일치하는 사원 정보 수정 SQL 수행 후 결과 반환
+	 * @param conn
+	 * @param emp
+	 * @return result
+	 * @throws SQLException
+	 */
+	public int updateEmployee(Connection conn, Emp emp) throws SQLException {
+
+		// 1. 결과 저장용 변수/객체 선언
+		int result = 0;
+
+		try {
+			
+			// 2. SQL 구문 작성
+			//    PreparedStatement / Statement 생성
+			String sql = "UPDATE EMPLOYEE\r\n"
+					+ "SET PHONE = ?,\r\n"
+					+ "    EMAIL = ?,\r\n"
+					+ "    SALARY = ?,\r\n"
+					+ "    BONUS = ?\r\n"
+					+ "WHERE EMP_ID = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, emp.getPhone());
+			pstmt.setString(2, emp.getEmail());
+			pstmt.setInt(3, emp.getSalary());
+			pstmt.setDouble(4, emp.getBonus());
+			pstmt.setInt(5, emp.getEmpId());
+			
+			
+			// 3. 수행 후 결과 반환 받아 결과 저장용 변수에 저장
+			//  SELECT문 :  executeQuery([SQL]) 
+			//  DML문    :  executeUpdate([SQL]) 
+			//  [SQL] 작성하는 경우 : Statement 객체 사용 할 때
+			result = pstmt.executeUpdate();
+			
+			
+		} finally {
+			// 4. JDBC 객체 자원 반환
+			close(pstmt);
+		}
+		
+		// 5. 결과 반환
+		return result;
+	}
+
+
+	/** 존재하는 사원인지, 퇴직한 사원인지 조회하는 SQL 수행 후 결과 반환
+	 * @param conn
+	 * @param input
+	 * @return check
+	 * @throws SQLException
+	 */
+	public int checkEmployee(Connection conn, int input) throws SQLException {
+		int check = 0;
+		
+		try {
+			String sql = "SELECT CASE \r\n"
+					+ "	WHEN (SELECT COUNT(*) FROM EMPLOYEE WHERE EMP_ID = ?) = 0\r\n"
+					+ "	THEN 0\r\n"
+					+ "	WHEN (SELECT COUNT(*) FROM EMPLOYEE \r\n"
+					+ "		  WHERE EMP_ID = ? AND ENT_YN = 'Y') = 1\r\n"
+					+ "	THEN 1\r\n"
+					+ "	ELSE 2\r\n"
+					+ "	END \"CHECK\"\r\n"
+					+ "FROM DUAL";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, input);
+			pstmt.setInt(2, input);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				check = rs.getInt("CHECK");
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return check;
+	}
 	
 	
 	

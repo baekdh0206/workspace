@@ -38,4 +38,41 @@ LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
 WHERE EMP_ID = ?
 ;
 
+/*5. 사번으로 사원 정보 수정*/
+UPDATE EMPLOYEE
+SET PHONE = ?,
+    EMAIL = ?,
+    SALARY = ?,
+    BONUS = ?
+WHERE EMP_ID = ?
+;
+
+
+-- 입력 받은 사번의 사원이 존재하지 않으면 0
+-- 사원은 있는데 퇴직처리된 사원이면 1
+-- 사원도 있고, 재직중인 사원이면 2  조회
+
+-- 선택함수 DECODE / CASE
+SELECT CASE 
+		-- 존재하지 않는 사원?
+		WHEN (SELECT COUNT(*) FROM EMPLOYEE WHERE EMP_ID = 200) = 0
+		THEN 0
+		
+		-- 존재하지만 퇴직한 사원?
+		WHEN (SELECT COUNT(*) FROM EMPLOYEE 
+			  WHERE EMP_ID = 200 AND ENT_YN = 'Y') = 1
+		THEN 1
+		
+		-- 존재는 하지만 퇴직하지 않은 사원!
+		ELSE 2
+	END "CHECK"
+FROM DUAL;
+
+
+
+
+
+
+
+
 
