@@ -198,9 +198,27 @@ AND MEMBER_ID = 'user01'
 SELECT MEMBER_ID, MEMBER_NM, 
 	DECODE(MEMBER_GENDER, 'M', '남', '여') 성별
 FROM "MEMBER"
-ORDER BY MEMBER_NO DESC;
+WHERE UNREGISTER_FL = 'N'
+ORDER BY MEMBER_NO DESC
+;
 
 
+-- 회원 정보(이름, 성별) 수정
+UPDATE "MEMBER"
+SET MEMBER_NM = ?,
+	MEMBER_GENDER = ?
+WHERE MEMNBER_NO = ?
+;
+
+SELECT * FROM "MEMBER";
+
+
+-- 비밀번호 변경
+UPDATE "MEMBER"
+SET	MEMBER_PW = ?  -- 새 비밀번호 
+WHERE MEMBER_PW = ? -- 현재 비밀번호
+AND MEMBER_NO = ? -- 회원 번호
+;
 
 
 
