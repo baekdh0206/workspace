@@ -104,6 +104,59 @@ public class BoardService {
 		
 		return result;
 	}
+
+
+	/** 게시글 삭제 서비스
+	 * @param boardNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(int boardNo) throws Exception{
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, boardNo);
+		
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	/** 게시글 삽입 서비스
+	 * @param boardTitle
+	 * @param string
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertBoard(String boardTitle, String boardCotent, 
+							int memberNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		// 다음 게시글 번호 생성 -> 4
+		int boardNo = dao.nextBoardNo(conn);
+		
+		
+		// 제목, 내용, 회원번호 + 다음 게시글번호(4)
+		int result = dao.insertBoard(conn, boardTitle, 
+								boardCotent, memberNo, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+			result = boardNo;
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result; // 삽입 성공 시 다음 게시글 번호
+					   // 실패 시  0 
+	}
 	
 	
 	
