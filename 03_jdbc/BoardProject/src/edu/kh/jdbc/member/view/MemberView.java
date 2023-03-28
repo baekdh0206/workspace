@@ -69,8 +69,6 @@ public class MemberView {
 				default: System.out.println("\n*** 메뉴 번호만 입력 해주세요 ***\n");  
 				}
 				
-				
-				
 			}catch (InputMismatchException e) {
 				System.out.println("\n*** 입력 형식이 올바르지 않습니다***\n");
 				sc.nextLine(); // 입력버퍼에 잘못된 문자열 제거

@@ -27,8 +27,14 @@
 		AND MEMBER_NO = ?
 	</entry>
 	
-	
-	
+	<!-- 회원 탈퇴 -->
+	<entry key="unRegisterMember">
+		UPDATE "MEMBER"
+		SET UNREGISTER_FL = 'Y'
+		WHERE MEMBER_NO = ?
+		AND MEMBER_PW = ?
+	</entry>	
+		
 </properties>
 
 
