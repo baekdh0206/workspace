@@ -14,6 +14,7 @@ The Network Adapter could not establish the connection
 java.sql.SQLSyntaxErrorException
 - SQL 문법이 잘못됨
 
+
 java.sql.SQLSyntaxErrorException: ORA-00933: 
 SQL 명령어가 올바르게 종료되지 않았습니다
 - SQL에 세미콜론이 포함됨
@@ -21,7 +22,21 @@ SQL 명령어가 올바르게 종료되지 않았습니다
 
 java.sql.SQLException: 실행할 SQL 문은 비어 있거나 널일 수 없음
 - Statement를 이용해서 SQL 수행 시 SQL이 ""(빈문자열) 또는 NULL인 경우
+- Properties 이용 시 key값을 잘못 작성한 경우
 
 
 java.sql.SQLException: 부적합한 열 이름
 - rs.get자료형("컬럼명") 구문에서 "컬럼명"을 잘못 작성한 경우
+
+
+java.sql.SQLException: 인덱스에서 누락된 IN 또는 OUT 매개변수:: 2
+- placeholder에 값이 세팅되지 않은 경우
+
+
+java.lang.NullPointerException: 
+Cannot invoke "java.sql.ResultSet.next()" because "this.rs" is null
+- rs 객체가 존재하지 않음
+
+
+java.io.FileNotFoundException: 123main-sql.xml (지정된 파일을 찾을 수 없습니다)
+- XML 파일명이 잘못 작성된 경우
