@@ -14,7 +14,31 @@
 		ORDER BY COMMENT_NO
 	</entry>
 	
+		<!-- 댓글 등록 -->
+	<entry key="insertComment">
+		INSERT INTO "COMMENT"
+		VALUES(SEQ_COMMENT_NO.NEXTVAL, ?, DEFAULT, DEFAULT, ?, ?)
+	</entry>
 	
+	<!-- 댓글 확인  -->
+	<entry key="checkCommentNo">
+		SELECT COUNT(*) FROM "COMMENT"
+		WHERE COMMENT_NO = ?
+		AND MEMBER_NO = ?
+		AND BOARD_NO = ?
+	</entry>
+	
+	<!-- 댓글 수정 -->
+	<entry key="updateComment">
+		UPDATE "COMMENT" SET COMMENT_CONTENT = ? WHERE COMMENT_NO = ?
+	</entry>
+	
+	<!-- 댓글 삭제 -->
+	<entry key="deleteComment">
+		UPDATE "COMMENT"
+		SET DELETE_FL = 'Y'
+		WHERE COMMENT_NO = ?
+	</entry>
 </properties>
 
 
