@@ -1,5 +1,7 @@
 package edu.kh.jdbc.board.model.dto;
 
+import java.util.List;
+
 // Data Transfer Object 
 public class Board {
 	
@@ -11,6 +13,8 @@ public class Board {
 	private int memberNo;			// 회원 번호(작성자)
 	private String memberName;		// 회원 이름
 	private int commentCount;		// 댓글 수
+	
+	private List<Comment> commentList; // 댓글 목록
 	
 	public Board() {} // 기본 생성자
 
@@ -76,6 +80,14 @@ public class Board {
 
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
 	}
 	
 	
