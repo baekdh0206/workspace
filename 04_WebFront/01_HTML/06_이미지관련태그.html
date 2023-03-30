@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_이미지 관련 태그</title>
+</head>
+<body>
+    <h1>img 태그</h1>
+    <pre>
+        - 웹 문서에서 사진이나 그림 같은 이미지를 삽입하는 용도의 태그
+
+        [속성]
+
+        1. src : 삽입할 이미지의 경로를 작성하는 속성(파일경로, 웹 주소)
+
+        2. width / height : 이미지 크기(px, %)
+
+        3. alt (대안) : 이미지의 설명을 작성하는 속성
+                    -> 이미지가 출력되지 않는 경우 화면에 표시됨
+                        + 웹 접근성(스크린 리더가 이미지 설명을 읽어줌)
+    </pre>
+
+
+    <hr>
+    <!-- 절대 경로 : 변하지 않는 하나의 기준점으로 부터 목표까지의 경로 -->
+    <!-- 라이브 서버로 확인 불가!!, 직접 html 파일 열어서 확인! -->
+    <img src="C:\workspace\04_WebFront\images\cats\cat1.jpg" 
+        alt="cat1.jpg 이미지">
+    
+    <hr>
+
+    <!-- 상대 경로 : 현재 파일 위치로 부터 목표까지의 경로 -->
+    <!-- 
+        .. : 상위 폴더로 이동
+    -->
+    <img src="../images/dogs/dog1.jpg">
+
+
+    <hr>
+
+    <!-- 웹 주소 -->
+    <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA1MTZfMjE0/MDAxNTg5NTk2MTc5NjE3.JNbgBjoJpH1et6ZkNndCg5JHfGSf2gqR7bVyLq5wyAEg.h9KH1mJL73DDVBuzzufilBhWutTnIOKTAnZzyojN1XUg.GIF.hyovelys/12CE94A3-E8F7-41C0-9592-931832BDBB5F.gif?type=w800">
+
+
+    <hr>
+
+    <h2>고정 크기 단위(px) - 항상 지정된 크기를 지님</h2>
+    <!-- px, pt -->
+
+    <img src="../images/cats/cat1.jpg" width="300px" height="240px">
+    <img src="../images/cats/cat2.jpg" width="300px" height="240px">
+    <img src="../images/cats/cat3.jpg" width="300px" height="240px">
+    <img src="../images/cats/cat4.jpg" width="300px" height="240px">
+    <img src="../images/cats/cat5.jpg" width="300px" height="240px">
+
+    <hr>
+
+    <h2>가변 크기 단위(%) - 화면 또는 영역에 대한 상대적인 크기 단위</h2>
+    <!-- %, em, rem, vh, vw -->
+
+    <img src="../images/flowers/flower1.jpg" width="15%" height="240px">
+    <img src="../images/flowers/flower2.jpg" width="15%" height="240px">
+    <img src="../images/flowers/flower3.jpg" width="15%" height="240px">
+    <img src="../images/flowers/flower4.jpg" width="15%" height="240px">
+    <img src="../images/flowers/flower5.jpg" width="15%" height="240px">
+
+</body>
+</html>

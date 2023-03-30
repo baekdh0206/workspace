@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_표 관련 태그</title>
+
+    <!-- HTML 문서의 스타일(크기,색상,모양 등)을 지정하는 태그 == CSS -->
+    <style>
+        .tb3{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        .tb3 th, td{ border: 1px solid black;  }
+
+        .tb3 thead{ background-color: yellowgreen;  }
+
+        .tb3 tbody{ background-color: yellow; }
+
+        .tb3 tfoot{
+            background-color: orange;
+            color : white;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>04_표 관련 태그</h1>
+
+    <pre>
+        <h3>table 태그</h3>
+        - 표를 작성할 수 있는 판
+    </pre>
+
+    <pre>
+        <h3>tr 태그</h3>
+        - Table Row의 약자로 한 행을 나타내는 태그
+    </pre>
+
+    <pre>
+        <h3>td 태그</h3>
+        - Table Data의 약자로
+        각 행의 1칸(컬럼, 열)을 나타내는 태그
+    </pre>
+
+    <pre>
+        <h3>th 태그</h3>
+        - Table Header의 약자로
+        컬럼명이나 중요한 데이터를 표시할 때 사용
+
+        - td와 기본 성질은 같으나
+        출력되는 글자가 굵은 글씨, 가운데 정렬됨
+    </pre>
+
+    <pre>
+        <h3>caption 태그</h3>
+        - 테이블의 제목이나 설명을 추가하는 태그
+    </pre>
+
+    <hr>
+
+    <!-- border 속성 : table, td, th에 검정 테두리 추가 (단위 px) -->
+    <table border="1">
+        <caption>
+            <strong style="color:hotpink">웹 브라우저의 종류</strong>
+        </caption>
+
+        <!-- 1행 -->
+        <tr>
+            <th>브라우저</th>
+            <th>제조사</th>
+            <th>홈페이지</th>
+        </tr>
+
+        <!-- 2행 -->
+        <tr>
+            <td>크롬</td>
+            <td>Google</td>
+            <td>
+                <a href="https://www.google.com"> 이동 </a>
+            </td>
+        </tr>
+
+        <!-- 3행 -->
+        <tr>
+            <td>엣지</td>
+            <td>MS</td>
+            <td>
+                <a href="https://www.microsoft.com"> 이동 </a>
+            </td>
+        </tr>
+
+        <!-- 4행 -->
+        <tr>
+            <td>파이어<br>폭스</td>
+            <td>Mozila</td>
+            <td>
+                <a href="https://www.mozilla.org"> 이동 </a>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>행 병합(rowspan), 열 병합(colspan)</h3>
+    <pre>
+        - td 또는 th에만 작성 가능한 속성
+
+        - rowspan : 행 끼리 병합(상하 병합)
+        
+        - colspan : 열 끼리 병합(좌우 병합)
+    </pre>
+
+    <h3>회원 정보</h3>
+    <!--  table>tr*4>td*3  -->
+    <table border="1">
+        <tr> <!-- 1행 -->
+            <th width="70px">이름</th>
+            <td width="210px"></td>
+            <th width="140px" height="140px" rowspan="2">사진</th>
+        </tr>
+
+        <tr>  <!-- 2행 -->
+            <th>연락처</th>
+            <td></td>
+        </tr>
+
+        <tr> <!-- 3행 -->
+            <th height="35px">주소</th>
+            <td colspan="2"></td>
+        </tr>
+
+        <tr> <!-- 4행 -->
+            <th height="140px">자기소개</th>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+
+
+    <hr>
+
+    <h2>테이블 구조 설정 태그</h2>
+    <pre>   
+        thead : 테이블의 상단 부분. (컬럼명)
+        tbody : 테이블의 중단 부분. (값, 내용)
+        tfoot : 테이블의 하단 부분. (합계, 소계, 개수...)
+    </pre>
+
+    <table class="tb3">
+
+        <!-- alt + shift + 클릭 : 일괄 수정 -->
+        <thead> <!-- 테이블의 상단 부분 -->
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>20</td>
+                <td>서울시 금천구</td>
+            </tr>
+            <tr>
+                <td>이나현</td>
+                <td>25</td>
+                <td>서울시 용산구</td>
+            </tr>
+            <tr>
+                <td>백동현</td>
+                <td>34</td>
+                <td>서울시 중구</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="2">총 인원</th>
+                <th>3명</th>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+</html>
