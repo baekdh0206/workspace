@@ -1,0 +1,48 @@
+/* :only-child */
+#test1 > p:only-child{
+    /* #test1의 자식으로 p태그 혼자만 있을 때 선택 */
+    background-color: steelblue;
+}
+
+/* :only-of-type */
+#test2 > p:only-of-type{
+    /* #test2 자식 중 p태그가 1개이면 선택, 다른 태그 신경 X */
+
+    background-color: deeppink;
+}
+
+
+/* :empty */
+#test3:empty{
+    height: 30px;
+    background-color: brown;
+}
+
+
+/* 클래스가 여러 개 작성된 요소만 특정해서 선택하기 */
+/* 2번만 선택하기 */
+
+/* 클래스 선택자를 띄어쓰기 없이 연달아 작성 */
+.test4.cls4{
+    background-color: orange;
+}
+
+
+/* 문제 */
+/* #test5 자식 중 4번 선택 */
+#test5 > li:nth-child(4){
+    background-color: green;
+}
+
+/* #test5 자식 중 4번,5번 선택 */
+#test5 > li:not(.c5){
+    background-color: crimson;
+}
+
+/* #test6의 후손 중 10번만 선택 */
+/* #test6 > li:nth-of-type(5) > span{ */
+/* #test6 > li:last-of-type > span{ */
+/* #test6 > li:nth-last-child(3) > span{ */
+#test6>li:nth-last-of-type(1) > span{
+    background-color: yellow;
+}

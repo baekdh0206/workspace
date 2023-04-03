@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_선택자 우선순위</title>
+
+    <style>
+        /* 3순위 : 아이디 선택자 */
+        #test1{
+            height: 100px; /* 5순위와 겹침 */
+            background-color: black; /* 4순위와 겹침 */
+            color : white;
+        }
+
+        /* 4순위 : 클래스 선택자 */
+        .cls1{ background-color: green;}
+
+        
+        /* 5순위 : 태그 선택자 */
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: red !important;
+                                /* 1순위 !important */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS 선택자의 우선순위</h1>
+    
+    <pre>
+        HTML, CSS 코드는 기본적으로 작성된 순서(위->아래/ 왼쪽->오른쪽)대로
+        해석이 진행된다. (== 랜더링)
+
+        단 CSS 코드는 여러 선택자를 이용해서 
+        하나의 요소를 선택하는게 가능하기 때문에 
+        작성 순서 / 선택자의 우선 순위에 따라 적용되는 CSS가 결정된다.
+
+        * 우선 순위 설정 전 알아둬야 할 것
+        1) 동일한 우선 순위로 CSS 코드가 작성된 경우
+            마지막으로 작성된 코드가 적용된다.
+
+            ex) #test1{ color:red; }
+                #test1{ color:blue; } -> 마지막이 적용
+
+        2) 여러 선택자를 이용해서 같은 요소를 선택하더라도
+            설정하는 CSS 속성이 다르면 모두 반영된다.
+
+            ex) #test2 { color : white; }
+                #test2 { background-color : red; }
+                #test2 { font-size : 30px; }
+                -> 모두 적용
+
+        1순위 : !important;
+        2순위 : inline-style (요소에 style 속성 추가)
+        3순위 : 아이디 선택자
+        4순위 : 클래스 선택자
+        5순위 : 태그 선택자
+    </pre>
+
+
+    <div class="cls1" id="test1" style="background-color: pink;">테스트</div>
+                                    <!-- 2순위 : inline-style -->
+
+
+</body>
+</html>

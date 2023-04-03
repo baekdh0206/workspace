@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_CSS 선택자 5</title>
+
+    <link rel="stylesheet" href="css/05_CSS선택자5.css">
+</head>
+<body>
+    <h1>기타 선택자</h1>
+
+    <h3>:only-child</h3>
+    <pre>
+        특정 요소의 자식이 하나 밖에 없을 때 선택
+    </pre>
+
+    <div id="test1">
+        <p>자식1</p>
+        <pre>자식2</pre>
+    </div>
+
+
+    <hr>
+
+    <h3>:only-of-type</h3>
+    <pre>
+        특정 요소의 자식 중
+        지정된 형태와 같은 자식 요소가 하나만 있을 때 선택
+    </pre>
+
+    <div id="test2">
+        <p>자식1</p>
+        <pre>자식2</pre>
+        <p>자식3</p>
+    </div>
+
+    <hr>
+
+    <h3>:empty</h3>
+    <pre>
+        자식 요소(노드) 없을 때 선택
+        -> 자식 요소(노드)란
+            자식 태그, 글자, 띄어쓰기 모두를 자식으로 취급
+    </pre>
+
+    <!-- 시작 태그부터 종료 태그 사이에 아무 것도 없어야 함 -->
+    <div id="test3"></div>
+
+    <hr>
+
+    <h3>클래스가 여러 개 작성된 요소만 특정해서 선택하기</h3>
+    <pre>
+        클래스 선택자를 띄어쓰기 없이 연달아 작성
+
+        .클래스명.클래스
+    </pre>
+
+    <div class="test4">1</div>
+    <div class="test4 cls4">2</div>
+    <div class="cls4">3</div>
+
+    <hr>
+
+    <ul id="test5">
+        <li class="c5">1</li>
+        <li class="c5">2</li>
+        <li class="c5">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <ul id="test6">
+        <li class="c5">6</li>
+        <li class="c5">7</li>
+        <li class="c5">8</li>
+        
+        <li>
+            <span class="c5">9</span>
+        </li>
+
+        <li>
+            <span class="c5">10</span>
+        </li>
+
+        <p class="c5">11</p>
+        <p class="c5">12</p>
+    </ul>
+
+</body>
+</html>
