@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_CSS 선택자 4</title>
+
+    <link rel="stylesheet" href="css/04_CSS선택자4.css">
+</head>
+<body>
+
+    <h3>일반 구조 선택자</h3>
+    <pre>
+        형제 관계에 있는 요소 중 특정 요소를 선택하는 선택자
+
+        *** 위치를 기준으로 구분함 ***
+        :first-child  -> 형제 관계의 요소 중 첫 번째 요소
+        :last-child   -> 형제 관계의 요소 중 마지막 요소
+        :nth-child(수열) -> 형제 관계의 요소 중 
+                            지정된 수열 번째 요소를 모두 선택
+
+        :nth-last-child(수열) -> 형제 관계의 요소 중 
+                            뒤에서 부터 지정된 수열 번째 요소를 모두 선택
+    </pre>
+
+    <div id="test1">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+
+        <pre>테스트6</pre>
+    </div>
+
+
+    <hr>
+
+    <h3>형태 구조 선택자</h3>
+
+    <pre>
+        선택된 형제 관계 요소 중 특정 요소를 선택하는 선택자
+
+        *** 선택된 요소들을 기준으로 구분함 ***
+        :first-of-type -> 같이 선택된 형제 중 첫 번째 요소
+
+        :last-of-type  -> 같이 선택된 형제 중 마지막 요소
+
+        :nth-of-type(수열)   -> 같이 선택된 형제 중 
+                                수열 번째 요소 모두 선택
+
+        :nth-last-of-type(수열) -> 같이 선택된 형제 중 
+                                뒤에서 부터 수열 번째 요소 모두 선택
+    </pre>
+
+    <div id="test2">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        
+        <pre>테스트6</pre>
+    </div>
+
+</body>
+</html>

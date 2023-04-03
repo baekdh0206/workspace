@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 페이지</title>
+</head>
+<body>
+    <h1>입력된 아이디 : <span id="id"></span></h1>
+    <h1>입력된 이름 : <span id="name"></span></h1>
+
+    <script>
+        const id = document.getElementById("id");
+        const name = document.getElementById("name");
+        const params = new URL(location.href).searchParams;
+        
+        id.innerText = params.get("inputId");
+        name.innerText = params.get("inputName");
+    </script>
+</body>
+</html>

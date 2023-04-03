@@ -1,0 +1,32 @@
+
+
+
+/*  ~=  : 여러 속성 값 중 
+        하나라도 일치하면 선택*/
+div[name ~= "aaa"]{ background-color: pink;}
+
+/*  |=  : "-" 기호 앞쪽 단어가 일치하는 요소 선택 
+    (HTML 속성에서 id만 카멜표기법, 나머진 하이픈(-) 표기법)
+*/
+div[class |= "str"]{
+    color: blue;
+    font-weight: bold;
+}
+
+/*  ^=  : 속성 값이 특정 단어로 시작하는 요소 선택*/
+div[class ^= "class"]{
+    background-color: black;
+    color: white;
+}
+
+
+/*  $=  : 속성 값이 특정 단어로 끝나는 요소 선택*/
+div[class $= "2"]{
+    font-size: 36px;
+}
+
+
+/*  *=  : 속성 값으로 특정 단어를 포함하는 요소 선택 */
+div[name *= "2"]{
+    border: 3px dashed red;
+}

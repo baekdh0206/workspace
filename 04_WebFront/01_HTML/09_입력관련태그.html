@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_입력 관련 태그</title>
+</head>
+<body>
+    <h1>input 태그</h1>
+    <p>
+        웹 문서에서 사용자가 입력할 수 있는 양식을 제공하는 태그
+    </p>
+
+    <h3>text와 관련된 태그</h3>
+
+    <pre>
+        text 관련 태그에서 사용 가능한 속성
+
+        - size : 입력 상자의 크기
+        - maxlength :  입력 가능한 text의 최대 길이 설정
+        - placeholder : 입력 상자에 작성되어야 할 내용을 설명
+        - value : 입력 상자에 기본적으로 작성되어 있는 값(내용) 설정
+
+    </pre>
+
+    <h4>input type="text"</h4>
+
+    <pre>
+        - 한 줄 짜리 문자열(텍스트)를 입력할 수 있는 입력 상자
+        - input 태그의 기본값으로 type 속성 미작성 시 자동으로 지정됨.
+        <span style="color:red">
+            * 모든 input태그는 inline 형식이다!
+        </span>
+    </pre>
+
+    <input type="text"> / <input>
+
+    <!-- 웹 문서에 제출되는 데이터는 모두 문자열(String)이다! -->
+
+    <hr>
+
+    <h4>input type="password"</h4>
+    <pre>
+        - 비밀번호 입력상자
+        - 입력되는 텍스를 가려줌
+    </pre>
+    <input type="password" size="30" maxlength="10" placeholder="비밀번호">
+
+    <h4>텍스트 관련 기타 type</h4>
+    <ul>
+        <!-- 
+            url, email, tel은
+            일반적으로 사용하게되면 type="text"와 다를게 없다.
+
+            하지만, form태그 내부에 작성하게되면
+            입력된 값이 url,email,tel에 맞는 값인지
+            간단히 유효성 검사를 진행해준다.
+        -->
+        <li>
+            type="url" : 주소(url) 입력 상자<br>
+            <input type="url" size="50" value="https://">
+        </li>
+
+        <li>
+            type="email" : 이메일 입력 상자<br>
+            <input type="email" size="30" maxlength="30" placeholder="이메일 입력">
+        </li>
+
+        <li>
+            type="tel" : 전화번호 입력 상자<br>
+            <input type="tel" size="15" maxlength="15" value="010-">
+        </li>
+
+        <li>
+            <!-- 일반 text 타입인데 검색 용도임을 나타낼 뿐이다
+                + 입력 상자에 x버튼 생성
+            -->
+            type="search" : 검색용 입력 상자<br>
+            <input type="search">
+        </li>
+    </ul>
+
+
+    <hr><hr><hr>
+
+    <h3>숫자 관련 태그</h3>
+
+    <pre>
+        숫자 관련 태그에서 사용 가능한 속성
+
+        - min : 최소값
+        - max : 최대값
+        - step : 증가/감소량 지정
+        - placeholder : 입력될 값에 대한 설명(number만 가능)
+        - value : 기본값 지정
+    </pre>
+
+
+    <h4>input type="number"</h4>
+    <pre>
+        - 숫자와 숫자 관련된 표기만 작성 가능한 입력 상자
+        - 브라우저에 따라 스핀박스(위,아래 화살표)가 표시되기도 함
+    </pre>
+
+    점수 입력 : <input type="number" min="0" max="100" step="5" placeholder="5점 단위로 입력">
+
+
+    <h4>input type="range"</h4>
+    <p>
+        - 슬라이드 바를 이용해서 숫자를 지정
+        - 현재 지정된 숫자를 바로 확인하는게 불가능
+            -> 제출되는 페이지/Java 클래스 또는 Javascript를 이용해 확인
+    </p>
+    <input type="range" name="r" id="a" min="0" max="100" step="10" value="70">
+
+
+    <hr><hr><hr>
+
+    <h3>날짜/시간 관련 type</h3>
+
+    <ul>
+        <li><input type="date"></li>
+        <li><input type="month"></li>
+        <li><input type="week"></li>
+        <li><input type="time"></li>
+
+        <!-- 국제 표준시 형식으로 시간을 작성 -->
+        <li><input type="datetime"></li>
+        
+        <li><input type="datetime-local"></li>
+    </ul>
+
+
+    <hr><hr><hr>
+
+    <h3>type="radio" / type="checkbox"   +  label 태그</h3>
+
+    <pre>
+        - radio, checkbox 는
+        단독 사용 보단, 여러 관련된 값을 묶어서 처리하는 용도의 input type
+
+        - radio : 여러 선택지 중 하나만 선택
+        - checkbox : 여러 선택지 중 필요한 모두를 선택
+
+        속성
+        - value : 해당 요소를 선택했을 때 제출되는 값
+
+        - id : 문서 내에서 해당 요소를 구분하기 위한 식별값
+                (중복 있으면 안됨,  label 태그와 같이 사용할 예정)
+
+        - name : 관련된 것들의 묶음 이름 + 제출되었을 때 key 값
+
+        - checked : 해당 속성이 작성된 요소를 선택함 (기본값 설정)
+    </pre>
+
+    <h4>input type="radio"</h4>
+    팀 선택 <br>
+
+    <!-- label : input 태그의 이름/제목/설명을 나타내는 태그
+        * for 속성의 값으로 연결할 input 태그의 id 속성 값을 작성해야 한다!
+    -->
+    <form>
+        <label for="aTeam">A팀</label> : <input type="radio" name="team" value="a" id="aTeam">  <br>
+        <label for="bTeam">B팀</label> : <input type="radio" name="team" value="b" id="bTeam" checked>  <br>
+        <label for="cTeam">C팀</label> : <input type="radio" name="team" value="c" id="cTeam">  <br>
+
+        <button>제출</button>
+    </form>
+
+    <label for="aTeam">A팀 누르기</label>
+
+
+    <hr>
+    
+    <h4>type="checkbox"</h4>
+
+    <form>
+        보유한 기술 <br>
+        <label for="java">Java</label>
+        <input type="checkbox" name="skill" id="java" value="자바"  checked><br>
+
+        <label for="db">DB</label>
+        <input type="checkbox" name="skill" id="db" value="디비"  checked><br>
+
+        <label for="html">HTML</label>
+        <input type="checkbox" name="skill" id="html" value="HTML5"><br>
+
+        <button>제출</button>
+    </form>
+
+
+    <hr>
+
+    <h3>기타 input type(color, file, hidden)</h3>
+
+    <ul>
+        <li><input type="color"></li>
+        <li><input type="file"></li>
+        <li><input type="hidden" value="눈에만 안보이는 값" id="hd1"></li>
+        <!-- 화면에는 표시되지 않지만 존재는 해야되는 값을 저장하는 용도
+            ex) 게시글 작성자 회원번호
+        -->
+    </ul>
+
+
+    <hr><hr><hr>
+
+    <h3>이름이 input이 아닌 변형된 input 태그</h3>
+
+    <h4>button 태그</h4>
+
+    <pre>
+        - 버튼을 만드는 용도의 태그
+        - 단독으로 사용되기 보단, form와 함께 사용하는 경우가 많음
+
+        type 속성 값
+        - submit : 제출 버튼(기본값)
+        - reset : form태그 내부 모든 input 태그의 값을 초기화
+        - button : 기능이 지정되지 않은 버튼(모양만 버튼)
+                    -> JavaScript를 이용해서 기능을 추가해줄 수 있다.
+    </pre>
+
+
+    <form>
+        이름 : <input type="text" name="name"> <br>
+        나이 : <input type="number" name="age"> <br>
+        이메일 : <input type="email" name="email"> <br>
+
+        <button type="submit">submit</button>
+        <button type="reset">reset</button>
+        <button type="button" onclick="alert('버튼 클릭됨')">button</button>
+
+        <!-- html4에서 사용하던 방식 -->
+        <br>
+        <input type="submit" value="제출">
+        <input type="reset" value="리셋">
+        <input type="button" value="버튼">
+    </form>
+
+
+    <hr>
+
+    <h4>textarea 태그</h4>
+    <pre>
+        - input type="text"의 한계(1줄만 작성함)를 해결한 태그
+
+        - 여러 줄 작성 가능
+
+        속성
+        - rows : 행의 개수(몇 줄)
+        - cols : 열의 개수(한 줄에 들어갈 글자 개수)
+    </pre>
+
+    <textarea cols="80" rows="3"></textarea>
+
+
+    <hr>
+
+    <h4>select / option 태그</h4>
+
+    <pre>
+        - select 내부에 원하는 만큼의 option을 작성하여
+            필요한 option을 선택하는 태그
+
+        속성
+        - selected : 처음에 선택되어 있을 옵션을 지정
+            -> 미작성 시 제일 위에있는 option이 지정됨
+
+        - size : 한 번에 보여지는 option의 개수 -> dropdown이 사라짐
+        - mulitple : 한 번에 선택할 수 있는 option의 개수
+    </pre>
+
+    국적 : 
+    <select name="선택" size="2" multiple="2">
+        <option value="ko">한국</option>
+        <option value="us" selected>미국</option>
+        <option value="jp">일본</option>
+    </select>
+
+
+    <hr><hr><hr>
+
+    <h1 style="color:red; font-size: 30px; font-family:'궁서';">form 태그</h1>
+
+    <pre>
+        - 서버 또는 지정된 페이지로 입력된 값을 제출하는 형태를 나타내는 태그
+
+        - block 형식
+
+        속성
+        - action : 내부 input에 작성된 값을 제출할 경로 또는 주소를 작성
+
+        - method(방식) : 서버 또는 페이지로 데이터를 제출하는 방식을 지정 
+                (GET, POST, PUT, DELETE)
+
+        - name : form 태그의 이름을 지정(Javascript에서 사용)
+
+        - target : action 주소로 제출 시
+                결과가 현재/새 탭에 열리도록 지정
+    </pre>
+
+
+    <!-- result.html로 get방식 제출, 결과는 새탭에서 확인 -->
+    <form action="result.html" method="get" target="_blank">
+        
+        아이디 : <input type="text" name="inputId"> <br>
+
+        이름 : <input type="text" name="inputName"> <br>
+
+        <button type="submit">제출하기</button>
+    </form>
+
+
+    <hr>
+
+    <!-- action 미작성 시 현재 페이지로 제출 -->
+
+    <pre>
+        fieldset 태그 : form 태그 내부에 구역을 구분하는 용도의 태그
+        legend 태그 : fieldset에 제목을 붙이는 태그
+
+        * required 속성 : input 태그를 필수로 입력하게 만드는 속성
+    </pre>
+
+    <form>
+        <fieldset>
+            <legend>필수 입력 정보</legend>
+
+            이름 : <input type="text" name="inputName" required> <br>
+
+            팀 선택 :
+            <label for="A">A팀</label>
+            <input type="radio" name="team" id="A" value="A" required>
+            /
+            <label for="B">B팀</label>
+            <input type="radio" name="team" id="B" value="B" required>
+        </fieldset>
+
+
+        <br>
+
+        <fieldset>
+            <legend>추가 개인 정보</legend>
+
+            이메일 : <input type="email" name="inputEmail"> <br>
+            나이 : <input type="number" min="0" max="150"> <br>
+            주소 : <input type="text" size="80">
+        </fieldset>
+
+        <br>
+        <button>제출</button>
+        <button type="reset">초기화</button>
+
+    </form>
+
+
+
+</body>
+</html>

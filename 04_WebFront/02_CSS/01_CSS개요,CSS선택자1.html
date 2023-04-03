@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_CSS 개요, CSS 선택자 1</title>
+
+    <style>
+        /* style 태그 : CSS 코드 작성 영역 */
+
+        /* 태그 선택자 */
+        /* 태그명 { CSS 코드} */
+        div { border : 3px solid red; } /* 3px 빨간 실선 테두리 */
+        
+        strong { background-color: pink; } /* pink 배경  */
+
+        span { 
+            color : green; /* 글자색 green */
+            font-weight: bold; /* 두꺼운 글씨 */
+            font-size: 20px; /* 글자 크기 20px */
+        }
+
+
+        /* id 선택자 */
+        /* #id속성값 {CSS코드;} */
+
+        #li1{ background-color: red; }
+        #li2{ background-color: orange; }
+        #li3{ background-color: yellow; }
+        #li4{ background-color: green; }
+        #li5{ background-color: blue; }
+
+        #li1, #li2, #li4, #li5{
+            /* 콤마(,)를 이용하여 여러 선택자를 동시에 작성할 수 있다 */
+            color : white;
+        }
+
+        /* class 선택자 */
+        /* .class속성값 { CSS 코드; } */
+        .test-1{ color : red; } 
+        .test-2{
+            color: white;
+            background-color: black;
+        }
+
+        /* class 선택자를 이용해서 미리 CSS 코드를 작성
+            -> 추후 HTML 작성 시 해당 스타일이 필요한 경우 
+                class 속성을 추가 */
+        .bg-orange{ background-color: orange; }
+        .bg-blue{ background-color: blue; }
+        .color-white{ color: white;}
+
+
+        /* 모든 요소 선택자(*) */
+
+        /* id가 test3인 요소의 모든 후손에게 배경색 지정 */
+        #test3 *{
+            background-color: greenyellow;
+        }
+
+        /* 모든 요소를 선택하여 궁서 글꼴 지정 */
+        *{
+            font-family: '궁서';
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>CSS(Cascading Style Sheets)</h1>
+
+    <pre>
+        마크업 언어가(HTML) 실제로 화면에 표시되는 방법
+        (모양, 색상, 크기 등...)을 기술하는 언어.
+
+        W3C(웹 표준 지정 기관)에서 CSS를 표준으로 지정.
+
+        부모 요소를 대상으로 하는 CSS 코드는 자식 요소로 상속되며
+
+        하나의 요소를 대상으로 두 가지 이상의 CSS 코드가 작성되면
+        작성 순서, 선택자에 따라 우선순위가 결정된다.
+    </pre>
+
+    <hr>
+
+    <h1>선택자(Selector)란?</h1>
+
+    <pre>
+        현재 HTML 문서 내에서 특정한 요소를 선택하는 문자 또는 문자열.
+    </pre>
+
+    <!-- <h3 class="test" style="color:orange">내용</h3> -->
+
+
+    <hr>
+
+    <h3>태그 선택자</h3>
+
+    <pre>
+        현재 HTML 문서 내에 같은 태그를 선택하는 선택자
+
+        태그명 { CSS 코드; }
+    </pre>
+
+    <div>
+        <strong>strong 태그에 작성된 내용입니다</strong>
+        <br>
+
+        <span>span 태그에 작성된 내용입니다</span>
+
+        <ul>
+            <li>
+                <strong>strong 태그에 작성된 내용입니다</strong>
+            </li>
+            <li>
+                <span>span 태그에 작성된 내용입니다</span>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h3>id 선택자</h3>
+    <pre>
+        - HTML 요소 중 id 속성 값이 일치하는 요소를 선택하는 선택자
+
+        (중요!)
+        id 속성 값은 페이지 내에서 중복되는 값이 있어서는 안된다!
+        (== 유일한 값을 지녀야 한다)
+
+        #id속성값 { CSS 코드; }
+
+        # 기호 == id 
+
+        id 속성 값은 카멜표기법으로 작성해야 한다!
+    </pre>
+
+    <!-- ol>li*5#li${id선택자 테스트-$} -->
+
+    <ol>
+        <li id="li1">id선택자 테스트-1</li>
+        <li id="li2">id선택자 테스트-2</li>
+        <li id="li3">id선택자 테스트-3</li>
+        <li id="li4">id선택자 테스트-4</li>
+        <li id="li5">id선택자 테스트-5</li>
+    </ol>
+
+    <hr>
+
+    <h3>class 선택자(class 속성 값)</h3>
+    <pre>
+        - HTML 문서 내에서 같은 class 속성 값을 가지는
+            요소를 모두 선택하는 선택자.
+
+        - class(종류, 분류) 속성 값을 이용해서
+            관련있는 요소끼리 그룹을 만들 수 있다.
+
+        .class속성값 { CSS 코드; }
+
+        . 기호 == class
+
+        - class 속성 값은 하이픈(-) 표기법을 사용
+    </pre>
+
+    <ul>
+        <li class="test-1">클래스 선택자 테스트</li>
+        <li class="test-2">클래스 선택자 테스트</li>
+        <li class="test-1">클래스 선택자 테스트</li>
+        <li class="test-2">클래스 선택자 테스트</li>
+        <li class="test-2">클래스 선택자 테스트</li>
+
+
+        <li class="bg-orange">클래스 선택자 테스트</li>
+
+        <!-- 클래스 속성 값을 여러 개를 작성 할 수 있다 -->
+        <li class="bg-blue color-white">클래스 선택자 테스트</li>
+    </ul>
+
+
+    <hr>
+
+    <h3>모든 요소 선택자(*)</h3>
+
+    <pre>
+        - 단독 사용 시 HTML 문서 내 모든 요소를 선택
+
+        - 다른 선택자와 사용 시 선택된 요소의 자식 요소들을 모두 선택
+    </pre>
+
+    <ul id="test3">
+        <li>* 선택자 테스트</li>
+        <li>* 선택자 테스트</li>
+        <li>* 선택자 테스트</li>
+    </ul>
+
+
+</body>
+</html>
