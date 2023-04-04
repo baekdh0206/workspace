@@ -1,0 +1,40 @@
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+    /* 배경색은 content, padding 영역에 적용된다 */
+}
+
+/* content 영역*/
+.content{
+    width: 150px;
+    height: 150px;
+
+    /* width, height는 기본적으로 content 영역의 크기를 지정하는 속성 */
+}
+
+
+/* border */
+.border{
+    border : 10px solid red;
+}
+
+
+/* padding */
+.padding{
+    padding : 30px;
+    /* content와 border영역 사이 상하좌우를 30px 벌림 */
+}
+
+/* margin */
+.margin{
+    margin : 50px
+    /* 다른 요소와의 간격을 상하좌우 50px만큼 벌림 */
+
+    /* 서로 다른 요소와 margin 영역이 겹칠 경우
+        두 영역의 margin의 합 만큼 벌어지는 것이 아니라
+        둘 중 margin이 큰 요소의 margin 만큼으로 벌어진다! */
+
+    /* 형제 요소 뿐만 아니라
+        감싸고 있는 부모 요소와도 간격이 적용된다 */
+}

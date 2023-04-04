@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_레이아웃 스타일 2</title>
+
+    <link rel="stylesheet" href="css/08_레이아웃스타일2.css">
+</head>
+<body>
+    <h1>요소의 여백(영역) 관련 속성</h1>
+
+    <pre>
+        HTML 요소는 총 4가지의 영역으로 구성 되어있다.
+
+        1. content 영역
+            - 요소의 내용이 작성되는 영역
+            (시작태그 ~ 종료태그 사이에 작성되는 내용을 생각하면 된다)
+        
+        2. padding 영역
+            - content 영역과 border 영역 사이
+
+        3. border 영역
+            - 요소의 테두리가 지정되는 영역
+            - content보다 바깥쪽에서 content 영역을 감싸고 있음
+
+        4. margin 영역
+            - 다른 요소와의 간격을 나타내는 영역
+    </pre>
+
+    <h3>기준</h3>
+    <div class="box">내용입니다</div>
+
+    <hr>
+
+    <h3>content 영역 확인</h3>
+    <div class="box content">내용입니다</div>
+
+    <hr>
+
+    <h3>border 영역 확인</h3>
+    <div class="box border">내용입니다</div>
+
+    <hr>
+
+    <h3>padding 영역 확인</h3>
+    <div class="box content border padding">내용입니다</div>
+
+    <hr>
+    
+    <h3>margin 영역 확인</h3>
+    <div class="box content border padding margin">내용입니다</div>
+    
+    <div class="box content border padding margin"
+        style="margin:100px">내용입니다</div>
+</body>
+</html>
