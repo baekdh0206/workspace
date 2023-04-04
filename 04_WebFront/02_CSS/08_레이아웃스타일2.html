@@ -54,5 +54,62 @@
     
     <div class="box content border padding margin"
         style="margin:100px">내용입니다</div>
+
+
+
+    <hr>
+
+    <h2>padding, border, margin의 방향성</h2>
+
+    <pre>
+        padding, border, margin은 방향에 따라 크기를 별도 지정할 수 있다.
+
+        (방향은 상,하,좌,우 4개만 존재)
+
+        - 영역 이름 : 값1;
+            -> 상,하,좌,우 모두 동일한 크기 지정
+        
+            ex) padding : 30px;  margin : 50px;  border : 10px;
+
+        - 영역 이름 : 값1, 값2;
+            ->  값1 : 상하 
+                값2 : 좌우
+
+        - 영역 이름 : 값1, 값2, 값3;  (위 -> 아래)
+            ->  값1 : 상
+                값2 : 좌우
+                값3 : 하
+        
+        - 영역 이름 : 상, 우, 하, 좌 (상 부터 시계방향)
+
+
+        - top, bottom, left, right를 이용하는 방법
+        영역이름-top    : 값;
+        영역이름-bottom : 값;
+        영역이름-left   : 값;
+        영역이름-right  : 값;
+    </pre>
+
+
+    <h3>padding 테스트</h3>
+    <div class="box padding-test">내용입니다</div>
+
+
+    <hr>
+
+    <h3>border 테스트</h3>
+    <div class="box border-test"></div>
+
+
+    <hr>
+
+    <h3>margin : auto; 확인</h3>
+
+    <div class="container-1">
+        <div class="margin-auto box"></div>
+    </div>
+
+
+
 </body>
 </html>

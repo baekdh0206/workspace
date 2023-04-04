@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_레이아웃 스타일 4</title>
+
+    <link rel="stylesheet" href="css/10_레이아웃스타일4.css">
+</head>
+<body>
+    <h1>요소 정렬 스타일(float / clear)</h1>
+
+    <pre>
+        float(뜨다, 띄우다, 뜨는 물건) : 요소를 띄워서 좌우로 정렬하는 속성
+
+        clear : float로 인해 띄워져 있는 상태를 해제하는 속성
+
+        * float를 이용하면 요소가 겹치는 문제가 발생하는데
+            이를 clear를 통해서 해결
+    </pre>
+
+    <h3>기본 형태</h3>
+    <div class="test">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>Hello</div>
+        <div>World</div>
+        <div>5</div>
+    </div>
+
+    <hr>
+
+    <h3>float : left;  /  clear : left;</h3>
+    <div class="test">
+        <div class="float-left">1</div>
+        <div class="float-left">2</div>
+        <div class="float-left">3</div>
+        <div class="float-left">4</div>
+        <div>Hello</div>
+
+        <div class="clear-left">World</div>
+        <div class="float-left">5</div>
+    </div>
+
+
+    <hr>
+
+    <h3>float : right;  /  clear : right;</h3>
+    <div class="test">
+        <div class="float-right">1</div>
+        <div class="float-right">2</div>
+        <div class="float-right">3</div>
+        <div class="float-right">4</div>
+        <div>Hello</div>
+
+        <div class="clear-right">World</div>
+        <div class="float-right">5</div>
+    </div>
+
+
+    <hr>
+
+    <h3>float : left + right;  /  clear : both;</h3>
+
+    <div class="test">
+        <!-- left -->
+        <div class="float-left">1</div>
+        <div class="float-left">2</div>
+
+        <!-- right -->
+        <div class="float-right">3</div>
+        <div class="float-right">4</div>
+        <div>Hello</div>
+
+        <div class="clear-both">World</div>
+
+        <div class="float-left">5</div>
+    </div>
+
+
+    <hr>
+
+    <h2>float를 이용한 화면 분할</h2>
+
+    <h3>좌우 2분할</h3>
+
+    <div class="container-1">
+        <div class="col bg1"></div>        
+        <div class="col bg2"></div>        
+    </div>
+
+    <hr>
+
+    <h3>4분할 (田)</h3>
+
+    <div class="container-1">
+        <div class="row">
+            <div class="col bg1"></div>
+            <div class="col bg7"></div>
+        </div>
+
+        <div class="row">
+            <div class="col bg3"></div>
+            <div class="col bg4"></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container-1">
+        <div class="row">
+            <div class="col">
+                <div class="row bg1"></div>
+                <div class="row bg4"></div>
+            </div>
+            <div class="col bg6"></div>
+        </div>
+        <div class="row bg3"></div>
+    </div>
+
+</body>
+</html>

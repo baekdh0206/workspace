@@ -38,3 +38,64 @@
     /* 형제 요소 뿐만 아니라
         감싸고 있는 부모 요소와도 간격이 적용된다 */
 }
+
+
+/* padding 방향성 테스트 */
+.padding-test{
+    /* 모든 방향 20px */
+    /* padding : 20px; */ 
+
+    /* 상하 20px, 좌우 50px */
+    /* padding : 20px 50px;  */
+
+    /* 상 30px, 좌우 40px, 하 50px */
+    /* padding: 30px 40px 50px; */
+
+    /* 상 30px, 하 30px, 좌 50px, 우 20px */
+    /* 상우하좌 (시계방향) */
+    /* padding: 30px 20px 30px 50px; */ 
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+
+/* border 방향성 테스트 */
+.border-test{
+    border : 4px solid red;/* 모든 방향 */
+
+    /* border는 방향별로 지정 시 모양/색상을 같이 작성해야 한다 */
+    border-top: 1px solid black;
+
+    /* dashed : ---------- 절취선 */
+    border-bottom: 5px dashed magenta;
+
+    /* dotted : ......  점선 */
+    border-left: 10px dotted blue;
+
+    /* double : 이중선 */
+    border-right: 5px double red;
+}
+
+
+
+/* margin : auto 확인하기 */
+.container-1{
+    border: 2px solid black;
+    width: 470px;
+    height: 300px;
+}
+
+.margin-auto{
+            /* 상하  좌우 */
+    margin : auto   auto;
+
+    /* margin : auto  
+        -> 다른 요소와의 간격을 자동으로 계산해서
+            상하, 좌우에 동일한 값을 대입 (가운데로 배치)
+            --> 상하 방향에 auto를 적용해야할 경우
+                position 관련 속성이 추가로 필요하다
+    */
+}

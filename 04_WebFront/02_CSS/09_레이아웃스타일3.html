@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_레이아웃 스타일3</title>
+
+    <link rel="stylesheet" href="css/09_레이아웃스타일3.css">
+</head>
+<body id="bodyTop">
+    <h1 class="sticky">배치 관련 스타일(position)</h1>
+
+    <pre>
+        postion은 요소의 위치를 지정하는 속성
+
+        - relative (상대적인)
+        지정된 요소 내부에 다른 요소가 배치될 때
+        상대적인 위치를 지정할 수 있도록 기준을 설정하는 속성
+        (기준점 만들기!)
+            + 내부에 작성된 요소에는
+                상대적 위치를 지정하기 위한 
+                top, bottom, left, right 속성을 사용할 수 있음.
+
+        - absolute (절대적인)
+        기본 요소의 배치 순서를 무시하고
+        지정된 절대 위치에 요소를 배치함.
+        (원하는 곳에 마음대로 배치)
+
+        - fixed (고정된)
+        항상 고정된 위치에 요소를 배치함.
+        (화면이 스크롤되도 항상 같은 위치,
+        브라우저를 기준으로 배치됨)
+        
+        - sticky 
+        처음에는 일반적인 요소였다가
+        화면에서 벗어나는 경우
+        지정된 위치에 붙어서 고정
+    </pre>
+
+
+    <!-- <div style="width: 200px; height: 200px;"></div> -->
+
+    <hr>
+
+    <div class="container-1">
+        <div class="first">first</div>
+
+        <div class="third">third</div>
+
+        <div class="second">second</div>
+    </div>
+
+    <pre>
+        z-index 속성 
+        - z축 방향으로 요소가 어디에 위치하는가를 지정
+        * position : absolute, fixed, sticky 에서 적용
+
+        (z-index의 값이 커질수로 겹쳐질 때 제일 위쪽에 배치된다)
+        (== 모니터에서 더 많이 튀어 나옴)
+    </pre>
+
+
+    <hr>
+
+    <h3>요소를 정가운데 배치하기</h3>
+
+    <div class="container-2">
+        <div class="center"></div>
+    </div>
+
+
+    <!-- postion : fixed;  -->
+    <div class="fixed-area">
+        <a href="#bodyTop">이동</a>
+    </div>
+    
+</body>
+</html>
