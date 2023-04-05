@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_felx1</title>
+
+    <link rel="stylesheet" href="css/flex_style.css">
+    <link rel="stylesheet" href="css/13_flex1.css">
+</head>
+<body>
+    <h1>display : flex  (FlexBox)</h1>
+    
+    <pre>
+        요소의 정렬되는 방향, 순서, 요소 간의 간격을
+        하나하나 수치적으로 처리하지 않아도
+        알아서 유연하게 처리해주는 형식(방식);
+
+        <b>flex 이용 시 반드시 알아야 되는 것!!!</b>
+
+        <i>1. flex의 구성</i>
+        - flex container : 정렬이 필요한 요소(item)를 감싸는 요소
+        - item : 정렬이 적용될 요소
+
+        (flex container용 속성, item용 속성이 구분되어 있음 )
+
+        <i>2. flex의 축(axis)</i>
+        - 중심축 (main axis)
+        - 교차축, 반대축 (cross axis)
+    </pre>
+
+    <div class="flex-container">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item item4">item4</div>
+        <div class="item item5">item5</div>
+        <div class="item item6">item6</div>
+        <div class="item item7">item7</div>
+        <div class="item item8">item8</div>
+        <div class="item item9">item9</div>
+    </div>
+
+    <pre>
+        <b>flex container 전용 속성 1</b>
+
+        <i>1. display : flex </i>
+        - 감싸는 요소를 flex 형식으로 변경
+            -> 내부에 작성되는 item을 유연하게 배치하겠다는 의미
+
+        - 해당 속성이 적용되면 유연하게 배치할 수 있도록
+            내부 item의 자동으로 지정된 margin 속성이 사라진다.
+
+
+        <i>2. flex-direction : 중심축의 방향, 시작/끝 지정</i>
+        - row (기본값)   : x축, L -> R
+        - row-reverse    : x축, R -> L
+        - column         : y축, U -> D
+        - column-reverse : y축, D -> U
+
+        <i>3. justify-content : 중심축 방향을 기준으로 item 정렬</i>
+        - flex-start : 중심축 시작 지점을 기준으로 정렬
+        - flex-end : 중심축 끝 지점을 기준으로 정렬(순서가 뒤집히진 않음)
+        - center : 중심축 가운데 정렬
+
+        - space-around : item에 중심축 방향으로 일정한 간격을 부여
+        - space-evenly : item에 중심축 방향으로 동일한 간격을 부여
+        - space-between : item에 중심축 방향으로 동일한 간격을 부여
+                            단, 양 끝은 flex-container에 붙게 한다
+    </pre>
+
+</body>
+</html>

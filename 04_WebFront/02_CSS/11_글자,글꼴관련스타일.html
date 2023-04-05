@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_글자, 글꼴 관련 스타일</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/11_글자,글꼴관련스타일.css">
+</head>
+<body>
+
+    <h3>글자 색을 지정하는 속성 : color</h3>
+    <pre>
+        color에 작성할 수 있는 값의 종류
+
+        - 색상명(영문)
+        - rgb(0~255, 0~255, 0~255) red,green,blue
+        - rgba(0~255, 0~255 ,0~255 ,0~1) red,green,blue, 투명도
+            0: 투명   1: 불투명
+        - 16진수 표기법 #RGB (#fff, #ffffff)
+        - hsl(색조, 채도, 명도(밝기))
+        - hsla(색조, 채도, 명도(밝기), 투명도)
+    </pre>
+    
+    <ul id="colorList">
+        <li>색상명</li>
+        <li>rgb</li>
+        <li>rgba</li>
+        <li>16진수 3자리</li>
+        <li>16진수 6자리</li>
+        <li>hsl</li>
+        <li>hsla</li>
+    </ul>
+
+    <hr>
+
+    <h3>글자 줄을 그어 꾸미는 속성 : text-decoration</h3>
+    <pre>
+        윗줄   : overline
+        중간줄 : line-through
+        아랫줄 : underline
+        없애기 : none
+    </pre>
+
+    <ul id="decorationList">
+        <li>overline</li>
+        <li>line-through</li>
+        <li>underline</li>
+        <li><a href="#">none</a></li>
+    </ul>
+    
+
+    <hr>
+
+    <h3>글자(inline 요소) 정렬 : text-align</h3>
+    <pre>
+        - 왼쪽 정렬 : left
+        - 오른쪽 정렬 : right
+        - 가운데 정렬 : center
+        - 양쪽 정렬 : justify
+    </pre>
+
+    <div id="alignTest">
+        <p>Hello World!!! Hello World!!! Hello World!!!</p>
+        <p>Hello World!!! Hello World!!!</p>
+        <p>Hello World!!! Hello World!!!</p>
+        <p>Hello World!!! Hello World!!! Hello World!!!</p>
+    </div>
+
+
+    <hr>
+    <h3>장평(줄 간격) : line-height</h3>
+
+    <p id="lineHeight">
+        동해물과 백두산이 마르고 닳도록 <br>
+        하느님이 보우하사 우리 나라 만세 <br>
+        무궁화 삼천리 화려 강산 <br>
+        대한 사람 대한으로 길이 보전하세
+    </p>
+
+
+    <hr>
+    <h3>자간(글자 간격) : letter-spacing</h3>
+    <p id="letterSpacing">
+        동해물과 백두산이 마르고 닳도록 <br>
+        하느님이 보우하사 우리 나라 만세 <br>
+        무궁화 삼천리 화려 강산 <br>
+        대한 사람 대한으로 길이 보전하세
+    </p>
+
+
+    <hr>
+
+    <h3>글꼴의 굵기 : font-weight</h3>
+    <pre>
+        - 숫자(100(얇음) ~ 900(두꺼움))
+        - normal : 폰트에 기본으로 지정된 두께(300~400)
+        - bold : 굵게(700)
+
+        - bolder : 상속 받은 굵기보다 굵게
+        - lighter : 상속 받은 굵기보다 얇게
+    </pre>
+
+    <h3>글꼴 크기 : font-size</h3>
+    <pre>
+        - 고정 크기 단위(px, pt)
+        - 가변 크기 단위(em, rem, %)
+            -> em  : 부모 글꼴 크기 비례
+            -> rem : 최상위 부모 글꼴 크기 비례
+    </pre>
+
+    <hr>
+    <h3>font-family : 글꼴 지정 속성</h3>
+
+
+    <h3>웹 폰트 사용</h3>
+    <p>웹 폰트 제공 사이트1 : <a href="https://fonts.google.com" target="_blank">구글 웹폰트 사이트로</a> </p>
+    <p>웹 폰트 제공 사이트2 : <a href="https://noonnu.cc/" target="_blank">눈누 상업용 무료 한글폰트 사이트로</a>  </p>
+
+
+    <ul id="fontFamily">
+        <li>가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+        <li>가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+        <li>가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+        <li>가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+       
+        <li>젲젷젶줓젴줗, 가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+        <li>가나다라, 김치볶음밥, abcd, ABCD, 1234, !@#$</li>
+    </ul>
+
+
+</body>
+</html>
