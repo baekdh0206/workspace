@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15_flex3</title>
+
+    <link rel="stylesheet" href="css/flex_style.css">
+    <link rel="stylesheet" href="css/15_flex3.css">
+</head>
+<body>
+    <h1>item 전용 속성</h1>
+
+    <h3>order : item의 순서를 지정하는 속성</h3>
+    <pre>
+        - item이 중심축이 배치되는 순서를 지정
+        - 기본값 0, 정수(음수, 양수, 0) 작성 가능
+        - 값이 작을수록 중심축의 시작 부분에 배치됨 
+    </pre>
+
+    <div class="flex-container">
+        <div class="item item1 order1">item1</div>
+        <div class="item item2 order2">item2</div>
+        <div class="item item3 order4">item3</div>
+        <div class="item item4 order5">item4</div>
+        <div class="item item5 order3">item5</div>
+    </div>
+
+    <hr>
+
+    <h3>flex-grow(팽창) :
+        item이 flex container 내부에서
+        비어있는 공간을 매꿀 수 있도록
+        팽창하는 정도를 지정하는 속성
+    </h3>
+    <pre>
+        - 기본값 0 (팽창 X)
+    </pre>
+
+    <div class="flex-container">
+        <div class="item item1 grow1">item1</div>
+        <div class="item item2 grow2">item2</div>
+        <div class="item item3 grow3">item3</div>
+        <div class="item item4 grow4">item4</div>
+    </div>
+
+    <hr>
+
+    <h3>flex-shrink(수축) :
+        item이 수축하는 정도를 지정하는 속성
+    </h3>
+    <pre>
+        - 기본값 1
+    </pre>
+
+    <div class="flex-container">
+        <div class="item item1 shrink0">item1</div>
+        <div class="item item2 shrink1">item2</div>
+        <div class="item item3 shrink2">item3</div>
+        <div class="item item4 shrink3">item4</div>
+    </div>
+
+
+    <hr>
+
+    <h3>flex-basis :
+        item의 중심축 방향의 기본 점유율(크기)을 지정하는 속성
+        (각종 크기 단위 px, %, vh, em, rem 등 사용 가능)
+    </h3>
+
+    <div class="flex-container">
+        <div class="item item1 basis-150px">item1</div>
+        <div class="item item2 basis-10">item2</div>
+        <div class="item item3 basis-25">item3</div>
+        <div class="item item4 flex1">item4</div>
+    </div>
+
+    <hr>
+
+    <h3>align-self : 각각의 item별로 교차축 방향으로 정렬을 지정하는 속성</h3>
+    
+    <div class="flex-container self-test">
+        <div class="item item4 self-start">item1</div>
+        <div class="item item5 self-end">item2</div>
+        <div class="item item9 self-center">item3</div>
+    </div>
+
+</body>
+</html>

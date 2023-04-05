@@ -1,0 +1,29 @@
+.flex-container{
+    height: 75vh; /* 현재 화면 높이의 75% */
+    /* vh(Viewport Height) : 현재 화면의 높이 
+                            100vh == 100%*/
+
+    display: flex; /* 내부 item을 유연하게 정렬, 배치 */
+
+
+    /* flex-wrap : item이 한 줄/여러 줄로 배치 되게 지정 */
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap-reverse; */
+
+
+    /* flex-flow :  flex-direction  +  flex-wrap; */
+    /* flex-flow: column   wrap-reverse; */
+
+
+
+    /* align-content : cross axis(교차축)을 기준으로 포장된(wrap) item들을 정렬 */
+
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+    align-content: space-around;
+    align-content: space-evenly;
+    align-content: space-between;
+
+}

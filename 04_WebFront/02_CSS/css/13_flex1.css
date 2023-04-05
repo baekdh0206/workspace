@@ -22,4 +22,36 @@
     justify-content: space-evenly;
     justify-content: space-between;
 
+
+    /* align-items : 교차축을 기준으로 item 정렬 */
+
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+
+    align-items: baseline;
+}   
+
+/* baseline 확인하기 */
+.item2{padding: 5px;}
+.item3{padding: 10px;}
+.item4{padding: 15px;}
+.item5{padding: 20px;}
+
+
+
+/* 정가운데 배치하기 */
+.test{
+    width: 300px;
+    height: 300px;
+ 
+    display: flex;
+
+    flex-direction: row; /* 기본값 */
+
+    /* 중심축 가운데 */
+    justify-content: center;
+
+    /* 교차축 가운데 */
+    align-items: center;
 }

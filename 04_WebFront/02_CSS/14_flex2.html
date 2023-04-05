@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14_flex2</title>
+    
+    <link rel="stylesheet" href="css/flex_style.css">
+    <link rel="stylesheet" href="css/14_flex2.css">
+</head>
+<body>
+
+    <h1>flex-wrap 관련 속성</h1>
+
+    <div class="flex-container">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item item4">item4</div>
+        <div class="item item5">item5</div>
+        <div class="item item6">item6</div>
+        <div class="item item7">item7</div>
+        <div class="item item8">item8</div>
+        <div class="item item9">item9</div>  
+
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item item4">item4</div>
+        <div class="item item5">item5</div>
+        <div class="item item6">item6</div>
+        <div class="item item7">item7</div>
+        <div class="item item8">item8</div>
+        <div class="item item9">item9</div>     
+
+    </div>
+
+    <pre>
+        <b>flex container 전용 속성 2</b>
+
+        <i>5. flex-wrap : item이 한 줄/여러 줄로 배치 되게 지정</i>
+
+        - nowrap (기본값) : 한 줄로 배치, item의 크기가 변경(훼손)될 수 있음
+        - wrap : 여러 줄로 배치
+        - wrap-reverse : 여러 줄로 배치(cross axis 방향 반대)
+
+
+        <i>6. flex-flow :  flex-direction  +  flex-wrap;</i>
+
+
+        <i>7. align-content : cross axis(교차축)을 기준으로 포장된(wrap) item들을 정렬</i>
+        -> 조건 : flex-wrap이 wrap 또는 wrap-reverse 이여야 함
+
+        - flex-start    : 축 시작 지점 기준으로 정렬
+        - flex-end      : 축 끝 지점 기준으로 정렬
+        - center        : 축 가운데 정렬
+        - space-around  : item에 축 방향 양쪽으로 일정 크기 공간을 배치
+        - space-evenly  : item에 축 방향 양쪽으로 모두 동일한 크기의 공간을 배치
+        - space-between : space-evenly에서 시작, 끝 item은 flex-container 붙게 배치
+    
+    </pre>
+
+</body>
+</html>
