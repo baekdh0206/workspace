@@ -1,0 +1,18 @@
+.grid-container{
+    background-color: #ccc;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    gap : 10px;
+
+    grid-template-areas: 
+        "a a a"
+        "b c c"
+        "b d ."
+    ;
+}
+
+.item1{ grid-area: a;}
+.item3{ grid-area: b;}
+.item5{ grid-area: c;}
+.item7{ grid-area: d;}

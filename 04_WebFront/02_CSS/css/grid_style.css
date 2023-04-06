@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    width: 100vw;  /* Viewport Width : 현재 기기 화면 너비 */
+    height: 100vh; /* Viewport Height : 현재 기기의 화면 높이 */
+}
+
+div{
+    border : 1px solid black;
+    box-sizing: border-box; 
+    /* content + padding + border 합으로 width/height 지정 */
+}
+
+pre{
+    font-size: 1rem;
+    font-family: '고딕';
+}
+
+pre > b{
+    font-size: 1.5em;
+    color: red;
+}
+
+pre > i{ font-size: 1.5em; }
+
+.item{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.item1{background-color: red;}
+.item2{background-color: orangered;}
+.item3{background-color: orange;}
+.item4{background-color: yellow;}
+.item5{background-color: yellowgreen;}
+.item6{background-color: green;}
+.item7{background-color: lightblue;}
+.item8{background-color: blue;}
+.item9{background-color: violet;}

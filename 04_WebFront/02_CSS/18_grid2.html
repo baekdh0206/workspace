@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18_grid 2</title>
+
+    <link rel="stylesheet" href="css/grid_style.css">
+    <link rel="stylesheet" href="css/18_grid2.css">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item item4">item4</div>
+        <div class="item item5">item5</div>
+        <div class="item item6">item6</div>
+        <div class="item item7">item7</div>
+        <div class="item item8">item8</div>
+    </div>
+    
+    <pre>
+        <b>grid cell 전용 속성</b>
+
+        <b>
+            병합 관련 속성에 값 작성 시 
+            행/열을의 번호가 아닌
+            행/열을 구분하는 라인(선)에 번호를 매겨 사용!
+        </b>
+
+        <i>1. grid-column-start / grid-column-end / grid-column</i>
+        - 열 병합을 위한 속성
+
+        grid-column-start : 열 병합을 시작할 라인 번호
+        grid-column-end : 열 병합을 종료할 라인 번호
+        grid-column : 시작/끝
+
+
+        <i>2. grid-row-start / grid-row-end / grid-row</i>
+        
+        - 행 병합을 위한 속성
+        grid-row-start : 행 병합을 시작할 라인 번호
+        grid-row-end : 행 병합을 종료할 라인 번호
+        grid-row : 시작/끝
+
+
+        <i>3. span 행/열 개수 </i>
+        - 병합 시작 라인으로 부터
+        몇개의 행/열을 병합 할것인지 지정
+
+
+        (참고) 행/열 라인 번호를 음수로 지정할 경우 
+        행/열 라인순서를 역순으로 지정할 수 있음
+    </pre>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_웹 문서 구조</title>
+
+    <link rel="stylesheet" href="css/16_웹문서구조.css">
+
+    <!-- font awesome 라이브러리 추가 + key 등록 -->
+    <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <main>
+        <header>
+            <section>
+                <!-- 클릭 시 메인 페이지로 이동하는 로고 -->
+                <a href="#">
+                    <img src="../images/logo.jpg" alt="로고" id="homeLogo">
+                </a>
+            </section>
+
+
+            <section>
+                <!-- 검색어 입력할 수 있는 요소 배치 -->
+
+                <article class="search-area">
+
+                    <!-- 
+                        action : 내부 input에 작성된 값을 제출할 경로/주소 
+                        method : 어떤 방식으로 제출할지 지정
+
+                        - GET : input태그 값을 주소에 담아서 제출(주소에 보임)
+                        - POST : input태그 값을 주소에 담지 않고 제출(주소에 안보임)
+                                -> HTTP Body에 담아서 제출
+                    -->
+                    <form action="#" method="GET">
+
+                        <fieldset> <!-- form태그 내 영역 구분 -->
+
+                            <!-- 
+                                input의 name 속성 == 제출 시 key
+                                input에 입력된 내용 == 제출 시 value
+
+                                autocomplete="off" : 브라우저 제공 자동완성 off
+                            -->
+                            <input type="search" name="query" id="query"
+                            placeholder="검색어를 입력해주세요."
+                            autocomplete="off">
+
+                            <!-- 검색 버튼 -->
+                            <!-- button type="submit" 이 기본값 -->
+                            <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
+
+                        </fieldset>
+
+                    </form>
+
+                </article>
+
+            </section>
+
+
+            <section></section>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">자유 게시판</a></li>
+                <li><a href="#">질문 게시판</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">1:1문의</a></li>
+            </ul>
+        </nav>
+
+        <section class="content">
+            <section class="content-1">
+
+                <h3>시맨틱(Semantic : 의미) 태그</h3>
+                <pre>
+    - 기존 영역 분할에 주로 사용되던 div, span등의 태그는          
+    태그 이름만 봤을 때 나눈다는 것 이외의 의미 파악이 불가능.
+
+    - 이러한 문제점을 해결하고자
+    태그 이름만 봐도 어떤 역할을 하는지 파악할 수 있고
+    추가적으로 웹 접근성을 향상 시킬 수 있는 시맨틱 태그가
+    HTML5에서 추가되었다.
+
+    * 태그명은 다르지만 div 태그와 다를게 없음
+
+    [제공하는 태그 종류]
+
+    - header 태그 : 문서의 제목, 머리말 영역
+    - footer 태그 : 문서의 하단, 꼬리말, 정보 작성 영역
+    - nav 태그 : navigator(다른 페이지 이동) 링크 작성 영역
+    - main 태그 : 현재 문서의 주된 내용을 작성하는 영역
+    - section 태그 : 구역을 나누는 영역 
+    - article(작은 토막) 태그 : 본문과 독립된 내용을 작성하는 영역
+    - aside : 사이드바 영역  
+                </pre>
+            </section>
+
+            <section class="content-2">
+
+                <!-- method="POST" : 제출 되는 값이 주소에 안보임 -->
+                <form action="#" method="POST">
+
+                    <fieldset class="id-pw-area">
+                        <section>
+                            <input type="text" name="inputId" placeholder="아이디">
+                            <input type="password" name="inputPw" placeholder="비밀번호">                  
+                        </section>
+                        <section>
+                            <button>로그인</button>
+                        </section>
+                    </fieldset>
+
+                    <label>
+                        <input type="checkbox" name="saveId"> 아이디 저장
+                    </label>
+
+                    <article class="signup-find-area">
+                        <a href="#">회원가입</a>
+                        <span>|</span>
+                        <a href="#">ID/PW 찾기</a>
+                    </article>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; KH Information Educational Institute A-Class</p>
+
+        <article>
+            <a href="#">프로젝트 소개</a>    
+            <span>|</span>
+            <a href="#">이용약관</a>    
+            <span>|</span>
+            <a href="#">개인정보처리방침</a>    
+            <span>|</span>
+            <a href="#">고객센터</a>    
+        </article>
+    </footer>
+</body>
+</html>

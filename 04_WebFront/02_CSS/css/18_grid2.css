@@ -1,0 +1,56 @@
+.grid-container{
+    background-color: #ccc;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    /* grid-auto-rows : 행 개수 지정 X
+            생성되는 모든 행에 동일한 크기를 자동 지정 */
+    grid-auto-rows: 100px;
+
+    gap : 10px;
+}
+
+
+.item1{
+    /* 1,2열 병합 */
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.item2{
+    /* 3,4열 병합 */
+    grid-column: 3/5;
+
+    /* 1,2행 병합 */
+    grid-row : 1/3;
+}
+
+.item3{
+    /* 2,3행 병합 */
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.item4{
+    /* 행 2번 라인부터 
+        2행 만큼 병합*/
+    grid-row : 2 / span 2;
+}
+
+.item5{
+    /* 열 3번 라인부터 
+        2열 만큼 병합*/
+    grid-column: 3 / span 2;
+}
+
+.item6{
+    /* 열 1번 라인부터
+        3열 만큼 병합 */
+    grid-column: 1 / span 3;
+}
+
+.item8{
+    /* 한 행에 있는 모든 열 병합 */
+    grid-column: 1 / -1;
+}
