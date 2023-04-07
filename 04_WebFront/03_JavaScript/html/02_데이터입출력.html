@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_데이터입출력</title>
+
+    <link rel="stylesheet" href="../css/02_데이터입출력.css">
+
+    <script src="../js/02_데이터입출력.js"></script>
+</head>
+<body>
+    
+    <h3 class="title">innerText</h3>
+
+
+    <pre>
+        JS에서 요소에 작성된 내용(content)를
+        읽어들이거나 변경하는 속성
+
+        - 내용에 포함된 태그는 읽어오지 않는다!
+    </pre>
+
+    <!-- form태그 없으면 submit 버튼은 아무것도 못한다 -->
+    <button onclick="getBoxText()">innerText로 읽어오기</button>
+    <button onclick="setBoxTest()">innerText로 변경하기</button>
+
+    <p id="test1" class="box">
+        테스트1 입니다. <br>
+        <b>안녕하세요?</b>
+    </p>
+
+</body>
+</html>
