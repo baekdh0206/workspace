@@ -1,0 +1,137 @@
+/* 반응형 웹 : 브라우저나 장치 환경(크기)에 따라 
+            웹페이지의 모습이 변하는 웹페이지 */
+
+/* @media (미디어 쿼리) : 사용 환경, 크기에 따라 
+                        CSS를 지정 가능하게 해주는 구문 */
+
+/* 
+    min-width : 최소 너비
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 넓으면 자동으로 증가
+
+    min-height : 최소 높이
+        -> 내부 요소 또는 화면의 크기가
+            지정된 높이보다 높으면 자동으로 증가
+
+    max-width : 최대 너비
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 좁으면 자동으로 축소
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 크더라도 
+            지정된 값 이상으로 증가 X
+
+    max-height : 최대 높이
+*/
+
+/* @media 미디어유형 and (속성)*/
+/* 미디어유형 : 지정할 미디어의 종류 (all, screen, print,...) */
+/* 
+    1024px 이상 : 16:9 비율 모니터, 노트북
+    768 ~ 1024 : 태블릿 가로, 4:3비율 모니터
+    480 ~ 768 : 태블릿 세로, 모바일 가로
+    ~ 480 : 모바일
+*/
+
+
+/* nav 버튼(햄버거 버튼) */
+.nav-btn{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: none;
+    font-size: 1.5em;
+    
+    position: absolute;
+    left: 10px;
+    top: 10px;
+
+    user-select: none; /* 드래그 불가 */
+    cursor: pointer;
+
+    display : none !important; 
+
+}
+
+
+        /* and 사이에 띄어쓰기 꼭 하세요!!!!! */
+@media screen and (max-width : 1024px){
+    /* 모니터, 스마트폰, 태블릿 같은 화면이
+        최대 너비 1024px 보다 작을 때 적용
+        == 화면 너비가 최대 1024px 되기 전 까지 적용*/
+    /* body{ background-color: pink;} */
+
+
+    main{
+        width: 100%;
+        margin-top : 10px;
+        min-width: 768px;
+    }
+
+
+    header{
+        height: 150px;
+        /* row -> column 변경 */
+        flex-direction: column; 
+    }
+
+    header > section {
+        width: initial !important; /* 초기값 */
+    }
+
+    /* 로고 너비 변경 */
+    #homeLogo{
+        width: 80px; 
+    }
+
+    /* 검색창 너비 변경 */
+    .search-area{
+        width: 90%;
+    }
+
+    .content{
+        padding: 0 20px;
+    }
+
+
+    /* nav 관련 설정 */
+
+    .nav-btn{ display: block !important; }
+
+    nav{
+        width: 100vw; /* 화면 너비 100% */
+        height: 100vh; /* 화면 높이 100% */
+        position : fixed;
+        background-color: rgba(0,0,0, 0.3);
+        display: none;
+    }
+
+    nav > ul{
+        background-color: white;
+        width: 300px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding-top: 60px;
+        padding-left: 20px;
+    }
+
+    nav li{
+        /* 중심축 방향 크기 자동 조정 */
+        flex-basis: auto;
+    }
+
+    nav a:hover{
+        background-color: initial;
+        color: #455ba8;
+        font-size: 1.5em;
+    }
+
+
+}
+
+
+@media screen and (max-width : 768px){
+    /* body{ background-color: skyblue;} */
+}
+
+
