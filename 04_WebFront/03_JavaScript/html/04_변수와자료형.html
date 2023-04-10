@@ -113,6 +113,37 @@
     </pre>
 
 
+    <hr>
+
+    <h1>JavaScript의 자료형</h1>
+    <pre>
+        자바스크립트는 변수 선언 시 별도의 자료형을 지정하지 않음.
+        -> 변수에 대입되는 값(리터럴)에 의해서 자료형이 결정됨!
+
+        - undefined : 정의되지 않음
+                    -> 변수를 선언하고 아무런 값도 대입 안했을 때
+
+        - string : 문자열("", '')
+
+        - number : 숫자(정수, 실수)
+
+        - boolean : 논리값(true, false)
+
+        - object : 객체(배열, JS 객체 {K:V, K:V} )
+
+        - function : 함수
+
+        (참고)
+        null : 참조하는게 없다(값)
+
+        undefined === null  (=== : 동일한 자료형 + 값인가?)
+        -> false (다른거다!!)
+    </pre>
+
+    <button onclick="typeTest()">자료형 확인</button>
     
+    <div id="typeBox"></div>
+
+
 </body>
 </html>
