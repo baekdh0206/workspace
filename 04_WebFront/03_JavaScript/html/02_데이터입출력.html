@@ -20,16 +20,86 @@
         읽어들이거나 변경하는 속성
 
         - 내용에 포함된 태그는 읽어오지 않는다!
+        - 내용 변경 시 태그가 포함되도 해석되지 않는다!
+        
     </pre>
 
     <!-- form태그 없으면 submit 버튼은 아무것도 못한다 -->
     <button onclick="getBoxText()">innerText로 읽어오기</button>
-    <button onclick="setBoxTest()">innerText로 변경하기</button>
+    <button onclick="setBoxText()">innerText로 변경하기</button>
 
     <p id="test1" class="box">
         테스트1 입니다. <br>
         <b>안녕하세요?</b>
+
+        &lt;br&gt; 
     </p>
+
+    <hr>
+
+    <h3>innerHTML</h3>
+    <pre>
+        JS에서 요소 전체를 읽어들이거나 변경하는 속성
+
+        - 내용에 포함된 요소 자체를 읽어옴(태그, 속성, 내용)
+        - 내용 변경 시 포함된 태그, 속성이 모두 해석된다
+    </pre>
+
+    <button onclick="getBoxElement()">innerHTML로 읽어오기</button>
+    <button onclick="setBoxElement()">innerHTML로 변경하기</button>
+
+    <p id="test2" class="box">
+        테스트2 입니다. <br>
+        <b class="sleep">졸리시죠?</b>
+    </p>
+
+    <hr>
+
+    <h3>innerHTML 응용</h3>
+
+    <button onclick="add()">추가하기</button>
+
+    <div id="area1">
+        <div class="box2"></div>
+    </div>
+
+
+    <hr>
+
+    <h3>[window.]alert("내용")</h3>
+    <pre>
+        - alert : 경고, 경보, 알리다
+        - 브라우저에 경고창(알림창, 대화 상자)을 띄우는 함수
+    </pre>
+    <button onclick="alert('확인!')">alert 확인</button>
+
+
+    <hr>
+
+    <h3>[window.]confirm("내용")</h3>
+    <pre>
+        - "내용"에 대한 예/아니오 결과를 얻고자 할 때 사용하는 함수
+        
+        - 대화 상자에 예/아니오 (또는 확인/취소) 버튼이 생기고
+            예(확인) 클릭 시 true
+            아니오(취소) 클릭 시 false 반환
+    </pre>
+    <button onclick="fnConfirm()">confirm 확인</button>
+
+    <hr>
+
+    <h3>[window.]prompt("내용")</h3>
+    <pre>
+        - 내용을 입력할 수 있는 대화 상자
+
+        - 내용 입력 후 확인 클릭
+            -> 입력한 내용이 그대로 반환
+
+        - 취소 클릭
+            -> null 반환
+    </pre>
+
+    <button onclick="fnPrompt()">prompt 확인</button>
 
 </body>
 </html>

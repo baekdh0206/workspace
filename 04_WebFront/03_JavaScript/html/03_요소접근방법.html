@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_요소 접근 방법</title>
+
+    <link rel="stylesheet" href="../css/03_요소접근방법.css">
+
+    <script src="../js/03_요소접근방법.js"></script>
+
+</head>
+<body>
+    <h1>DOM(Document Object Model)</h1>
+
+    <pre>
+        웹 문서(HTML)의 모든 요소를 객체 형식으로 표현한 것
+
+        -> 문서 내 특정 요소에 대한 접근 방법을 제공
+    </pre>
+
+    <hr>
+    <h1>DOM을 이용한 요소 접근 하기</h1>
+
+    <pre>
+        1. id로 접근하기 : document.getElementById("id속성값");
+            -> 아이디가 일치하는 요소(객체)를 얻어옴
+
+        2. class로 접근하기 : document.getElementsByClassName("class속성값"); 
+            -> 클래스가 일치하는 모든 요소를 얻어와 배열 형태로 반환  
+            
+        3. name으로 접근하기 : document.getElementsByName("name속성값"); 
+            -> name이 일치하는 모든 요소를 얻어와 배열(NodeList, 유사배열) 형태로 반환  
+
+        4. tag로 접근하기 : document.getElementsByTagName("tag명"); 
+            -> 태그가 일치하는 모든 요소를 얻어와 배열 형태로 반환  
+
+        5. CSS 선택자로 접근하기
+            
+            1) document.querySelector("CSS 선택자");
+                -> 선택자가 선택한 요소 중 첫 번째 요소를 반환
+
+            2) document.querySelectorAll("CSS 선택자");
+                -> 선택한 요소 모두를 배열(NodeList, 유사배열) 형태로 반환
+    </pre>
+
+    <hr>
+    
+    <h3>id로 접근하기</h3>
+    <button onclick="accessId()">클릭할 때 마다 배경색 변경</button>
+                <!-- 함수 호출 -->
+
+    <div id="div1" class="area"></div>
+
+
+    <hr>
+
+    <h3>class로 접근하기</h3>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+
+    <button onclick="accessClass()">배경색 변경</button>
+
+
+    <hr>
+    <h1 style="color:red">input태그에 작성된 값 얻어오기/변경하기</h1>
+
+    <p id="test1">요소에 작성된 내용</p>
+    <input type="text" id="test2" value="input에 작성된 값">
+
+    <pre>
+        innerText / innerHTML
+        -> 요소에 작성된 내용(Content)을 읽어오거나 변경하는 속성
+
+        value
+        -> input태그에 작성된 값을 읽어오거나 변경하는 속성
+
+        ** 시작태그/종료태그가 모두 존재하면 innerText/innHTML 사용 가능**
+        단, select, textarea 같은 input의 변형 형태는 제외
+    </pre>
+
+    <hr>
+    <h3>name으로 접근하기</h3>
+
+    <table>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="game"> 게임
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="study"> 공부
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="carom"> 당구
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="music"> 음악감상
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="video"> 영상시청
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="checkbox" name="hobby" value="coding"> 코딩
+                </label>
+            </td>
+        </tr>
+    </table>
+
+    <button onclick="accessName()">선택한 취미 출력</button>
+
+    <div class="area" id="div3"></div>
+
+
+    <hr>
+    <h3>tag로 접근하기</h3>
+    <ul>
+        <li>red</li>
+        <li>orange</li>
+        <li>yellow</li>
+        <li>green</li>
+        <li>blue</li>
+    </ul>
+    <button onclick="accessTagName()">글자색 변경</button>
+
+
+    <hr>
+    <h3>CSS 선택자로 접근하기</h3>
+
+    <div id="cssDiv">
+        <div class="area">test1</div>
+        <div class="area">test2</div>
+    </div>
+
+    <button onclick="cssTest()">확인하기</button>
+
+
+    <hr>
+    <h3>카카오톡 채팅 유사한 화면 만들기</h3>
+
+    <div id="chattingContainer">
+        <p><span>입력되는 채팅 내용</span></p>
+        <p><span>입력되는 채팅 내용</span></p>
+        <p><span>입력되는 채팅 내용</span></p>
+    </div>
+
+    <!-- 
+        onkeydown : 키보드가 눌러졌을 때
+        onkeypress : 키보드를 누르고 있을 때
+                    (keydown + 누르고 있는 동안 반복 발생)
+        onkeyup :키보드가 올라올 때
+    -->
+    <input type="text" name="chattingInput" id="chattingInput"
+        size="49" onkeydown="inputEnter()">
+    
+    <button onclick="readValue()">입력</button>
+</body>
+</html>
