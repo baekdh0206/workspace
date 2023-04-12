@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_4_간이계산기_만들기</title>
+</head>
+<body>
+    두 수를 입력 받아 버튼에 작성된 연산을 수행하는 계산기 만들기
+    <!-- 
+        if, for, while, switch, break, continue 사용 가능
+    -->
+    <hr>
+
+    첫 번째 값 : <input type="text" id="num1"> <br>
+    두 번째 값 : <input type="text" id="num2"> <br>
+
+    <!-- 매개변수 this는 무엇일까?
+        this == 클릭된 버튼(요소)
+
+        -> this는 이벤트가 발생한 요소 자체를 나타냄
+    -->
+    <button onclick="calculate(this)">+</button>
+    <button onclick="calculate(this)">-</button>
+    <button onclick="calculate(this)">*</button>
+    <button onclick="calculate(this)">/</button>
+    <button onclick="calculate(this)">%</button>
+
+    <br><br>
+    계산 결과 : <span id="result"><!-- 여기에 결과 출력 --></span>
+
+    <script>
+        function calculate(op){
+            const num1 = Number(document.getElementById("num1").value);
+            const num2 = Number(document.getElementById("num2").value);
+
+            // eval("코드 형식의 문자열")
+            // -> 작성된 문자열을 JS 코드로 해석하는 함수
+            // -> 속도 + 보안 이슈 때문에 사용을 지양(쓰지마......)
+
+            // --> new Function("return 코드 형식의 문자열")()로 문제 해결
+
+            document.getElementById("result").innerText 
+                // = eval(num1 + op.innerText + num2);
+                        // num1 + "+" + num2  ->  "10 + 20"
+                        //  10           20
+                = new Function("return " + num1 + op.innerText + num2)();
+        }
+
+    </script>
+</body>
+</html>
