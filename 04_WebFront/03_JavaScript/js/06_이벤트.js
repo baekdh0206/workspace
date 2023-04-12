@@ -164,3 +164,60 @@ for(let color of colorList){
         e.target.previousElementSibling.style.backgroundColor = e.target.value;
     })
 }
+
+
+
+// a태그 기본 이벤트 제거
+document.getElementById("moveGoogle").addEventListener("click", function(e){
+
+    // e : 이벤트 객체
+    e.preventDefault(); // 기본 이벤트를 막아버림
+
+    // Default : 기본 / 기본값
+    // prevent : 막다, 예방하다
+});
+
+
+// form태그 기본 이벤트 제거 1
+// -> submit 버튼을 없애고
+//    일반 button이 클릭 되었을 때 조건이 맞으면 submit 하게 만들기
+/*
+document.getElementById("btn").addEventListener("click", function(){
+    // 작성된 아이디, 비밀번호 얻어오기
+    const id = document.querySelector("[name='id']").value;
+    const pw = document.querySelector("[name='pw']").value;
+
+    if(id == 'user01' && pw == 'pass01'){
+        // 아이디, 비밀번호가 일치할 때 form 태그 제출
+        
+        // submit() : form태그 제출
+        document.testForm.submit();
+    }
+}); 
+*/
+
+// form태그 기본 이벤트 제거 방법2 (인라인 이벤트 모델)
+function fnCheck(){
+
+    // 작성된 아이디, 비밀번호 얻어오기
+    const id = document.querySelector("[name='id']").value;
+    const pw = document.querySelector("[name='pw']").value;
+
+    if(id == 'user01' && pw == 'pass01'){
+        // 아이디, 비밀번호가 일치할 때 form 태그 제출
+        
+        return true; // true를 반환해서 제출 수행
+    }
+    return false; // false를 반환해서 제출을 막음
+}
+
+
+// form태그 기본 이벤트 제거 방법 3 (표준 이벤트 모델)
+// -> name이 testForm인 form태그에서 submit 이벤트가 발생 했을 때
+document.testForm.addEventListener("submit", function(e){
+
+    // e : 이벤트 객체
+    e.preventDefault(); // 기본 이벤트 막기
+
+    
+})

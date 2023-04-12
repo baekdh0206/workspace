@@ -173,9 +173,41 @@
 
 
 
+    <hr>
+
+
+    <h1>HTML 기본 이벤트 제거</h1>
+
+    <h3>a태그의 기본 이벤트 제거</h3>
+
+    <a href="https://www.google.com" id="moveGoogle">구글로 이동</a>
 
 
 
+    <hr>
+
+    <h3>form태그 기본 이벤트 제거</h3>
+
+    <!-- form태그 name속성을 추가하면
+        JS에서 해당 form태그를 쉽게 접근할 수 있다
+    -->
+    <!-- <form action="05_4_간이계산기_만들기.html" method="GET" 
+        name="testForm" onsubmit="return fnCheck();" > -->
+
+    <form action="05_4_간이계산기_만들기.html" method="GET" 
+        name="testForm">
+                <!-- 기본 이벤트 제거 방법2 (인라인 이벤트 모델) 
+                    onsubmit="return fnCheck();"
+                -->
+
+        id : <input type="text" name="id"> <br>
+        pw : <input type="password" name="pw"> <br>
+
+        <button type="submit">제출</button>
+
+        <!-- 기본 이벤트 제거 방법1 -->
+        <!-- <button type="button" id="btn">제출</button> -->
+    </form>
 
 
 
