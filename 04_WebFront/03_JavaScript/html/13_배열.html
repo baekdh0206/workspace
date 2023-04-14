@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_배열</title>
+</head>
+<body>
+    <h1>배열(Array)</h1>
+
+    <pre>
+        배열 : 변수를 묶음으로 다루는 것
+                (변수가 연속적으로 나열됨)
+
+        * JS 변수의 특징 : 값이 저장되기 전 까지는 자료형을 알 수 없다
+                        -> 값이 없으면 자료형이 지정되지 않는다
+
+        JS 배열의 특징
+        1. 자료형 제한 X
+        2. 길이 제한 X
+        == 자바의 Collection 중 List와 비슷
+
+        [JS 배열 선언 방법]
+
+        const arr = new Array(); // 0칸 짜리 배열 (비어있는 배열) 생성 
+
+        const arr = new Array(3); // 3칸 짜리 배열 생성 
+
+        const arr = []; // 비어있는 배열 생성
+
+        const arr = [1,2,3]; // 배열 생성 및 초기화
+    </pre>
+
+    <button id="btn1">배열 생성 확인하기</button>
+
+    <hr>
+
+    <h2>배열 관련 함수</h2>
+
+    <pre>
+        * 배열 관련 함수는
+            prototype이 Array인 배열에만 사용이 가능하다!
+
+        - Object, NodeList, HTMLCollection 등은 사용 불가
+
+        (Stack 구조의 개념을 따온 함수)
+        배열명.push() : 배열 마지막 요소로 추가
+        배열명.pop()  : 배열 마지막 요소를 꺼내옴
+
+        배열명.unshift() : 배열 첫 번째 요소로 추가
+        배열명.shift() : 배열 첫 번째 요소를 꺼내옴
+
+
+        배열.indexOf("값") 
+        : 배열 내 요소 중 "값"이 일치하는 요소의 index를 반환
+            단, 없으면 -1 반환 (중복 검사에 많이 사용)
+
+
+        배열명.sort([정렬기준함수]) : 배열 정렬
+        - [정렬기준함수] 미작성 
+            -> 각 요소의 값을 문자열 순서대로 정렬
+
+        - [정렬기준함수] 작성 
+            -> 정렬 기준에 맞게 요소들을 정렬함
+
+
+        배열명.toString() : 모든 요소를 하나의 문자열로 반환
+                            요소 사이에 "," 추가됨
+
+        배열명.join("구분자") : 모든 요소를 하나의 문자열로 반환
+                                요소 사이에 "구분자" 추가됨
+
+
+        배열명.forEach( function(value){} )
+        : 배열 요소를 하나씩 순서대로 꺼내서 value 매개변수에 저장한 다음
+            function 내부 코드를 수행. (배열 요소 다 꺼낼 때 까지 반복)
+    </pre>
+
+    <button id="btn2">배열 함수 확인하기</button>
+
+
+    <script src="../js/13_배열.js"></script>
+</body>
+</html>

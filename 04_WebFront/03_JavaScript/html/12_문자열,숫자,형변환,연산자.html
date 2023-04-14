@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_문자열,숫자,형변환,연산자</title>
+
+    <link rel="stylesheet" href="../css/12_문자열,숫자,형변환,연산자.css">
+</head>
+<body>
+    <h2>문자열(String 내장 객체)</h2>
+    <pre>
+        자바스크립트에는 문자열 나타는 객체(String)이 존재하며
+        문자열과 관련된 기본적인 함수를 제공해준다.
+    </pre>
+
+    <button id="btn1">문자열 관련 함수(콘솔 확인)</button>
+
+
+    <hr>
+
+
+    <h2>숫자(Math 내장 객체)</h2>
+
+    <pre>
+        숫자(number) 타입 리터럴 표기법 :  
+            12(정수), 3.14(실수), Infinity(무한), NaN(Not a Number) 
+
+        Math : 숫자 관련 함수를 제공하는 JS 내장 객체
+        ex) Math.random() : 난수
+    </pre>
+
+    <button id="btn2">숫자 관련 함수(콘솔 확인)</button>
+
+
+    <hr>
+
+    <h2>문자열 -> 숫자 형변환</h2>
+    <pre>
+
+        parseInt(문자열) :   정수로만 변환 가능  ( "3.14"  ->  3  )
+
+        parseFloat(문자열) : "정수" -> 정수  ,  "실수"  ->  "실수"
+
+        Number(문자열) : "정수" -> 정수  ,  "실수"  ->  "실수"
+    </pre>
+
+
+    <button id="btn3">형변환 확인(콘솔 확인)</button>
+
+
+    <hr>
+
+
+    <h2>동등 / 동일 비교 연산자</h2>
+
+    <pre>
+        동등 비교 연산자( ==  ,  != )
+        -> 값이 같으면 true (자료형 관계 없음)
+
+        ex)  "1" == 1 == true(1)
+
+
+        동일 비교 연산자( === , !== )
+        -> 값과 자료형이 모두 같으면 true
+
+    </pre>
+
+
+    <script src="../js/12_문자열,숫자,형변환,연산자.js"></script>
+</body>
+</html>

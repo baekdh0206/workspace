@@ -1,0 +1,17 @@
+.row{
+    margin: 5px 0;
+}
+
+/* x버튼 */
+.remove-row{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.remove-row:hover{
+    color:red;
+    font-weight: bold;
+}
