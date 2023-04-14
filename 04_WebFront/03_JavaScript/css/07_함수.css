@@ -1,0 +1,29 @@
+code{
+    color: red;
+    font-size : 20px;
+    font-weight: bold;
+}
+
+
+#btn1{
+    /* 
+        너비 50px
+        높이 50px
+        글자 크기 30px
+        글자 두껍게
+        테두리 1px 검정 실선
+        글자는 정가운데 배치
+        마우스를 올렸을 때 커서 손가락 모양
+        블록 처리(드래그) 불가
+    */
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    border : 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}

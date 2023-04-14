@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_함수</title>
+
+    <link rel="stylesheet" href="../css/07_함수.css">
+</head>
+<body>
+
+    <h1>기본적인 함수 선언, 정의, 호출</h1>
+
+    <pre>
+    <code>
+        function 함수명(매개변수){ // 함수 선언
+
+            // 함수 정의
+        }
+
+        함수명(매개변수); // 함수 호출
+    </code>
+    </pre>
+
+                        <!-- this : 이벤트가 발생한 요소 -->
+    <div id="btn1" onclick="clickCount(this)">0</div>
+
+
+    <hr>
+
+    <h1>이름이 없는 함수(익명 함수)</h1>
+    
+    <pre>
+    <code>
+        function(매개변수){ // 함수 선언
+            // 함수 정의
+        }
+    </code>
+        - 이름이 없는 함수이기 때문에 마음대로 원하는 곳에서 호출하는 것이 불가
+            -> 이벤트 핸들러(이벤트가 발생 했을 때 실행되는 함수) 또는
+                변수명 = 익명 함수(함수를 변수에 저장하는 경우)에 많이 사용
+
+            + 매개 변수로 전달되는 함수
+    </pre>
+
+    <h2 id="target2">글자색 변경</h2>
+    <button id="btn2">변경</button>
+
+
+    <hr>
+
+    <h1>즉시 실행 함수</h1>
+
+    <pre>
+    <code>
+        (function(매개변수){
+            // 함수 정의
+        })();
+    </code>
+
+        - 익명 함수의 한 종류
+        - 함수가 정의 되자마자 바로 실행되는 함수
+            (일반 함수를 선언, 정의 하자마자 호출하는 것과 같음)
+
+        ** 즉시 실행 함수 사용 이유 **
+        1) 일반 함수를 선언, 정의, 호출하는 것보다 속도적 우위가 있음 
+            (호출부가 없어서 코드 길이가 짧아져 해석이 빠름)
+
+        2) 전역 변수와 변수명이 중복되는 상황을 제거하기 위해 사용
+    </pre>
+
+
+    <hr>
+
+
+    <h1>화살표 함수</h1>
+
+    <pre>
+    <code>
+        1. 기본 형태 :  () => {}
+
+        2. 매개 변수 1개 :  e => {}
+        
+        3. 매개 변수 0개 또는 2개 이상 :  (a, b) => {}
+        
+        4. 함수 정의 부분에 return 구문만 있을 경우  
+            : () => result
+
+        5. 함수 정의 부분에 return 구문만 있지만 자료형 object인 경우
+            : () => {return arr;}
+
+    </code>
+    </pre>
+    
+    <button id="button1">기본 형태</button>
+    <button id="button2">매개 변수 1개</button>
+    <button id="button4">{}, return 생략</button>
+
+
+    <hr>
+
+    <h1>화살표 함수 사용 시 this 문제점</h1>
+    <button id="button6">this 문제점</button>
+
+
+
+
+    <script src="../js/07_함수.js"></script>
+</body>
+</html>
