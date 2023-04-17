@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servlet 프로젝트</title>
+</head>
+<body>
+    <h1>백동현</h1>
+    <h1>index 또는 default라는 이름의 html, jsp 파일은 메인 페이지 역할을 한다!</h1>
+    <h3>web.xml 파일 확인하세요!</h3>
+
+    <hr>
+
+    <h1>서버 제출 테스트1</h1>
+    <pre>
+        이름과 나이를 입력 받아 서버(Java코드)로 제출
+
+        * 준비물 * 
+        1) form 태그 : 내부에 작성된 input 값을 지정된 경로로 제출
+            - action : 제출할 경로
+            - method : 제출 방법(GET/POST)
+            제출 == 클라이언트 요청
+
+        2) input 태그 : 값을 입력하는 양식 제공
+            - name : 서버로 제출 시 key 역할
+            - 입력된 값 또는 value : 서버로 제출 시 value 역할
+    </pre>
+
+    <!-- GET 방식 : 제출하는 값이 주소에 담김 -->
+    <form action="/example1.do" method="GET">
+        
+        이름 : <input type="text" name="inputName"> 
+        <br>
+        나이 : <input type="number" name="inputAge">
+        <br>
+        <button>서버로 제출하기(== 요청하기)</button>
+    </form>
+</body>
+</html>
