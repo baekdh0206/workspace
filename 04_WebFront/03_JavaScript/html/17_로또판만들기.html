@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또판 생성하기</title>
+    <style>
+        #lottoBoard{
+            border: 1px solid black;
+            width: 250px;
+            height: 450px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+
+        .number{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            width: 30px;
+            height: 30px;
+            margin: 10px 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .active{background-color: orange;}
+    </style>
+</head>
+<body>
+    <h1>로또판 생성하기</h1>
+    <button id="createBtn">로또판 생성하기</button>
+    <div id="lottoBoard"></div>
+
+    <script src="../js/17_로또판만들기.js"></script>
+</body>
+</html>
