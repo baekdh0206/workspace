@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Project1</title>
+</head>
+<body>
+    <h1>로그인 테스트</h1>
+    <pre>
+        입력된 ID/PW가  user01/pass01이면 "로그인 성공"
+        아니면 "아이디 또는 비밀번호가 일치하지 않습니다" 출력
+    </pre>
+
+    <form action="/login" method="POST">
+
+        ID : <input type="text" name="id"> <br>
+        PW : <input type="password" name="pw"> <br>
+        <button>Login</button>
+    </form>
+
+    <hr>
+
+    <h1>a태그 클릭 시 화면 전환하기</h1>
+
+    <h3 style="color:red">a태그, js코드(location) 요청은 모두 GET 방식</h3>
+
+    <a href="/test/result">페이지 이동</a>
+    
+</body>
+</html>
