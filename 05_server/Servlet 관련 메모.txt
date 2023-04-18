@@ -1,0 +1,66 @@
+General -> Show heap status 체크
+
+
+코드가 변하면 자동으로 새로고침
+General -> Workspace
+-> Refresh using native hooks or polling
+
+-> Text file enconding : UTF-8 확인
+
+
+상단에 enc 검색
+General -> Content Types
+-> Default econding
+-> UTF-8 입력 -> UPDATE 클릭
+
+Web - CSS/HTML/JSP Files
+-> Encoding -> UTF-8로 변경
+
+
+spelling 검색
+-> Enable splle checking
+
+
+Server Runtime Environments
+-> 실행할 서버 어딨는지 등록
+
+
+Server 탭 등록하는 서버
+실행할 서버에 적용할 설정 + 프로젝트 등록
+
+HTTP/1.1 port 번호 80 변경
+
+
+
+ContextRoot : 최상위 주소 (/)
+
+Content directory : 웹 배포 폴더
+- 배포 == 인터넷 올라감
+  -> 주소치면 화면 보임
+
+- 배포 시 필요한 파일만 모아둔 폴더
+ -> .class / html / css / jsp / js
+    이미지, 파일 등
+
+
+**************************
+Generate web.xml deployment descriptor
+- 배포 설명서 web.xml 파일 만들기 체크!!!
+
+
+
+src/main/java
+- Java 코드 작성 폴더
+
+
+src/main/webapp (== Content directory)
+- 배포할 코드 작성 폴더
+ html, css, jsp, js, 이미지, 파일
+
+
+
+단축키 지정
+-> 빌드 클린 : ctrl + f5
+-> run on server : f10
+
+

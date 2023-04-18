@@ -37,5 +37,103 @@
         <br>
         <button>서버로 제출하기(== 요청하기)</button>
     </form>
+
+
+    <hr>
+
+
+    <h1>GET 방식 요청 및 응답</h1>
+
+    <pre>
+        GET 방식 요청
+        - 요청하는 주소 뒤에 전달하려는 값을 key=value 형태로 붙여
+            서버로 전달하는 방식
+
+        http://localhost/example1.do?inputName=홍길동&inputAge=25
+
+        http:// -> 프로토콜(규약)
+
+        localhost/example1.do -> 요청 주소
+
+        ?inputName=홍길동&inputAge=25 -> queryString(쿼리스트링)
+
+
+        [장점]
+        - 단순함
+        - 주소에 값을 임의로 작성 가능
+        - 캐싱(caching, 저장) 가능 
+            -> 주소 저장 == 북마크, 즐겨찾기, 주소 공유
+
+
+        [단점]
+        - 글자 수 제한이 있다
+        - 보안에 취약함(비밀번호가 주소에 보임, 
+                    지나가다 시력 좋으면 해킹가능....)
+    </pre>
+
+    <form action="/example2.do" method="get">
+
+        주문자 : <input type="text" name="orderer">
+        <br>
+
+        <!-- option에 value가 없으면 작성된 내용이 value가 된다 -->
+        커피 : <select name="coffee">
+            <option>아메리카노</option>
+            <option>카페라떼</option>
+            <option>카푸치노</option>
+            <option>콜드브루</option>
+            <option>민초프라페</option>
+        </select>
+
+        <br><br>
+        ICE <input type="radio" name="type" value="ICE">
+        HOT <input type="radio" name="type" value="HOT">
+
+        <br><br>
+
+        옵션 <br>
+        샷 추가 <input type="checkbox" name="opt" value="shot">
+        <br>
+        연하게 <input type="checkbox" name="opt" value="mild">
+
+        <br><br>
+
+        <button>주문하기</button>
+    </form>
+
+
+    <hr>
+
+    <h1>POST 방식 요청 및 응답</h1>
+    <pre>
+        - GET 방식과 다르게
+        전달되는 값을 주소가 아닌
+        HTTP BODY에 담아서 전달하는 방식
+
+        [장점]
+        - 길이 제한 X
+        - 데이터를 숨겨서 전달(보안성 향상)
+
+        [단점]
+        - 캐싱 불가능(북마크 하면 원하는 페이지를 볼 수 없음)
+        - 서버에서 추가적인 문자 인코딩 처리 필요
+    </pre>
+
+    <h3>회원 가입</h3>
+    <form action="/signUp" method="POST">
+        아이디 : <input type="text" name="inputId" required> <br>
+
+        비밀번호 : <input type="password" name="inputPw" required><br>
+
+        비밀번호 확인: <input type="password" required><br>
+
+        이름 : <input type="text" name="inputName" required><br>
+
+        자기소개(선택)<br>
+        <textarea name="introduction" cols="50" rows="5"></textarea>
+
+        <button>회원 가입</button>
+    </form>
+
 </body>
 </html>
