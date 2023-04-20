@@ -27,6 +27,67 @@
     <h3 style="color:red">a태그, js코드(location) 요청은 모두 GET 방식</h3>
 
     <a href="/test/result">페이지 이동</a>
+
+    <hr>
+
+    <h1>피자 주문하기</h1>
+
+    <form action="/pizzaOrder" method="POST">
+
+        피자 :
+        <select name="pizza">
+            <option value="1">치즈 피자(8000)</option>
+            <option value="2">콤비네이션 피자(9000)</option>
+            <option value="3">핫치킨 피자(10000)</option>
+        </select>
+
+        <br><br>
+
+        사이즈 <br>
+        <label>
+            R <input type="radio" name="size" value="R">
+        </label>
+        <label>
+            L <input type="radio" name="size" value="L">
+        </label>
+        
+        <br><br>
+
+        수량 :
+        <button id="minus" type="button">-</button>
+        <span id="amount">0</span>
+        <button id="plus" type="button">+</button>
+
+        <input type="hidden" name="amount" value="0">
+
+        <br><br>
+        <button>주문하기</button>
+    </form>
+
+    <script>
+        const plus = document.getElementById("plus");
+        const minus = document.getElementById("minus");
+        const amount = document.getElementById("amount");
+        const input = document.querySelector("[name='amount']");
+
+        // plus 버튼 클릭시 amount, input 1 증가
+        plus.addEventListener("click", () => {
+            amount.innerText++; 
+            input.value = amount.innerText;
+        });
+
+        // plus 버튼 클릭시 amount, input 1 감소
+        minus.addEventListener("click", () => {
+
+            // 만약 수량이 0이면 이벤트 핸들러 종료
+            if(amount.innerText == 0) return;
+
+            amount.innerText--; 
+            input.value = amount.innerText;
+        });
+
+
+    </script>
     
 </body>
 </html>
