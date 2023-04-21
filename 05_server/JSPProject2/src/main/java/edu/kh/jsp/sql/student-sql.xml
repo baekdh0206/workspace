@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<!-- 학생 전체 조회 -->
+	<entry key="selectAll">
+		SELECT STUDENT_NO, STUDENT_NAME, STUDENT_ADDRESS, DEPARTMENT_NAME
+		FROM TB_STUDENT
+		LEFT JOIN TB_DEPARTMENT USING(DEPARTMENT_NO)
+		ORDER BY STUDENT_NO
+	</entry>
+</properties>
+
+
+
+
+
