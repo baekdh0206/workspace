@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>driver.xml file 입니다.</comment>
+	
+	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
+	
+	<!-- 각자 컴퓨터에 설치된 DB(19c) -->
+	<!-- <entry key="url">jdbc:oracle:thin:@localhost:1521:ORCL</entry> -->
+	
+	<!-- 각자 컴퓨터에 설치된 DB(18c) -->
+	<entry key="url">jdbc:oracle:thin:@localhost:1521:XE</entry>
+	
+	<!-- 학원 DB 서버 -->
+	<!-- <entry key="url">jdbc:oracle:thin:@115.90.212.22:9000:XE</entry>  -->
+	
+	<!-- project 계정 -->
+	<entry key="user">project</entry>
+	<entry key="password">project1234</entry>
+	
+</properties>
