@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 클릭하면 열기</title>
+</head>
+<body>
+    <div>
+        <span class="open">열기</span>
+        <p>내용 1</p>
+    </div>
+    <div>
+        <span class="open">열기</span>
+        <p>내용 2</p>
+    </div>
+    <div>
+        <span class="open">열기</span>
+        <p>내용 3</p>
+    </div>
+
+    <script>
+        // p태그를 모두 선택하여 각각
+        // margin을 0으로 만들고 화면에서 보이지 않게(none)으로 변경
+        const pList = document.getElementsByTagName("p"); // 배열
+
+        for(let p of pList){
+            p.style.margin = "0";
+            p.style.display = "none";
+        }
+        
+        // open 버튼을 모두 선택하여 스타일 변경
+        const openList = document.getElementsByClassName("open");
+
+        for(let open of openList){
+            open.style.backgroundColor = "green";
+            open.style.color = "white";
+            open.style.display = "inline-block";
+            open.style.width = "80px";
+            open.style.height = "20px";
+            open.style.textAlign = "center";
+            open.style.marginTop = "10px";
+            open.style.cursor = "pointer";
+
+            
+            // open 요소가 클릭 될 때 마다
+            open.addEventListener("click", e => {
+
+                // 클릭된 open의 다음 요소 선택
+                const next = e.target.nextElementSibling;
+
+                // next가 display == "none" 인 경우
+                if(next.style.display == "none"){
+                    // inline-block으로 변경
+                    next.style.display = "inline-block";
+
+                    // 클릭한 버튼의 배경색을 red, 내용을 "닫기"
+                    e.target.style.backgroundColor = "red";
+                    e.target.innerText = "닫기";
+                
+                }else{ 
+                    // next가 display == "inline-block" 인 경우
+                    // none으로 변경
+                    next.style.display = "none";
+
+                    // 클릭한 버튼의 배경색을 green, 내용을 "열기"
+                    e.target.style.backgroundColor = "green";
+                    e.target.innerText = "열기";
+
+                }
+
+
+            });
+
+
+        }
+
+        
+
+
+
+    </script>
+    
+</body>
+</html>
