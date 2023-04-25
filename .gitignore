@@ -21,3 +21,7 @@ Servers
 # Spring 관련 폴더, 파일
 target
 /target/
+.springBeans
+pom.properties
+MANIFEST.MF
+*.log
