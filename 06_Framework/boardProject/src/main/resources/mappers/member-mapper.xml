@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<!-- namespace : 공간(영역, 지역, 태그)의 이름 -->
+
+	<!-- mapper 파일 생성 시 아래 태그 반드시 삭제!!!!!!!!!!! -->
+	<!-- <cache-ref namespace=""/> -->
+  
+	<!-- 
+		resultMap  
+		- SELECT 조회 결과(ResultSet) 컬럼명과
+		  컬럼 값을 옮겨 담을 DTO의 필드명이 같지 않을 때
+		  이를 매핑 시켜 SELECT시 자동으로 담기게하는 역할
+	 
+	 
+	 	-속성
+	 	type : 연결할 DTO (패키지명 + 클래스명 또는 별칭)
+	 	id : 만들어진 resultMap을 지칭할 식별명(이름)
+	 	
+	 	<id> 태그 : PK 역할 컬럼 - 필드 매핑
+	 	<result> 태그 : <id>제외 나머지
+	 -->
+	 
+	<resultMap type="Member" id="member_rm">
+	
+		<!-- DB의 기본 키(복합키면 여러 개 작성) -->
+		<id property="memberNo" column="MEMBER_NO" />
+
+		<!-- DB의 일반 컬럼들 -->
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberNickname" column="MEMBER_NICKNAME" />
+		<result property="memberTel" column="MEMBER_TEL" />
+		
+		<result property="memberAddress" column="MEMBER_ADDR" />
+		
+		<result property="profileImage" column="PROFILE_IMG" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+		<result property="authority" column="AUTHORITY" />
+	</resultMap>
+  
+  
+  
+  
+  
+  
+  	<!--  
+  		SQL 관련 태그의 속성
+  		
+  		- parameterType : 전달 받은 값의 자료형
+  						기본 : 패키지명 + 클래스명
+  						별칭 : Mybatis 별칭 또는 사용자 지정 별칭
+  						
+		- parameterMap : (사용 안함)
+		
+		- resultType : select 결과를 담아서 반환할 자료형
+					단, DTO를 작성할 경우 필드명 = 컬럼명 인 경우만 가능
+										memberNo   MEMBER_NO
+		
+		- resultMap : select 결과의 컬럼명과 
+					 결과를 저장할 DTO 필드명이 다를 경우
+					 이를 알맞게 매핑(연결)시켜주는 <resultMap> id 작성
+  	-->
+  	
+  	
+  	<!-- 
+  		** 마이바티스에서 전달 받은 값을 SQL에 작성하는 방법 **
+  		
+  		#{변수명|필드명} : PreparedStatement
+  						 : SQL에 값 대입 시 양쪽에 '' 붙여서 대입
+  		
+  		${변수명|필드명} : Statement
+  						 : SQL에 값 대입 시 양쪽에 아무것도 붙이지 않음
+ 						 
+		사용 예시)
+		test1 = "user01"
+		test2 = MEMBER_EMAIL
+  	
+  		- MEMBER_EMAIL이 'user01'인 회원 조회
+  		SELECT * FROM MEMBER WHERE ${test2} = #{test1}
+  								 MEMBER_EMAIL = 'user01'
+  	 -->
+  	
+  	<!-- <select id="login" parameterType="edu.kh.project.member.model.dto.Member"> -->
+  	
+  	<select id="login" parameterType="Member" resultMap="member_rm">
+  		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME,
+			MEMBER_TEL, MEMBER_ADDR, PROFILE_IMG, AUTHORITY,
+			TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE 
+		FROM "MEMBER"
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_EMAIL = #{memberEmail}
+		AND MEMBER_PW = #{memberPw}
+  	</select>
+  	
+  	
+  	
+  
+</mapper>

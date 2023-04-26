@@ -5,4 +5,70 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+	<!--  
+		프로젝트 전반적으로 사용할
+		DB 연결 관련 내용(JDBC, MyBatis, DBCP), AOP, 
+		트랜잭션 처리, 파일 업로드 등을 작성
+	-->
+	
+	
+	<!-- DBCP 사용을 위한 DataSource를 Bean으로 등록 -->
+	
+	<!-- DataSource란? : java에서 Connection Pool을 지원하기 위한 인터페이스 -->
+	<!-- BasicDataSource : DataSource인터페이스를 구현한 클래스, 아파치 commons.dbcp에서 제공 -->
+	<!-- destroy-method="close" : 주어진 세션을 자동으로 반환(close)하라는 설정 -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		
+		<!-- 자기 컴퓨터 (18C) -->
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		
+		<!-- 자기 컴퓨터 (19C) -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL" /> -->
+		
+		<!-- 학원 DB서버 -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@115.90.212.22:9000:XE" /> -->
+		
+		<property name="username" value="project" />
+		<property name="password" value="project1234" />
+		
+		<!-- defaultAutoCommit: SQL 수행 후 자동 COMMIT 설정. (기본값 : true) -->
+		<property name="defaultAutoCommit" value="false" />
+		
+		<!-- 커넥션 풀 설정 -->
+		<property name="initialSize" value="10" /> <!-- 초기 커넥션 수, 기본 0 -->
+		<property name="maxTotal" value="500" /> <!-- 최대 커넥션 수, 기본 8 -->
+		<property name="maxIdle" value="100" /> <!-- 유휴 상태로 존재할 수 있는 커넥션 최대 수, 기본 8 -->
+		<property name="minIdle" value="10" /> <!-- 유휴 상태로 존재할 수 있는 커넥션 최소 수, 기본 0 -->
+		<property name="maxWaitMillis" value="-1" /> <!-- 예외 발생 전 커넥션이 반환 될 떄 까지 대기하는 최대 시간(ms), 기본 -1(무기한) -->
+	</bean>
+	
+	
+	<!-- SqlSession : sql구문을 DB에 전달, 실행하는 객체 
+	SqlSessionFactory : SqlSession을 만드는 객체 
+	sqlSessionFactoryBean : mybatis 설정 파일(mybatis-config.xml)과 Connection Pool 정보를 이용하여 SqlSessionFactory를 만드는 객체 
+	sqlSessionTemplate : SqlSession 객체에 트랜잭션 처리 역할이 가능하도록 하는 객체 -->
+	
+	<!-- 마이바티스 SqlSession 등록하기 (xml 방식으로 bean 등록) -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis-config.xml 설정 불러오기 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<!-- SqlSessionTemplate : 기본 SQL 실행 + 트랜잭션 관리 역할을 하는 SqlSession을 생성할 수 있게 하는 객체(Spring bean으로 등록해야함.) -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean" />
+	</bean>
+	
+	
+	<!-- 스프링에서 사용하는 proxy를 이용한 트랜잭션 제어가 안될 경우 추가적인 트랜잭션 매니저를 추가해서 문제 해결 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
 </beans>

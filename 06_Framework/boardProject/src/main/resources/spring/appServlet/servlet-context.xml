@@ -9,18 +9,50 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<!-- 
+		DispatcherServlet 생성 시 필요한 내용을 정의하는 파일
+		
+		HandlerMapping : 
+		어떤 요청을 어떤 클래스/메서드로 연결하는지 제어하는 객체
+		<annotation-driven /> 이
+		@RequestMapping, @GetMapping, @PostMapping을 활성화해서
+		HandlerMapping을 대체
+		
+		
+		ViewResolver : Controller에서 반환된 문자열("common/main")
+		앞, 뒤에 경로(/WEB-INF/views/) , 확장자(.jsp)를 붙여
+		jsp 파일의 경로를 지정한 후 forward(요청 위임)을 하는 객체
+		
+		component-scan : @Component와 자식 어노테이션을 Bean으로 등록하는 태그
+		
+		
+		트랜잭션 관리자, 웹소켓, 인터셉터, 스케쥴러
+	 -->
+	
+	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+
+	<!-- webapp/resources 폴더를 HTTP GET방식 요청으로 접근할 수 있다-->
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+
+	<!-- ViewResolver -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	<!-- 
+		base-package 이하에 작성된
+		@Component와 
+		자식 어노테이션(@Controller, @Service, @Repository)이 붙은
+		클래스를 찾아 Bean(Spring이 관리하는 객체)으로 등록
+	 -->
 	<context:component-scan base-package="edu.kh.project" />
 	
 	
