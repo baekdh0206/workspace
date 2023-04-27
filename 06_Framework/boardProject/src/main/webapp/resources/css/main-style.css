@@ -378,3 +378,62 @@ a{
     margin: 0;
     color : gray;
 }
+
+
+/* ----------------------------------- */
+
+/* 헤더 오른쪽 상단 메뉴 */
+
+header{
+    position: relative;
+}
+
+.header-top-menu{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.header-top-menu *{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* 헤더 메뉴 체크박스*/
+#headerMenuToggle{ display: none; }
+
+/* 오른쪽 상단 닉네임 부분 */
+label[for='headerMenuToggle']{ cursor: pointer; }
+label[for='headerMenuToggle']:hover{ text-decoration: underline;}
+
+/* 체크박스 다음 형제 요소 div */
+#headerMenuToggle + div{ display: none; }
+
+/* 체크된 #headerMenuToggle 의 다음 형제 요소 div */
+#headerMenuToggle:checked + div{ display: block; }
+
+/* 닉네임 클릭 시 보이는 메뉴 */
+.header-menu{
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    right: 0;   
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.header-menu > a{
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-menu > a:first-child{
+    border-bottom: 1px solid #ccc;
+}
+
+.header-menu > a:hover{
+    background-color: #455ba8;
+    color : white;
+}
