@@ -77,7 +77,7 @@
                 <input type="checkbox" id="headerMenuToggle">
 
                 <div class="header-menu">
-                    <a href="#">내정보</a>
+                    <a href="/myPage/info">내정보</a>
                     <a href="/member/logout">로그아웃</a>
                 </div>
             </c:otherwise>
