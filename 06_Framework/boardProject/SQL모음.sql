@@ -117,6 +117,19 @@ WHERE MEMBER_NO = 값
 ;
 
 
+-- 회원번호가 일치하는 회원의 비밀번호 조회
+SELECT MEMBER_PW FROM "MEMBER" WHERE MEMBER_NO = 4;
+
+-- 회원 번호가 일치하는 회원의 비밀번호 변경
+UPDATE "MEMBER" SET
+MEMBER_PW = #{memberPw}
+WHERE MEMBER_NO = #{memberNo}
+
+
+-- 회원 탈퇴
+UPDATE "MEMBER" SET
+MEMBER_DEL_FL = 'Y'
+WHERE MEMBER_NO = #{memberNo}
 
 
 

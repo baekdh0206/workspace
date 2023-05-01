@@ -15,7 +15,7 @@
 </head>
 <body>
     <main>
-       <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
         
         <!-- 마이페이지 - 내 정보 -->
