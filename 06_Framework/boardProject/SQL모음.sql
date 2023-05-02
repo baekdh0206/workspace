@@ -129,8 +129,10 @@ WHERE MEMBER_NO = #{memberNo}
 -- 회원 탈퇴
 UPDATE "MEMBER" SET
 MEMBER_DEL_FL = 'Y'
-WHERE MEMBER_NO = #{memberNo}
+WHERE MEMBER_NO = #{memberNo};
 
+SELECT * FROM "MEMBER";
 
-
-
+-- 전체 탈퇴 복구
+UPDATE "MEMBER" SET MEMBER_DEL_FL = 'N';
+COMMIT;

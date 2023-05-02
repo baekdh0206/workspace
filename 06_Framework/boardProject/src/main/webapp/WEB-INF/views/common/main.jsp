@@ -30,9 +30,13 @@
             <section class="content-1">
 
                 <h3>로그인된 회원 정보</h3>
-
                 ${sessionScope.loginMember}
 
+                <h3>닉네임이 일치하는 회원의 전화번호 조회</h3>
+
+                <input type="text" id="inputNickname"> 
+                <button id="btn1">조회</button>
+                <h4 id="result1"></h4>
 
 
             </section>

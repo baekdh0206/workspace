@@ -35,7 +35,6 @@
                 <span class="myPage-subject">현재 비밀번호가 일치하는 경우 새 비밀번호로 변경할 수 있습니다.</span>
 
 
-
                 <form action="changePw" method="POST" name="myPageFrm" id="changePwFrm">
 
                     <div class="myPage-row">
@@ -64,6 +63,9 @@
     </main>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+
+    <script src="/resources/js/myPage/myPage.js"></script>
 
 </body>
 </html>
