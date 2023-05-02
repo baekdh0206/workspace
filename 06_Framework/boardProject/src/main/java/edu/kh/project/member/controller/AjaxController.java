@@ -47,6 +47,8 @@ public class AjaxController {
 	@ResponseBody // HttpMessageConverter를 이용해 
 				  // JS에서 인식할 수 있는 형태(TEXT/JSON)변환
 				  // + 비동기 요청한 곳으로 돌아감
+	
+	/* jack-databind pom.xml에 추가!*/
 	public int checkEmail(String email) {
 		return  service.checkEmail(email);
 	}
