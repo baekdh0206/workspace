@@ -83,3 +83,112 @@ btn1.addEventListener("click", () => {
     .catch( err => console.log(err) );
     // 에러 발생 시 콘솔에 출력
 });
+
+
+// fetch() API를 이용한 POST 방식 요청
+
+// 이메일을 입력 받아 일치하는 회원의 정보를 모두 조회
+const inputEmail = document.getElementById("inputEmail");
+const btn2 = document.getElementById("btn2");
+const result2 = document.getElementById("result2");
+
+btn2.addEventListener('click', () => {
+
+    // POST 방식 비동기 요청
+
+    // JSON.stringify() :  JS객체 -> JSON
+    // JSON.parse()     :  JSON -> JS 객체
+
+    fetch("/selectMember", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify({"email" : inputEmail.value})
+    })
+    .then(resp => resp.json()) // 응답 객체를 매개변수로 얻어와 파싱
+    .then(member => {
+        console.log(member);
+
+        // ul(#result2)의 내부 내용 모두 없애기
+        result2.innerHTML = "";
+        
+        const li1 = document.createElement("li");
+        li1.innerText = `회원번호 : ${member.memberNo}`;
+
+        const li2 = document.createElement("li");
+        li2.innerText = `이메일 : ${member.memberEmail}`;
+
+        const li3 = document.createElement("li");
+        li3.innerText = `닉네임 : ${member.memberNickname}`;
+
+        const li4 = document.createElement("li");
+        li4.innerText = `전화번호 : ${member.memberTel}`;
+
+        const li5 = document.createElement("li");
+        li5.innerText = `주소 : ${member.memberAddress}`;
+
+        const li6 = document.createElement("li");
+        li6.innerText = `가입일 : ${member.enrollDate}`;
+
+        result2.append(li1, li2, li3, li4, li5, li6);
+
+
+    }) // 파싱한 데이터를 이용해서 비동기 처리 후 동작
+
+    .catch(err => {
+        console.log(err);
+        result2.innerText = "일치하는 회원이 없습니다";
+    } );
+});
+
+
+
+
+// 이메일이 일부라도 일치하는 모든회원 조회
+const input = document.getElementById("input");
+const btn3 = document.getElementById("btn3");
+const result3 = document.getElementById("result3");
+
+btn3.addEventListener("click", () => {
+
+    fetch("/selectMemberList", {
+        method : "POST",
+        headers : {"Content-Type" : "application/text"}, // 문자열 하나를 파라미터로 전달
+        body : input.value // 보내질 문자열 하나 
+    })
+    .then(resp => resp.json())
+    .then(memberList => {
+        console.log(memberList);
+
+        result3.innerHTML = "";
+
+        if(memberList.length == 0){
+            result3.innerText = "조회 결과가 없습니다";
+            return;
+        }
+
+        // 향상된 for문으로 memberList 순차 접근
+        for(let member of memberList){
+
+            // tr, td 만들어서 result3에 추가
+            const tr = document.createElement("tr");
+
+            const td1 = document.createElement("td");
+            td1.innerText = member.memberNo;
+
+            const td2 = document.createElement("td");
+            td2.innerText = member.memberEmail;
+
+            const td3 = document.createElement("td");
+            td3.innerText = member.memberNickname;
+
+            // 1) tr의 자식으로 td1,td2,td3 추가
+            tr.append(td1, td2, td3);
+
+            // 2) result3의 자식으로 tr 추가
+            result3.append(tr);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    });
+});
