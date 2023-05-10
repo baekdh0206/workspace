@@ -203,7 +203,7 @@ form[name='myPageFrm']{
 }
 
 /* 삭제버튼 */
-form[name='myPage-frm']{position: relative;}
+form[name='myPageFrm']{position: relative;}
 
 #deleteImage{
     position: absolute;

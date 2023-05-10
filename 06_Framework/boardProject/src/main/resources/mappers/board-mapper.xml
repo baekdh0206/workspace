@@ -182,7 +182,32 @@
 	</select>
 	
 	
+	<!-- 좋아요 테이블 삽입 --> 
+	<insert id="insertBoardLike" >
+		INSERT INTO "BOARD_LIKE" VALUES (#{boardNo}, #{memberNo})
+	</insert>
 	
+	
+	<!-- 좋아요 테이블 삭제 -->
+	<delete id="deleteBoardLike">
+		DELETE FROM "BOARD_LIKE"
+		WHERE BOARD_NO = #{boardNo}
+		AND MEMBER_NO = #{memberNo}
+	</delete>
+	
+	
+	<!-- 좋아요 개수 조회 -->
+	<select id="countBoardLike" resultType="_int">
+		SELECT COUNT(*) FROM "BOARD_LIKE" WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	
+	<!-- 조회 수 증가 -->
+	<update id="updateReadCount">
+		UPDATE "BOARD" SET
+		READ_COUNT = READ_COUNT + 1 
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 	
 	
 	

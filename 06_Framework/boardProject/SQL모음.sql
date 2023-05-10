@@ -637,13 +637,24 @@ ORDER BY COMMENT_NO
 
 
 -- 회원 프로필 이미지 변경
+UPDATE "MEMBER" SET
+PROFILE_IMG = '/resources/images/member/SpongeBob.gif'
+WHERE MEMBER_NO = 4;
+
+COMMIT;
+
+
+SELECT * FROM BOARD_IMG 
+WHERE BOARD_NO = 1996
+ORDER BY IMG_ORDER ;
 
 
 
 
-
-
-
+-- 좋아요 여부 확인
+SELECT COUNT(*) FROM "BOARD_LIKE"
+WHERE BOARD_NO = 1996 -- 게시글 번호
+AND MEMBER_NO = 4 -- 로그인 회원 번호
 
 
 
