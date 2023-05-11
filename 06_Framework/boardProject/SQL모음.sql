@@ -656,10 +656,43 @@ SELECT COUNT(*) FROM "BOARD_LIKE"
 WHERE BOARD_NO = 1996 -- 게시글 번호
 AND MEMBER_NO = 4 -- 로그인 회원 번호
 
+;
+
+-- 좋아요 테이블 삽입
+INSERT INTO "BOARD_LIKE" VALUES (1996, 4);
+
+-- 좋아요 테이블 삭제
+DELETE FROM "BOARD_LIKE"
+WHERE BOARD_NO = 1996
+AND MEMBER_NO = 4;
+
+COMMIT;
 
 
 
+SELECT * FROM "BOARD" ORDER BY BOARD_NO DESC;
+
+
+SELECT * FROM BOARD_IMG;
 
 	
-	
-	
+-- 한번에 여러 개 INSERT 하기
+
+-- INSERT ALL : 여러 테이블에 동시에 INSERT 하는 구문
+--> 시퀀스 생성 구문을 작성하지 못함  (탈락)
+
+-- INSERT + SUB QUERY
+
+
+
+
+
+
+
+
+
+
+
+
+
+

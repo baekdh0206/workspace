@@ -211,5 +211,79 @@
 	
 	
 	
+	<!-- 게시글 삽입 -->
+	<!-- 
+		useGeneratedKeys 속성 : DB 내부적으로 생성한 키 (시퀀스)를
+						전달된 파라미터의 필드로 대입 가능 여부 지정
+		
+		** 동적 SQL **
+		- 프로그램 수행 중 SQL을 변경하는 기능 (마이바티스의 가장 강력한 기능)
+		
+		<selectKey> 태그 : INSERT/UPDATE 시 사용할 키(시퀀스)를
+						조회해서 파라미터의 지정된 필드에 대입
+		
+		order 속성 : 메인 SQL이 수행되기 전/후에 selectkey가 수행되도록 지정
+		전 : BEFORE
+		후 : AFTER
+		
+		keyProperty 속성 : selectKey 조회 결과를 저장할 파라미터의 필드
+	 -->
+	
+	<insert id="boardInsert" parameterType="Board" useGeneratedKeys="true">
+	
+		<selectKey order="BEFORE" resultType="_int"  keyProperty="boardNo">
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+	
+	
+	 	INSERT INTO BOARD 
+      	VALUES( #{boardNo},
+              #{boardTitle},
+              #{boardContent},
+              DEFAULT, DEFAULT, DEFAULT, DEFAULT, 
+              #{memberNo}, 
+              #{boardCode} )
+              
+	</insert>
+	
+	
+	
+	<!-- 동적 SQL 중 <foreach> 
+		- 특정 SLQ 구문을 반복할 때 사용
+		- 반복되는 사이에 구분자(separator)를 추가할 수 있음.
+		
+		collection : 반복할 객체의 타입 작성(list, set, map...)
+		item : collection에서 순차적으로 꺼낸 하나의 요소를 저장하는 변수
+		index : 현재 반복 접근중인 인덱스 (0,1,2,3,4 ..)
+		
+		open : 반복 전에 출력할 sql
+		close : 반복 종료 후에 출력한 sql
+		
+		separator : 반복 사이사이 구분자
+	 -->
+	
+	<!-- 이미지 리스트(여러 개) 삽입 -->
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO "BOARD_IMG" 
+		SELECT SEQ_IMG_NO.NEXTVAL, A.*
+		FROM (
+		
+			<foreach collection="list" item="img" separator=" UNION ALL ">
+				SELECT  #{img.imagePath} IMG_PATH, 
+						#{img.imageReName} IMG_RENAME, 
+						#{img.imageOriginal} IMG_ORIGINAL,
+				        #{img.imageOrder} IMG_ORDER, 
+				        #{img.boardNo} BOARD_NO
+				FROM DUAL   
+			</foreach>	
+		) A
+	</insert>
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

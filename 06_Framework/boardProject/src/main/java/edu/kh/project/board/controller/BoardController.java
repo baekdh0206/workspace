@@ -41,9 +41,9 @@ public class BoardController {
 	 * 상세 조회 : /board/1/1500?cp=1
 	 * 
 	 * ** 컨트롤러 따로 생성 예정 **
-	 * 삽입 : /board2/insert?code=1 (code == BOARD_CODE, 게시판 종류)
-	 * 수정 : /board2/update?code=1&no=1500 (no == BOARD_NO, 게시글 번호)
-	 * 삭제 : /board2/delete?code=1&no=1500
+	 * 삽입 : /board2/1/insert
+	 * 수정 : /board2/1/1500/update?
+	 * 삭제 : /board2/1/1500/delete
 	 * */
 	
 	

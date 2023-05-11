@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.project.common.utility.Util;
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.dao.MyPageDAO;
 
@@ -104,7 +105,7 @@ public class MyPageServiceImpl implements MyPageService{
 		if(profileImage.getSize() > 0) { // 업로드된 이미지가 있을 경우      
 			
 			// 1) 파일 이름 변경
-			rename = fileRename(profileImage.getOriginalFilename());
+			rename = Util.fileRename(profileImage.getOriginalFilename());
 			
 			// 2) 바뀐 이름 loginMember에 세팅
 			loginMember.setProfileImage(webPath + rename);
@@ -141,19 +142,7 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	
 	
-	// 파일명 변경 메소드
-	public String fileRename(String originFileName) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
 
-		int ranNum = (int) (Math.random() * 100000); // 5자리 랜덤 숫자 생성
-
-		String str = "_" + String.format("%05d", ranNum);
-
-		String ext = originFileName.substring(originFileName.lastIndexOf("."));
-
-		return date + str + ext;
-	}
 
 	
 	
