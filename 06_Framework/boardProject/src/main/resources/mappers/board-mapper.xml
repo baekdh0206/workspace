@@ -274,7 +274,7 @@
 						#{img.imageOriginal} IMG_ORIGINAL,
 				        #{img.imageOrder} IMG_ORDER, 
 				        #{img.boardNo} BOARD_NO
-				FROM DUAL   
+				FROM DUAL
 			</foreach>	
 		) A
 	</insert>
