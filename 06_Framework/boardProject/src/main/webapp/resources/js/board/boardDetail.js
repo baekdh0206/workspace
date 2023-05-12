@@ -58,3 +58,15 @@ boardLike.addEventListener("click", e => {
 
 
 });
+
+
+// 게시글 수정 버튼 클릭 시
+document.getElementById("updateBtn").addEventListener("click", ()=>{
+
+    location.href 
+        = location.pathname.replace("board","board2")
+            + "/update"
+            + location.search
+    // /board2/1/2006/update?cp=1 (GET)
+});
+

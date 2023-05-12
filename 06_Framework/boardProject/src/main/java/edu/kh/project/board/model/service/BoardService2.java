@@ -19,6 +19,18 @@ public interface BoardService2 {
 	int boardInsert(Board board, List<MultipartFile> images, 
 		String webPath, String filePath)  throws IllegalStateException, IOException ;
 
+	/** 게시글 수정 서비스
+	 * @param board
+	 * @param images
+	 * @param webPath
+	 * @param filePath
+	 * @param deleteList
+	 * @return rowCount
+	 */
+	int boardUpdate(Board board, List<MultipartFile> images, 
+			String webPath, String filePath, String deleteList)  
+					throws IllegalStateException, IOException ;
+
 	
 	
 	
