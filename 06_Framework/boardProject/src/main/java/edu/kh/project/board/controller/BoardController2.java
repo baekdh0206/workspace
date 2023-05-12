@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -126,6 +127,8 @@ public class BoardController2 {
 		
 		Board board = boardService.selectBoard(map);
 		
+		//if(로그인회원번호 != 작성자 번호) 리다이렉트
+		
 		model.addAttribute("board", board);
 		// forward(요청 위임) -> request scope 유지
 		return "board/boardUpdate";
@@ -176,6 +179,37 @@ public class BoardController2 {
 		return path;
 	}
 	
+	
+	// 게시글 삭제
+	@GetMapping("/{boardCode}/{boardNo}/delete")
+	public String boardDelete(
+		 @PathVariable("boardCode") int boardCode
+		,@PathVariable("boardNo") int boardNo
+		,RedirectAttributes ra
+		,@RequestHeader("referer") String referer	) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		
+		
+		int result = service.boardDelete(map);
+		
+		String path = "redirect:";
+		String message = null;
+		if(result > 0) {
+			message = "삭제 되었습니다.";
+			path += "/board/"+ boardCode;
+		}else {
+			message = "삭제 실패";
+			path += "/board/" + boardCode + "/" + boardNo;
+			//path += referer;
+		}
+
+		ra.addFlashAttribute("message", message);
+		
+		return path;
+	}
 	
 	
 	

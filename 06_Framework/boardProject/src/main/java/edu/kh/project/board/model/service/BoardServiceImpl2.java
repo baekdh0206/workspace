@@ -231,6 +231,14 @@ public class BoardServiceImpl2 implements BoardService2{
 		
 		return rowCount;
 	}
+
+
+	// 게시글 삭제
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int boardDelete(Map<String, Object> map) {
+		return dao.boardDelete(map);
+	}
 	
 	
 	

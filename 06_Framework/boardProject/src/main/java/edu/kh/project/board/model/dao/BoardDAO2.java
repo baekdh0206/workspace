@@ -70,6 +70,15 @@ public class BoardDAO2 {
 	public int imageInsert(BoardImage img) {
 		return sqlSession.insert("boardMapper.imageInsert", img);
 	}
+
+	/** 게시글 삭제
+	 * @param map
+	 * @return result
+	 */
+	public int boardDelete(Map<String, Object> map) {
+		return sqlSession.update("boardMapper.boardDelete", map);
+	}
+	
 	
 	
 }

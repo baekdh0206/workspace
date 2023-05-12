@@ -743,12 +743,12 @@ UPDATE "BOARD_IMG" SET
 IMG_PATH = '#{imagePath}',
 IMG_ORIGINAL = '#{imageOriginal}',
 IMG_RENAME = '#{imageReName}'
-WHERE BOARD_NO = 2004
-AND IMG_ORDER = 1
+WHERE BOARD_NO = 2011
+AND IMG_ORDER = 0
 ;
 
 
-
+ROLLBACK;
 
 
 
