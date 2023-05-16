@@ -128,6 +128,23 @@
 		</dependency>
 				
 				
+		<!-- Spring WebSocket -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>		
+				
+				
+		<!--Java에서 JSON을 쉽게 다룰 수 있게 해주는 구글 라이브러리  -->
+		<!-- GSON 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
 	
 	
 		<!-- Spring 모듈 -->

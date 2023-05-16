@@ -81,6 +81,7 @@ function selectCommentList(){
                 // 답글 버튼
                 const childCommentBtn = document.createElement("button");
                 childCommentBtn.setAttribute("onclick", "showInsertComment("+comment.commentNo+", this)");
+                
                 childCommentBtn.innerText = "답글";
 
                 // 버튼 영역에 답글 버튼 추가
@@ -226,7 +227,7 @@ function showUpdateComment(commentNo, btn){
             temp[0].parentElement.innerHTML = beforeCommentRow;
             // comment-row                       // 백업한 댓글
             // 백업 내용으로 덮어 씌워 지면서 textarea 사라짐
-       
+            
         }else{ // 취소
             return;
         }
