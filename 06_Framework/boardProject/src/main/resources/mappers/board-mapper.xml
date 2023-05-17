@@ -334,6 +334,113 @@
 	
 	
 	
+	<!-- 특정 게시판의 삭제되지 않고, 검색 조건이 일치하는 게시글 수 조회 -->
+	<select id="getListCount_search" resultType="_int">
+		SELECT COUNT(*) 
+		FROM "BOARD"
+		
+		<!-- 작성자 검색 -->
+		<if test='key == "w"'>
+			JOIN "MEMBER" USING(MEMBER_NO)
+		</if>
+		
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		
+		<choose>
+			<when test='key == "t"'>
+				<!-- 제목 -->
+				AND BOARD_TITLE LIKE '%${query}%'
+			</when>
+			
+			<when test='key == "c"'>
+				<!-- 내용 -->
+				AND BOARD_CONTENT LIKE '%${query}%'
+			</when>
+			
+			<when test='key == "tc"'>
+				<!-- 제목 + 내용 -->
+				AND (BOARD_TITLE LIKE '%${query}%' OR BOARD_CONTENT LIKE '%${query}%')
+			</when>
+			
+			<when test='key == "w"'>
+				<!-- 작성자(닉네임) -->
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	
+	
+	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
+	<!-- 게시글 목록 조회(검색) -->
+	<select id="selectBoardList_search" resultMap="board_rm">
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+			
+			<![CDATA[
+				CASE  
+					WHEN SYSDATE - B_CREATE_DATE < 1/24/60
+					THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24 * 60 * 60 ) || '초 전'
+					WHEN SYSDATE - B_CREATE_DATE < 1/24
+					THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24 * 60) || '분 전'
+					WHEN SYSDATE - B_CREATE_DATE < 1
+					THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24) || '시간 전'
+					ELSE TO_CHAR(B_CREATE_DATE, 'YYYY-MM-DD')
+				END B_CREATE_DATE,
+			]]>
+			
+			(SELECT COUNT(*) FROM "COMMENT" C
+			 WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT,
+			 
+			(SELECT COUNT(*) FROM BOARD_LIKE L
+			 WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
+			 
+			(SELECT IMG_PATH || IMG_RENAME FROM BOARD_IMG I
+			WHERE I.BOARD_NO = B.BOARD_NO
+			AND IMG_ORDER = 0) THUMBNAIL
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		
+		<choose>
+			<when test='key == "t"'>
+				<!-- 제목 -->
+				AND BOARD_TITLE LIKE '%${query}%'
+			</when>
+			
+			<when test='key == "c"'>
+				<!-- 내용 -->
+				AND BOARD_CONTENT LIKE '%${query}%'
+			</when>
+			
+			<when test='key == "tc"'>
+				<!-- 제목 + 내용 -->
+				AND (BOARD_TITLE LIKE '%${query}%' OR BOARD_CONTENT LIKE '%${query}%')
+			</when>
+			
+			<when test='key == "w"'>
+				<!-- 작성자(닉네임) -->
+				AND MEMBER_NICKNAME LIKE '%${query}%'
+			</when>
+		</choose>
+		
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	
+	<!-- 헤더 검색 -->
+	<select id="headerSearch" resultType="map">
+		SELECT * FROM(
+			SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, BOARD_CODE, BOARD_NAME 
+			FROM "BOARD"
+			JOIN "BOARD_TYPE" USING(BOARD_CODE)
+			WHERE BOARD_TITLE LIKE '%${query}%'
+			AND BOARD_DEL_FL = 'N'
+			ORDER BY READ_COUNT DESC, BOARD_NO DESC)
+		<![CDATA[ WHERE ROWNUM <= 10  ]]>
+	</select>
 	
 	
 

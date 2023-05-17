@@ -32,11 +32,21 @@
     <main>
         <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
+        <%-- 검색을 진행한 경우 파라미터(key,query)를 
+            쿼리스트링 형태로 저장한 변수를 선언--%>
+        <c:if test="${not empty param.key}" >
+            <c:set var="sp" value="&key=${param.key}&query=${param.query}"/>
+        </c:if>
+
         
         <section class="board-list">
 
             <h1 class="board-name">${boardName}</h1>
 
+            <c:if test="${not empty param.query}" >
+                <h3 style="margin:30px">"${param.query}" 검색 결과</h3>
+            </c:if>
 
             <div class="list-wrapper">
                 <table class="list-table">
@@ -111,10 +121,10 @@
                 <ul class="pagination">
                 
                     <!-- 첫 페이지로 이동 -->
-                    <li><a href="/board/${boardCode}?cp=1">&lt;&lt;</a></li>
+                    <li><a href="/board/${boardCode}?cp=1${sp}">&lt;&lt;</a></li>
 
                     <!-- 이전 목록 마지막 번호로 이동 -->
-                    <li><a href="/board/${boardCode}?cp=${pagination.prevPage}">&lt;</a></li>
+                    <li><a href="/board/${boardCode}?cp=${pagination.prevPage}${sp}">&lt;</a></li>
 
                     <!-- 특정 페이지로 이동 -->
                     <c:forEach var="i" begin="${pagination.startPage}"
@@ -128,24 +138,24 @@
                             
                             <c:otherwise>
                                 <!-- 현재 페이지를 제외한 나머지 -->
-                                <li><a href="/board/${boardCode}?cp=${i}">${i}</a></li>
+                                <li><a href="/board/${boardCode}?cp=${i}${sp}">${i}</a></li>
                             </c:otherwise>
                         </c:choose>
 
                     </c:forEach>
 
                     <!-- 다음 목록 시작 번호로 이동 -->
-                    <li><a href="/board/${boardCode}?cp=${pagination.nextPage}">&gt;</a></li>
+                    <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sp}">&gt;</a></li>
 
                     <!-- 끝 페이지로 이동 -->
-                    <li><a href="/board/${boardCode}?cp=${pagination.maxPage}">&gt;&gt;</a></li>
+                    <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sp}">&gt;&gt;</a></li>
 
                 </ul>
             </div>
 
 
 			<!-- 검색창 -->
-            <form action="#" method="get" id="boardSearch">
+            <form action="${boardCode}" method="get" id="boardSearch">
 
                 <select name="key" id="searchKey">
                     <option value="t">제목</option>

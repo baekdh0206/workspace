@@ -437,3 +437,39 @@ label[for='headerMenuToggle']:hover{ text-decoration: underline;}
     background-color: #455ba8;
     color : white;
 }
+
+
+/* 검색 결과 */
+.search-area{
+    position: relative;
+}
+
+#searchResult{
+    width: 100%;
+    padding: 10px 0;
+    position: absolute;
+    z-index: 1100;
+    list-style: none;
+    background: white;
+    border: 1px solid gray;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+#searchResult >li:hover{
+    background-color: #ddd;
+}
+
+#searchResult a{
+    height: 35px;
+    padding: 5px 10px;
+    font-size: 20px;
+    line-height: 20px;
+    display: block;
+}
+
+.close{
+    display: none;
+}
