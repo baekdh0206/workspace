@@ -30,6 +30,11 @@ import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.service.BoardService;
 import edu.kh.project.member.model.dto.Member;
 
+/**
+ * @author user1
+ *
+ */
+
 @SessionAttributes({"loginMember"})
 @RequestMapping("/board")
 @Controller
