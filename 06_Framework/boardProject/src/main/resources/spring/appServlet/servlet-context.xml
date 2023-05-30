@@ -45,7 +45,9 @@
 	<!-- webapp/resources 폴더를 HTTP GET방식 요청으로 접근할 수 있다-->
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	
+	<!-- 파비콘 추가 -->
+	<resources mapping="/favicon.ico" location="/resources/images/favicon.ico" />
 
 	<!-- ViewResolver -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
