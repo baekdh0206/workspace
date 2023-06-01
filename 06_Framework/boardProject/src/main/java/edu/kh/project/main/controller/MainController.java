@@ -1,7 +1,22 @@
 package edu.kh.project.main.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.text.ParseException;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 // @Controller : 현재 클래스가 컨트롤러임을 명시
 //				-> 요청, 응답 처리
@@ -42,6 +57,55 @@ public class MainController {
 		
 		return "common/main";
 	}
+	
+	
+	@PostMapping(value = "/test", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	@CrossOrigin(origins = "https://www.q-net.or.kr")
+	public String test(@RequestBody String data) {
+		
+		
+		String value = "";
+		String apiUrl = "https://www.q-net.or.kr/qlf006.do";
+	    try{
+	        HttpURLConnection connection = null;
+	        URL url = new URL(apiUrl);
+
+	        connection = (HttpURLConnection)url.openConnection();
+	        connection.setRequestMethod("POST"); // post 또는 get, 근데 request body 넣으려면 post!
+	        connection.setRequestProperty("Content-Type", "application/json; charset=euc-kr");
+	        connection.setDoOutput(true);
+
+	        
+	        
+	        
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
+	        bw.write(data);
+	        bw.flush();
+	        bw.close();
+
+	        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));            
+	        
+	        
+	        while(true) {
+	        	String temp =  br.readLine();
+	        	if(temp == null) break;
+	        	
+	        	value += temp;
+	        }
+	        System.out.println(value);
+
+	    } catch (EOFException e) {
+	    	System.out.println(value);
+		}
+	    
+	    catch (Exception e){
+	    	e.printStackTrace();
+	    }
+		
+		return value;
+	}
+	
 	
 	
 	

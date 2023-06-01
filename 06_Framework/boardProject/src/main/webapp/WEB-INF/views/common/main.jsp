@@ -168,6 +168,52 @@
             </section>
         </section>
     </main>
+    
+    <ul>
+        <li> 이름 : <input type="text" id="hgulNm"> </li>
+        <li> 생년월일 : <input type="text" id="resdNo1"> (주민등록번호 앞 6자리)</li>
+        <li> 자격증번호 : <input type="text" id="lcsNo"> (예:12345678901A) </li>
+        <li> 발급(등록)연월일 : <input type="text" id="qualExpDt"> (예:20050101) </li>
+        <li> 자격증내지번호 : <input type="text" id="lcsMngNo">(예:0901234567) </li>
+    </ul>
+    <button id="btn">확인</button>
+    
+    <p id="result"></p>
+    <script>
+
+        document.querySelector("#btn").addEventListener('click', e => {
+            const id = "qlf00601s01";
+            const gSite = "Q";
+            const resdNo1 = document.querySelector("#resdNo1").value;
+            const hgulNm = document.querySelector("#hgulNm").value;
+            const lcsNo = document.querySelector("#lcsNo").value;
+            const qualExpDt = document.querySelector("#qualExpDt").value;
+            const lcsMngNo = document.querySelector("#lcsMngNo").value;
+            const data = {};
+            data.id = id;
+            data.gSite = gSite;
+            data.resdNo1 = resdNo1;
+            data.hgulNm = hgulNm;
+            data.lcsNo = lcsNo;
+            data.qualExpDt = qualExpDt;
+            data.lcsMngNo = lcsMngNo;
+            fetch("/test", {
+                method: "POST",
+                headers: { "Content-Type": "application/text" },
+                body: JSON.stringify(data)
+            })
+            .then(resp => resp.text())
+            .then(result => {
+                console.log(result);
+		        document.querySelector("#result").innerHTML = result;
+            })
+            .catch(err => console.log(err));
+
+
+        })
+        
+        
+    </script>
 
     <%-- footer --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
