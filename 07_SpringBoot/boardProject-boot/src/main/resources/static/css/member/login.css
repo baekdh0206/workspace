@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+main {
+    padding: 20px 40px;
+    border-radius: 5px;
+}
+
+main .logo-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-area img{
+    width: 150px;
+}
+
+
+
+
+.input-box {
+    position: relative;
+    margin: 20px 0 40px;
+    width: 300px;
+}
+
+.input-box input {
+    border: 0;
+    border-bottom: 2px solid black;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+}
+
+.input-box input:focus{
+    outline: 0;
+    border-bottom-color: lightblue;
+}
+
+.login-btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    background: #455ba8;
+    color : white;
+    padding: 15px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.login-btn:focus {
+    outline: 0;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+}
+
+
+.saveId-area{
+    margin-top: 10px;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+}        
+
+.saveId-area > input{
+    display: none;
+}
+
+#saveId+label{
+    display: flex;
+    cursor: pointer;
+}
+
+#saveId+label > i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc; 
+    border-radius: 50%;
+    margin-right: 10px;
+    color : #ccc;
+    font-size: 1.05em;
+}
+
+.saveId-area > input:checked + label > i{
+    background-color: #455ba8;
+    border-color: #455ba8;
+    color: white !important;
+}
+
+.text-area {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.text-area a{
+    text-decoration: none;
+    color: black;
+    margin: 0 20px;
+}

@@ -10,7 +10,7 @@ public class MainController {
 	@RequestMapping("/") 
 	public String mainForward(Model model) {
 		
-		model.addAttribute("message", "스프링 부트 테스트 중입니다.");
+		model.addAttribute("name", "홍길동");
 		
 		// Spring MVC : /webapp/WEB-INF/views/common/main.jsp
 		
