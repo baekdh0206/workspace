@@ -1,8 +1,8 @@
 #오라클 DB 연결 정보
 spring.datasource.hikari.driver-class-name=oracle.jdbc.driver.OracleDriver
-spring.datasource.hikari.jdbc-url=jdbc:oracle:thin:@localhost:1521:xe
-spring.datasource.hikari.username=project
-spring.datasource.hikari.password=project1234
+spring.datasource.hikari.jdbc-url=jdbc:oracle:thin:@IP주소:포트번호:DB이름
+spring.datasource.hikari.username=계정명
+spring.datasource.hikari.password=비밀번호
 
 # HikariCP Connection Pool Properties
 #풀이 연결을 사용할 수 있을 때까지 대기하는 최대 시간(ms)을 지정
