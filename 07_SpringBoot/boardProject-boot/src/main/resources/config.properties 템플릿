@@ -19,3 +19,7 @@ spring.datasource.hikari.pool-name=MyHikariCP
 
 #자동 커밋 끄기
 spring.datasource.hikari.auto-commit=false
+
+#이메일 인증
+spring.mail.username=이메일
+spring.mail.password=발급받은 앱 비밀번호

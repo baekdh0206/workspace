@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.project.member.model.dao.AjaxMapper">
+
+	<resultMap type="Member" id="member_rm">
+	
+		<!-- DB의 기본 키(복합키면 여러 개 작성) -->
+		<id property="memberNo" column="MEMBER_NO" />
+
+		<!-- DB의 일반 컬럼들 -->
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberNickname" column="MEMBER_NICKNAME" />
+		<result property="memberTel" column="MEMBER_TEL" />
+		<result property="memberAddress" column="MEMBER_ADDR" />
+		<result property="profileImage" column="PROFILE_IMG" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+		<result property="authority" column="AUTHORITY" />
+	</resultMap>
+
+
+
+	<select id="selectNickname" parameterType="string" resultType="string">
+		SELECT MEMBER_NICKNAME
+		FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{email}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	<!-- 닉네임으로 전화번호 조회 -->
+	
+	<!-- parameterType : 전달 받은 파라미터의 자료형 작성 (선택사항)
+		-> 작성 안하면 TypeHandler가 알아서 처리
+	 -->
+	<select id="selectMemberTel" resultType="string">
+		SELECT MEMBER_TEL
+		FROM "MEMBER"
+		WHERE MEMBER_NICKNAME = #{nickname}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="checkEmail" resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{email}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	<!-- 닉네임 중복 검사 -->
+	<select id="checkNickname" resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_NICKNAME = #{nickname}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	<!-- resultMap은 언제 사용??
+		조회 결과 컬럼명과 DTO의 필드명이 다를 때 사용
+	 -->
+	<select id="selectMember" resultMap="member_rm">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_TEL,
+			NVL(MEMBER_ADDR, '미작성') MEMBER_ADDR, 
+			TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE
+		FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{email}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	
+	<!-- 이메일이 일부라도 일치하는 모든 회원 조회 -->
+	<select id="selectMemberList" resultMap="member_rm">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME
+		FROM "MEMBER"
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_EMAIL LIKE '%${input}%'
+		ORDER BY MEMBER_NO
+	</select>
+	
+	<!-- ${input}을 사용한 이유는?
+		#{}으로 작성하면 '%' 값 '%' 형태로
+		SQL이 정상적인 형태가 아니게 되기 때문에
+		'값'을 감싸고 있는 '' 제거하기 위해서
+	 -->
+	
+	
+	
+
+</mapper>
