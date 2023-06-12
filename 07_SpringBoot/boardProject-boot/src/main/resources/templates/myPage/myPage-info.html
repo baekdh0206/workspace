@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+
+    <link rel="stylesheet" th:href="@{/css/myPage/myPage-style.css}">
+
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{/common/header}"></th:block>
+
+        <section class="myPage-content">
+
+            <th:block th:replace="~{/myPage/sideMenu}"></th:block>
+
+            <section class="myPage-main">
+
+                <h1 class="myPage-title">내 정보</h1>
+                <span class="myPage-subject">원하는 회원 정보를 수정할 수 있습니다.</span>
+            
+                <!--  현재 페이지 : http://localhost/myPage/info 
+                    제일 뒤에 info 지우고 
+                    action에 작성된 경로 추가
+                -->
+                <!-- 상대 경로 -->
+                <!-- 
+                    th:object="${session.loginMember}" : 
+                    form태그 내부에서 session.loginMember의 필드를
+                    *{필드명}으로 얻어와 출력 가능
+                -->
+                <form th:action="@{info}" th:object="${session.loginMember}" method="POST" name="myPageFrm" id="updateInfo">
+
+                    <div class="myPage-row">
+                        <label>닉네임</label>
+                        <input type="text" name="memberNickname" maxlength="10" 
+                            th:value="*{memberNickname}" id="memberNickname">             
+                    </div>
+
+                    <div class="myPage-row">
+                        <label>전화번호</label>
+                        <input type="text" name="memberTel"  maxlength="11" 
+                            th:value="*{memberTel}" id="memberTel">
+                    </div>
+
+                    <div class="myPage-row info-title">
+                        <span>주소</span>
+                    </div>
+
+                    <div class="myPage-row info-address">
+                        <input type="text" name="memberAddress" placeholder="우편번호" value="" id="postcode">
+                        <button type="button" onclick="sample6_execDaumPostcode()">검색</button>
+                    </div>
+
+                    <div class="myPage-row info-address">
+                        <input type="text" name="memberAddress"  placeholder="도로명/지번 주소"  value="" id="address">                
+                    </div>
+
+                    <div class="myPage-row info-address">
+                        <input type="text" name="memberAddress"  placeholder="상세 주소"  value="" id="detailAddress">                
+                    </div>
+
+                    <button class="myPage-submit">수정하기</button>
+                </form>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <th:block th:replace="~{/common/footer}"></th:block>
+
+    <!-- 다음 주소 api 추가 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('postcode').value = data.zonecode;
+                    document.getElementById("address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
+
+
+    <script th:inline="javascript">
+        // th:inline="javascript"
+        // - 타임리프를 script에서 사용 가능
+        // - 타임리프에서 출력되는 값을 JS에 맞는 자료형으로 변경
+
+        // Natural Template
+        // 1) JS 문법 에러 발생 X
+        // 2) HTML파일만 단독으로 열었을 때 발생하는 에러 방지
+        const loginMember = /*[[${session.loginMember}]]*/ "로그인한 회원정보";
+
+        if(loginMember.memberAddress != null){
+            const arr = loginMember.memberAddress.split("^^^");
+
+            document.querySelectorAll("input[name='memberAddress']").forEach( (item, i) => {
+                item.value = arr[i];
+            });                           
+        }
+    </script>
+
+
+
+    <script th:src="@{/js/myPage/myPage.js}"></script>
+</body>
+</html>

@@ -91,18 +91,17 @@
 </header>
 
 <nav>
+    <!-- interceptor를 이용해서 조회된 boardTypeList를
+        application scope에서 얻어와 화면에 출력    -->
+    
     <ul>
-        <li><a href="#">공지사항</a></li>
-        <li><a href="#">자유 게시판</a></li>
-        <li><a href="#">질문 게시판</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">1:1문의</a></li> 
+        <li th:each="boardType : ${application.boardTypeList}">
 
-        <!-- interceptor를 이용해서 조회된 boardTypeList를
-            application scope에서 얻어와 화면에 출력            
-        -->
-        <li>
-            <a href="/board/${boardType.BOARD_CODE}">${boardType.BOARD_NAME}</a>
+            <a th:href="@{/board/{boardCode}(boardCode=${boardType.BOARD_CODE})}"  
+                th:text="${boardType.BOARD_NAME}">게시판 이름</a>
+
+            <!-- <a th:href="|/board/${boardType.BOARD_CODE}|"  
+                th:text="${boardType.BOARD_NAME}">게시판 이름</a> -->
         </li>
 
         <!-- 로그인 했을 때 채팅 보여짐 -->
