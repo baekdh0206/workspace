@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.kh.project.board.model.dao.BoardMapper">
+<mapper namespace="boardMapper">
 
 	<!-- Board DTO에 대한 resultMap -->
 	<resultMap type="Board" id="board_rm">
@@ -161,7 +161,7 @@
 	</select>
 	
 	
-	<!-- 특정 게시글 댓글 조회 -->
+	<!-- 특정 게시글 댓글 조회(바뀔 예정) -->
 	<select id="selectCommentList" resultMap="comment_rm">
 		SELECT LEVEL, C.* FROM
 			(SELECT COMMENT_NO, COMMENT_CONTENT,
@@ -174,6 +174,7 @@
 		START WITH PARENT_NO IS NULL
 		CONNECT BY PRIOR COMMENT_NO = PARENT_NO
 		ORDER SIBLINGS BY COMMENT_NO
+
 	</select>
 	
 	
@@ -214,8 +215,127 @@
 	</update>
 	
 	
+	
+	<!-- 게시글 삽입 -->
+	<!-- 
+		useGeneratedKeys 속성 : DB 내부적으로 생성한 키 (시퀀스)를
+						전달된 파라미터의 필드로 대입 가능 여부 지정
+		
+		** 동적 SQL **
+		- 프로그램 수행 중 SQL을 변경하는 기능 (마이바티스의 가장 강력한 기능)
+		
+		<selectKey> 태그 : INSERT/UPDATE 시 사용할 키(시퀀스)를
+						조회해서 파라미터의 지정된 필드에 대입
+		
+		order 속성 : 메인 SQL이 수행되기 전/후에 selectkey가 수행되도록 지정
+		전 : BEFORE
+		후 : AFTER
+		
+		keyProperty 속성 : selectKey 조회 결과를 저장할 파라미터의 필드
+	 -->
+	
+	<insert id="boardInsert" parameterType="Board" useGeneratedKeys="true">
+	
+		<selectKey order="BEFORE" resultType="_int"  keyProperty="boardNo">
+			SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+		</selectKey>
+	
+	
+	 	INSERT INTO BOARD 
+      	VALUES( #{boardNo},
+              #{boardTitle},
+              #{boardContent},
+              DEFAULT, DEFAULT, DEFAULT, DEFAULT, 
+              #{memberNo}, 
+              #{boardCode} )
+              
+	</insert>
+	
+	
+	
+	<!-- 동적 SQL 중 <foreach> 
+		- 특정 SLQ 구문을 반복할 때 사용
+		- 반복되는 사이에 구분자(separator)를 추가할 수 있음.
+		
+		collection : 반복할 객체의 타입 작성(list, set, map...)
+		item : collection에서 순차적으로 꺼낸 하나의 요소를 저장하는 변수
+		index : 현재 반복 접근중인 인덱스 (0,1,2,3,4 ..)
+		
+		open : 반복 전에 출력할 sql
+		close : 반복 종료 후에 출력한 sql
+		
+		separator : 반복 사이사이 구분자
+	 -->
+	
+	<!-- 이미지 리스트(여러 개) 삽입 -->
+	<insert id="insertImageList" parameterType="list">
+		INSERT INTO "BOARD_IMG" 
+		SELECT SEQ_IMG_NO.NEXTVAL, A.*
+		FROM (
+		
+			<foreach collection="list" item="img" separator=" UNION ALL ">
+				SELECT  #{img.imagePath} IMG_PATH, 
+						#{img.imageReName} IMG_RENAME, 
+						#{img.imageOriginal} IMG_ORIGINAL,
+				        #{img.imageOrder} IMG_ORDER, 
+				        #{img.boardNo} BOARD_NO
+				FROM DUAL
+			</foreach>	
+		) A
+	</insert>
+	
+	
+	<!-- 게시글 수정 -->
+	<update id="boardUpdate">
+		UPDATE "BOARD" SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent},
+		B_UPDATE_DATE = SYSDATE 
+		WHERE BOARD_CODE = #{boardCode}
+		AND BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	
+	<!-- 이미지 삭제 -->
+	<delete id="imageDelete">
+		DELETE FROM "BOARD_IMG"
+		WHERE BOARD_NO = #{boardNo}
+		AND IMG_ORDER IN ( ${deleteList} )
+	</delete>
+	
+	
+	<!-- 이미지 수정 -->
+	<update id="imageUpdate">
+		UPDATE "BOARD_IMG" SET
+		IMG_PATH = #{imagePath},
+		IMG_ORIGINAL = #{imageOriginal},
+		IMG_RENAME = #{imageReName}
+		WHERE BOARD_NO = #{boardNo}
+		AND IMG_ORDER = #{imageOrder}
+	</update>
+	
+	
+	<!-- 이미지 삽입 -->
+	<insert id="imageInsert">
+		INSERT INTO "BOARD_IMG"
+		VALUES(SEQ_IMG_NO.NEXTVAL, #{imagePath}, #{imageReName},
+			#{imageOriginal}, #{imageOrder}, #{boardNo}
+		)
+	</insert>
+	
+	
+	<update id="boardDelete">
+		UPDATE "BOARD" SET
+		BOARD_DEL_FL = 'Y'
+		WHERE BOARD_CODE = #{boardCode}
+		AND BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	
 	<!-- 특정 게시판의 삭제되지 않고, 검색 조건이 일치하는 게시글 수 조회 -->
-	<select id="getSearchListCount" resultType="_int">
+	<select id="getListCount_search" resultType="_int">
 		SELECT COUNT(*) 
 		FROM "BOARD"
 		
@@ -255,7 +375,7 @@
 	
 	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
 	<!-- 게시글 목록 조회(검색) -->
-	<select id="selectSearchBoardList" resultMap="board_rm">
+	<select id="selectBoardList_search" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 			
 			<![CDATA[

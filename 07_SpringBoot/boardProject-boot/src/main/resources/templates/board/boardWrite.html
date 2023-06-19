@@ -1,38 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
-
-<c:forEach items="${boardTypeList}" var="boardType">
-    <c:if test="${boardType.BOARD_CODE == boardCode}" >
-        <c:set var="boardName" value="${boardType.BOARD_NAME}"/>
-    </c:if>
-</c:forEach>
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${boardName}</title>
+    <title th:text="${boardName}">게시판 이름</title>
 
-    <link rel="stylesheet" href="/resources/css/board/boardWrite-style.css">
+    <link rel="stylesheet" th:href="@{/css/board/boardWrite-style.css}">
 </head>
 <body>
     <main>
-        <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+        <th:block th:replace="~{common/header}"></th:block>
 
-                        <%-- @PathVariable --%>
-        <form action="/board2/${boardCode}/insert" method="POST" 
+
+        <form th:action="@{insert}" method="POST" 
             class="board-write" id="boardWriteFrm" enctype="multipart/form-data">  
-            <%-- enctype="multipart/form-data : 제출 데이터 인코딩 X
-                    -> 파일 제출 가능 
-                    -> MultiPartResolver가 문자열, 파일을 구분
-                    --> 문자열 -> String, int , DTO, Map (HttpMessageConverter)
-                    --> 파일 -> MultiPartFile 객체 -> transferTo() (파일을 서버에 저장)
-            --%>
 
-            <h1 class="board-name">${boardName}</h1>
+            <h1 class="board-name" th:text="${boardName}">게시판 이름</h1>
 
             <!-- 제목 -->
             <h1 class="board-title">
@@ -106,9 +90,9 @@
 
     </main>
 
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    <th:block th:replace="~{common/footer}"></th:block>
 
-    <script src="/resources/js/board/boardWrite.js"></script>
+    <script th:src="@{/js/board/boardWrite.js}"></script>
 
 </body>
 </html>

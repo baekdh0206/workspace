@@ -157,7 +157,7 @@
 
         const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
 
-        const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+        let loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
 
         if(loginMemberNo == null) loginMemberNo = "";
 
