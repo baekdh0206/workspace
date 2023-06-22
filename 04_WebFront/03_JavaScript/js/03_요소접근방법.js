@@ -130,10 +130,8 @@ function readValue(){
 
 
 // input 태그에 엔터가 눌러졌을 때
-function inputEnter(){
-
-    // console.log( window.event.key ); // 현재 눌러진 키를 반환
-
+function inputEnter(event){
+    console.log( event.key ); // 현재 눌러진 키를 반환
     // 엔터 입력 시 readValue() 함수 호출
-    if(window.event.key == "Enter") readValue();
+    if(event.key == "Enter") readValue();
 }
