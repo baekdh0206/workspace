@@ -23,3 +23,32 @@ spring.datasource.hikari.auto-commit=false
 #이메일 인증
 spring.mail.username=이메일
 spring.mail.password=발급받은 앱 비밀번호
+
+
+
+#나만의 파일 저장 경로 지정(절대 경로만 가능!)
+
+#회원(프로필이미지) 저장 경로
+my.member.location=C:/uploadImages/member/
+my.member.webpath=/images/member/
+
+#게시판 이미지 저장 경로
+my.board.location=C:/uploadImages/board/
+my.board.webpath=/images/board/
+
+
+
+# 파일을 디스크에 쓸 때까지의 임계값
+# 기본값: 0B
+# 52,428,800 == 50MB
+spring.servlet.multipart.file-size-threshold = 52428800
+
+# 개별 파일당 최대 크기
+# 기본값: 1MB
+# 10,485,760 == 10MB
+spring.servlet.multipart.max-file-size = 10485760
+
+# HTTP 요청당 최대 크기
+# 기본값: 10MB
+# 52,428,800 == 50MB
+spring.servlet.multipart.max-request-size = 52428800
