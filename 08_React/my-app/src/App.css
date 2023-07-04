@@ -1,3 +1,7 @@
 h1{
   color : green;
 }
+
+.completed{
+  text-decoration: line-through; /* 가운데선 */
+}
