@@ -1,0 +1,30 @@
+#root{
+  padding: 15px;
+}
+
+.signup-wrapper{
+  position: relative;
+}
+
+.signup-container{
+  width: 300px;
+  padding: 10px;
+  position: absolute;
+
+  background-color: white;
+  border: 3px solid #ccc;
+}
+
+.signup-container > label{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.signup-container > label > input{
+  flex-basis: 65%;
+}
+
+.signup-container button{
+  width: 100%;
+}
