@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.todo.model.mapper.TodoMapper">
+	
+	<select id="idCheck">
+		SELECT COUNT(*) FROM TODO_MEMBER WHERE ID = #{id}
+	</select>
+
+	<insert id="signup">
+		INSERT INTO TODO_MEMBER
+		VALUES(SEQ_TODO_MEMBER_NO.NEXTVAL, #{id}, #{pw}, #{name})
+	</insert>
+	
+
+	<select id="login" resultType="TodoMember">
+		SELECT * FROM TODO_MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
+	
+	<select id="selectTodoLst" resultType="Todo">
+		SELECT * FROM TODO_LIST
+		WHERE TODO_MEMBER_NO = #{todoMemberNo}
+		ORDER BY 1
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true">
+		
+		<selectKey order="BEFORE" keyProperty="todoNo" resultType="_int" >
+			SELECT SEQ_TODO_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO TODO_LIST
+		VALUES(${todoNo}, #{title}, default, ${todoMemberNo})
+	</insert>
+	
+	<update id="update">
+		UPDATE TODO_LIST SET
+		IS_DONE = #{isDone}
+		WHERE TODO_NO = ${todoNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM TODO_LIST
+		WHERE TODO_NO = ${todoNo}
+	</delete>
+	
+	
+</mapper>

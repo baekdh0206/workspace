@@ -28,3 +28,35 @@
 .signup-container button{
   width: 100%;
 }
+
+.id-error{
+  color: red;
+  font-weight: bold;
+}
+
+
+.todo-container{
+  padding: 20px;
+  width: 500px;
+}
+
+.todo-container li{
+  margin-bottom: 10px;
+}
+
+.todo-container li > div{
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-container li > div > span:last-child{
+  display: flex;
+}
+
+.todo-container li > div button{
+  margin: 0 5px;
+}
+
+.todo-compleate{
+  text-decoration: line-through;
+}
