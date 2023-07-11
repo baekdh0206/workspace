@@ -342,6 +342,10 @@ function selectChattingFn() {
 
 			ul.append(li);
 			display.scrollTop = display.scrollHeight; // 스크롤 제일 밑으로
+			setTimeout(()=>{
+				display.scrollTop = display.scrollHeight; // 스크롤 제일 밑으로
+			}, 50);
+			
 		}
 
 	})
@@ -408,10 +412,8 @@ chattingSock.onmessage = function(e) {
 	const msg = JSON.parse(e.data);
 	console.log(msg);
 
-
 	// 현재 채팅방을 보고있는 경우
 	if(selectChattingNo == msg.chattingNo){
-
 
 		const ul = document.querySelector(".display-chatting");
 	
@@ -457,10 +459,12 @@ chattingSock.onmessage = function(e) {
 		}
 	
 		ul.append(li)
-		display.scrollTop = display.scrollHeight; // 스크롤 제일 밑으로
+
+		setTimeout(()=>{
+			display.scrollTop = display.scrollHeight; // 스크롤 제일 밑으로
+		},100)
+		
 	}
-
-
 
 	selectRoomList();
 }
@@ -477,3 +481,71 @@ document.addEventListener("DOMContentLoaded", ()=>{
 	// 보내기 버튼에 이벤트 추가
 	send.addEventListener("click", sendMessage);
 });
+
+
+
+
+
+
+
+
+// 채팅 이미지 보내기 -> ChattingServiceImpl에서 XSS처리 제거
+const sendImage = document.querySelector('#sendImage');
+
+sendImage.addEventListener('change', async (e) => {
+
+	const image = e.target.files[0];
+
+	if(image === undefined) return;
+
+	const formData = new FormData();
+	formData.enctype = "multipart/form-data";
+	formData.append('image', image)
+	
+	await fetch("/chatting/uploadImage",{
+		method : 'post',
+		headers : {},
+		body : formData
+	})
+	.then(resp => resp.text())
+	.then(result =>{
+		console.log(result);
+
+		var obj = {
+			"senderNo": loginMemberNo,
+			"targetNo": selectTargetNo,
+			"chattingNo": selectChattingNo,
+			"messageContent": `<img class='chatting-image' src='${result}'>`,
+		};
+		console.log(obj)
+
+		chattingSock.send(JSON.stringify(obj));
+
+		sendImage.value = '';
+	})
+
+})
+
+
+const modal = document.querySelector('.modal');
+const modalImage = document.getElementById("modalImage");
+const modalClose = document.getElementById("modalClose");
+
+modalClose.addEventListener("click", function(){
+            
+	modal.classList.toggle('hide');
+
+	setTimeout(function(){
+		modal.classList.toggle('hide');
+		modal.classList.toggle('show');
+	},500);
+});
+
+
+
+document.addEventListener('click', e => {
+	if(e.target.className === 'chatting-image'){
+		modalImage.setAttribute('src', e.target.getAttribute('src'));
+		modal.classList.toggle('show');
+	}
+})

@@ -1,10 +1,13 @@
 package edu.kh.project.chatting.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.project.chatting.model.dao.ChattingMapper;
 import edu.kh.project.chatting.model.dto.ChattingRoom;
@@ -43,7 +46,7 @@ public class ChattingServiceImpl implements ChattingService{
 
     @Override
     public int insertMessage(Message msg) {
-        msg.setMessageContent(Util.XSSHandling(msg.getMessageContent()));
+//        msg.setMessageContent(Util.XSSHandling(msg.getMessageContent()));
 //        msg.setMessageContent(Util.newLineHandling(msg.getMessageContent()));
         return mapper.insertMessage(msg);
     }
@@ -70,11 +73,22 @@ public class ChattingServiceImpl implements ChattingService{
 		return mapper.selectTarget(map);
 	}
 
-    
-
-    
-    
-    
+	// 이미지 업로드
+	@Override
+	public String uploadImage(MultipartFile image) throws IllegalStateException, IOException {
+		
+		String rename = Util.fileRename(image.getOriginalFilename());
+		
+		String filePath = "C:/uploadImages/chatting/";
+		
+		File forder = new File(filePath);
+		
+		if(!forder.exists()) forder.mkdir(); // 폴더 없으면 생성
+		
+		image.transferTo(new File(filePath+ rename));
+		
+		return "/images/chatting/"+rename;
+	}
 
     
     
